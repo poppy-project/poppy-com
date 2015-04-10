@@ -6,11 +6,13 @@
  *  Abstract: basics functionalities of the Poppy communication protocol
  */
 
-#include "poppyNetwork.h"
-#include "i2c_master.h"
-#include "context.h"
+#include <avr/io.h>
+#include "poppy-com/poppyNetwork.h"
+#include "poppy-com/inc/i2c_master.h"
+#include "poppy-com/inc/i2c_slave.h"
+#include "poppy-com/inc/context.h"
 
-extern context ctx;
+extern context_t ctx;
 
 // Startup and network configuration
 void poppyNetwork_init(TX_CB tx_cb,
@@ -52,7 +54,7 @@ void poppyNetwork_init(TX_CB tx_cb,
     TCCR0B |= 0x05;
     unsigned int ticksCount = 255 - ((MAINCLOCK/1024)/100);
 #else
-    #error *** Incompatible Clock set at MAINCLOCK. Your setting is probably too speed. ***
+    #error *** Incompatible Clock set at MAINCLOCK. ***
 #endif
     /* Wait 10ms */
     unsigned int i;
@@ -98,12 +100,25 @@ void poppyNetwork_init(TX_CB tx_cb,
     TWCR = ((1 << TWEA) | (1 << TWEN) | (1 << TWIE));  // Active ACK system
 
     // Save context
-    // Slave TX callback
+    // User side slave TX callback
     ctx.tx_cb = tx_cb;
-    // Slave RX callback
+    // User side slave RX callback
     ctx.rx_cb = rx_cb;
-    // Slave RX general call callback
+    // User side slave RX general call callback
     ctx.rxgc_cb = rxgc_cb;
+
+
+    // Data callback
+    ctx.data_cb = idle;
+
+    // Module id
+    ctx.id = DEFAULTID;
+    // Module type
+    ctx.type = MODULETYPE;
+
+
+    // Status
+    ctx.status = (status_t) {.error = FALSE, .warning = FALSE};
 }
 
 
