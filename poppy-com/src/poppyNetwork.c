@@ -118,7 +118,10 @@ void poppyNetwork_init(TX_CB tx_cb,
 
 
     // Status
-    ctx.status = (status_t) {.error = FALSE, .warning = FALSE};
+    ctx.status = (status_t) {.rx_error = FALSE,
+                             .master_write = FALSE,
+                             .unexpected_state = FALSE,
+                             .warning = FALSE};
 }
 
 

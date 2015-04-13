@@ -10,7 +10,9 @@
 typedef void (*DATA_CB) (msg_dir_t dir, volatile uint8_t data);
 
 typedef struct {
-  uint8_t error : 1;
+  uint8_t rx_error : 1;
+  uint8_t master_write : 1;
+  uint8_t unexpected_state : 1;
   uint8_t warning : 1;
 } status_t;
 

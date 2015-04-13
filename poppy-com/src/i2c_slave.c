@@ -48,6 +48,8 @@ ISR(TWI_vect) {
             case TW_BUS_ERROR:  // Error
             case TW_NO_INFO:  // Error
                 TWCR |= (1<<TWINT)|(1<<TWSTO)|(1<<TWEA);
+                ctx.status.unexpected_state = TRUE;
+                ctx.data_cb = idle;
             break;
             default:
                 TWCR |= (1<<TWINT)|(1<<TWEA);
@@ -145,7 +147,7 @@ void msg_complete(msg_dir_t dir) {
         case GET_STATUS:
         case GET_FIRM_REVISION:
             // ERROR
-            ctx.status.error = TRUE;
+            ctx.status.rx_error = TRUE;
         break;
         default:
             ctx.rx_cb(dir, &ctx.msg);
