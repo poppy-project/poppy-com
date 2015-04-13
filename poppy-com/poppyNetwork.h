@@ -22,12 +22,10 @@ typedef void (*TX_CB) (msg_t *msg);
 void poppyNetwork_init(TX_CB tx_cb,
                        RX_CB rx_cb,
                        RX_CB rxgc_cb);
-uint8_t poppyNetwork_Read(uint8_t addr,
-                          uint8_t *data,
-                          uint8_t size);
-uint8_t poppyNetwork_Write(uint8_t addr,
-                           uint8_t *data,
-                           uint8_t size);
+uint8_t poppyNetwork_read(uint8_t addr,
+                           msg_t *msg);
+uint8_t poppyNetwork_write(uint8_t addr,
+                           msg_t *msg);
 
 /*
  **TODO**
