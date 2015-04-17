@@ -18,6 +18,7 @@ extern context_t ctx;
 void poppyNetwork_init(TX_CB tx_cb,
                        RX_CB rx_cb,
                        RX_CB rxgc_cb) {
+// *************************This is bootload, no com_lib************************
     /*
      * Set pin PB4 to 0.
      * This is used to detect if someone is plugged into the input.
@@ -38,24 +39,24 @@ void poppyNetwork_init(TX_CB tx_cb,
      * Wait for a while just to be sure that all other modules are started.
      * To do that we use timer 0.
      */
-#if MAINCLOCK/100 <= 0xFF
-    TCCR0B |= 0x01;
-    unsigned int ticksCount = 255 - (MAINCLOCK/100);
-#elif(MAINCLOCK/8)/1000 <= 0xFF
-    TCCR0B |= 0x02;
-    unsigned int ticksCount = 255 - ((MAINCLOCK/8)/100);
-#elif(MAINCLOCK/64)/1000 <= 0xFF
-    TCCR0B |= 0x03;
-    unsigned int ticksCount = 255 - ((MAINCLOCK/64)/100);
-#elif(MAINCLOCK/256)/1000 <= 0xFF
-    TCCR0B |= 0x04;
-    unsigned int ticksCount = 255 - ((MAINCLOCK/256)/100);
-#elif(MAINCLOCK/1024)/1000 <= 0xFF
-    TCCR0B |= 0x05;
-    unsigned int ticksCount = 255 - ((MAINCLOCK/1024)/100);
-#else
-    #error *** Incompatible Clock set at MAINCLOCK. ***
-#endif
+    #if MAINCLOCK/100 <= 0xFF
+        TCCR0B |= 0x01;
+        unsigned int ticksCount = 255 - (MAINCLOCK/100);
+    #elif(MAINCLOCK/8)/1000 <= 0xFF
+        TCCR0B |= 0x02;
+        unsigned int ticksCount = 255 - ((MAINCLOCK/8)/100);
+    #elif(MAINCLOCK/64)/1000 <= 0xFF
+        TCCR0B |= 0x03;
+        unsigned int ticksCount = 255 - ((MAINCLOCK/64)/100);
+    #elif(MAINCLOCK/256)/1000 <= 0xFF
+        TCCR0B |= 0x04;
+        unsigned int ticksCount = 255 - ((MAINCLOCK/256)/100);
+    #elif(MAINCLOCK/1024)/1000 <= 0xFF
+        TCCR0B |= 0x05;
+        unsigned int ticksCount = 255 - ((MAINCLOCK/1024)/100);
+    #else
+        #error *** Incompatible Clock set at MAINCLOCK. ***
+    #endif
     /* Wait 10ms */
     unsigned int i;
     for (i = 0; i < 10; i++) {
@@ -91,7 +92,7 @@ void poppyNetwork_init(TX_CB tx_cb,
          * You just have to wait your turn!
          */
     }
-
+// *****************************************************************************
     // I2C
     TWBR = 0x02;  // Set SCL Frequency to 400Khz
     TWSR &= !(1<<TWPS1) & !(1<<TWPS0);  // SetPrescaler (for SCL frequency)
@@ -126,17 +127,23 @@ void poppyNetwork_init(TX_CB tx_cb,
 
 
 uint8_t poppyNetwork_read(uint8_t addr, msg_t *msg) {
-    i2cStart((addr << 1) | 1);
+    i2cAddr(addr, TX);
     for (unsigned char i = 0; i < msg->size; i++) {
         msg->data[i] = i2cRead(1);
     }
-    i2cStop();
+    i2c_transmit(STOP);
     return 0;
+    /*
+     * TODO(NR) : dabord faire un WRITE puis un READ du coup msg contiens un
+     *            truc a envoyer. La taille dans msg correspond donc au message
+     *            en WRITE ensuite on dois spécifier le nombre d'octets a
+     *            recevoir en READ et reremplir le msg.
+    */
 }
 
 uint8_t poppyNetwork_write(uint8_t addr, msg_t *msg) {
-    if (i2cStart(addr << 1)) {
-        i2cStop();
+    if (i2cAddr(addr, TX)) {
+        i2c_transmit(STOP);
         return 1;
     }
     // Write DATA
@@ -145,6 +152,6 @@ uint8_t poppyNetwork_write(uint8_t addr, msg_t *msg) {
     for (unsigned char i = 0; i < msg->size; i++) {
         i2cWrite(msg->data[i]);
     }
-    i2cStop();
+    i2c_transmit(STOP);
     return 0;
 }

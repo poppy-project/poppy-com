@@ -17,3 +17,7 @@
 #ifndef MAINCLOCK
     #define MAINCLOCK 8000000
 #endif
+
+#ifndef MAX_TRIES
+    #define MAX_TRIES 5
+#endif

@@ -30,12 +30,7 @@ uint8_t poppyNetwork_write(uint8_t addr,
 /*
  **TODO**
  *
- *Dans le mode slave il doit y avoir un certain nombre de message qui seront réservé a l'utilisation
- *du protocole en lui même. C'est requettes la devront être filtré pour être soit géré par le driver
- *lui même soit redirigé vers une CB spécifique.
- *La liste est a définir
- *
- *Les trucs relatif au boot doivent être virer, cette lib doit êttre utilisé tant du coté bootloader qu'utilisateur...
+ *Les trucs relatif au boot doivent être viré, cette lib doit êttre utilisé tant du coté bootloader qu'utilisateur...
  *
  *Evaluer l'impact mémoire de la lib et limiter au maximum les structures de donnée lourde en interne, les déporter au niveau utilisateur.
  *
@@ -43,13 +38,15 @@ uint8_t poppyNetwork_write(uint8_t addr,
  *
  *Faire la doc en commentaire
  *
- *Tester le Read
- *
  *Tester le GC
  *
  *Monter clk
  *
  *Regarder comment fonctionne les lib arduino (ajout des trucs dans l'init gestion de clk et autre
+ *
+ *Gérer les retry direct dans la lib.
+ *
+ *Gérer le checksum
 */
 
 #endif /* poppy_com_H_ */

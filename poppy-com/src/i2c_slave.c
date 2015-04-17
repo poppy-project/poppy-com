@@ -1,7 +1,6 @@
 #include <util/twi.h>
 #include <avr/interrupt.h>
 #include "poppy-com/inc/i2c_slave.h"
-#include "poppy-com/poppyNetwork.h"
 
 
 // Global variables
@@ -13,13 +12,11 @@ ISR(TWI_vect) {
     if (TWCR&(1<<TWINT))
         switch (TWSR) {
         // SLAVE TRANSMITTER MODE
-             // Own address SLA+R received, ACK returned.
-            case TW_ST_SLA_ACK:
-            // Data transmitted, ACK received.
-            case TW_ST_DATA_ACK:
+            case TW_ST_SLA_ACK:   // 0xA8: SLA+R received, ACK returned.
+            case TW_ST_DATA_ACK:  // 0xB8: Data transmitted, ACK received.
                 // Slave TX callback
                 ctx.data_cb(TX, TWDR);
-                TWCR |= (1<<TWINT)|(1<<TWEA);
+                TWCR |= (1<<TWINT);
                 break;
 
         // SLAVE RECEIVER MODE
@@ -34,25 +31,25 @@ ISR(TWI_vect) {
             case TW_SR_DATA_ACK:
                 // Slave RX callback
                 ctx.data_cb(RX, TWDR);
-                TWCR |= (1<<TWINT)|(1<<TWEA);
+                TWCR |= (1<<TWINT);
             break;
 
             // Data has been received on general call;ACK has been returned.
             case TW_SR_GCALL_DATA_ACK:
                 // Slave RX general call callback
                 ctx.data_cb(RXGC, TWDR);
-                TWCR |= (1<<TWINT)|(1<<TWEA);
+                TWCR |= (1<<TWINT);
             break;
 
         // OTHER
             case TW_BUS_ERROR:  // Error
             case TW_NO_INFO:  // Error
-                TWCR |= (1<<TWINT)|(1<<TWSTO)|(1<<TWEA);
+                TWCR |= (1<<TWINT)|(1<<TWSTO);
                 ctx.status.unexpected_state = TRUE;
                 ctx.data_cb = idle;
             break;
             default:
-                TWCR |= (1<<TWINT)|(1<<TWEA);
+                TWCR |= (1<<TWINT);
             break;
         }
 }
@@ -73,6 +70,8 @@ void idle(msg_dir_t dir, volatile uint8_t data) {
                 TWDR = *data_to_send;
                 data_to_send++;
             } else {
+                // Led on
+                PORTB |= _BV(PORTB5);
                 ctx.tx_cb(&ctx.msg);
             }
         break;
@@ -138,6 +137,8 @@ void msg_complete(msg_dir_t dir) {
         case WRITE_ID:
             // Get and save a new given ID
             ctx.id = ctx.msg.data[0];
+            TWAR = (ctx.id << 1) & ~(1<<TWGCE);
+            // TORO(NR) : Write this ID on EEPROM and use it as default at reboot (do this after debug)
         break;
         case WRITE_FIRMWARE:
             // TODO(NR)
