@@ -7,14 +7,14 @@
 #define TRUE 1
 #define FALSE 0
 
-typedef void (*DATA_CB) (msg_dir_t dir, volatile uint8_t data);
+typedef void (*DATA_CB) (msg_dir_t dir, volatile unsigned char *data);
 
 typedef struct {
-  uint8_t rx_error : 1;
-  uint8_t master_write : 1;
-  uint8_t master_read : 1;
-  uint8_t unexpected_state : 1;
-  uint8_t warning : 1;
+  unsigned char rx_error : 1;
+  unsigned char master_write : 1;
+  unsigned char master_read : 1;
+  unsigned char unexpected_state : 1;
+  unsigned char warning : 1;
 } status_t;
 
 /*
@@ -48,9 +48,9 @@ typedef struct {
 
     // Module infomations
         // Module id
-        uint8_t id;
+        unsigned char id;
         // Module type
-        uint8_t type;
+        unsigned char type;
 
     // Variables
         // Status

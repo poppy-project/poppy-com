@@ -11,7 +11,7 @@
 #endif
 
 #ifndef MCU
-    #define MCU "atmega328p"
+    #define MCU atmega328p
 #endif
 
 #ifndef MAINCLOCK
@@ -20,4 +20,8 @@
 
 #ifndef MAX_TRIES
     #define MAX_TRIES 5
+#endif
+
+#if MCU == atmega328p
+    #define HAL "poppy-com/atmega328p/hal.h"
 #endif

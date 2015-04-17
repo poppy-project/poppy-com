@@ -9,11 +9,11 @@ typedef enum {
 
 typedef struct {
     // Message register
-    uint8_t reg;
+    unsigned char reg;
     // Message size
-    uint8_t size;
+    unsigned char size;
     // Data
-    uint8_t data[512];
+    unsigned char data[512];
 }msg_t;
 
 typedef void (*RX_CB) (msg_dir_t dir, msg_t *msg);
@@ -22,9 +22,9 @@ typedef void (*TX_CB) (msg_t *msg);
 void poppyNetwork_init(TX_CB tx_cb,
                        RX_CB rx_cb,
                        RX_CB rxgc_cb);
-uint8_t poppyNetwork_read(uint8_t addr,
+unsigned char poppyNetwork_read(unsigned char addr,
                            msg_t *msg);
-uint8_t poppyNetwork_write(uint8_t addr,
+unsigned char poppyNetwork_write(unsigned char addr,
                            msg_t *msg);
 
 /*
@@ -34,8 +34,6 @@ uint8_t poppyNetwork_write(uint8_t addr,
  *
  *Evaluer l'impact mémoire de la lib et limiter au maximum les structures de donnée lourde en interne, les déporter au niveau utilisateur.
  *
- *Choir un compilo de doc (a priori Doxygen)
- *
  *Faire la doc en commentaire
  *
  *Tester le GC
@@ -43,8 +41,6 @@ uint8_t poppyNetwork_write(uint8_t addr,
  *Monter clk
  *
  *Regarder comment fonctionne les lib arduino (ajout des trucs dans l'init gestion de clk et autre
- *
- *Gérer les retry direct dans la lib.
  *
  *Gérer le checksum
 */

@@ -5,12 +5,14 @@
  *  Author: nico
  *  Abstract: basics functionalities of the Poppy communication protocol
  */
-
-#include <avr/io.h>
 #include "poppy-com/poppyNetwork.h"
 #include "poppy-com/inc/i2c_master.h"
 #include "poppy-com/inc/i2c_slave.h"
 #include "poppy-com/inc/context.h"
+#include HAL
+
+//TO BE RM
+// #include <avr/io.h>
 
 extern context_t ctx;
 
@@ -19,86 +21,82 @@ void poppyNetwork_init(TX_CB tx_cb,
                        RX_CB rx_cb,
                        RX_CB rxgc_cb) {
 // *************************This is bootload, no com_lib************************
-    /*
-     * Set pin PB4 to 0.
-     * This is used to detect if someone is plugged into the input.
-     * Set pin PB5 to 0.
-     * This is used to isolate the network input and output.
-     */
+    // /*
+    //  * Set pin PB4 to 0.
+    //  * This is used to detect if someone is plugged into the input.
+    //  * Set pin PB5 to 0.
+    //  * This is used to isolate the network input and output.
+    //  */
 
-    /* Set pin 5 of PORTB in output mode. */
-    DDRB |= _BV(DDB5);
-    /* Set pin 4 of PORTB in output mode. */
-    DDRB |= _BV(DDB4);
-    /* Set pin 5 low to isolate input and output. */
-    PORTB &= ~_BV(PORTB5);
-    /* Set pin 4 low to pull SDA low. */
-    PORTB &= ~_BV(PORTB5);
+    // /* Set pin 5 of PORTB in output mode. */
+    // DDRB |= _BV(DDB5);
+    // /* Set pin 4 of PORTB in output mode. */
+    // DDRB |= _BV(DDB4);
+    // /* Set pin 5 low to isolate input and output. */
+    // PORTB &= ~_BV(PORTB5);
+    // /* Set pin 4 low to pull SDA low. */
+    // PORTB &= ~_BV(PORTB5);
 
-    /*
-     * Wait for a while just to be sure that all other modules are started.
-     * To do that we use timer 0.
-     */
-    #if MAINCLOCK/100 <= 0xFF
-        TCCR0B |= 0x01;
-        unsigned int ticksCount = 255 - (MAINCLOCK/100);
-    #elif(MAINCLOCK/8)/1000 <= 0xFF
-        TCCR0B |= 0x02;
-        unsigned int ticksCount = 255 - ((MAINCLOCK/8)/100);
-    #elif(MAINCLOCK/64)/1000 <= 0xFF
-        TCCR0B |= 0x03;
-        unsigned int ticksCount = 255 - ((MAINCLOCK/64)/100);
-    #elif(MAINCLOCK/256)/1000 <= 0xFF
-        TCCR0B |= 0x04;
-        unsigned int ticksCount = 255 - ((MAINCLOCK/256)/100);
-    #elif(MAINCLOCK/1024)/1000 <= 0xFF
-        TCCR0B |= 0x05;
-        unsigned int ticksCount = 255 - ((MAINCLOCK/1024)/100);
-    #else
-        #error *** Incompatible Clock set at MAINCLOCK. ***
-    #endif
-    /* Wait 10ms */
-    unsigned int i;
-    for (i = 0; i < 10; i++) {
-        TCNT0 = ticksCount;
-        while (TCNT0 >= ticksCount);
-    }
+    // /*
+    //  * Wait for a while just to be sure that all other modules are started.
+    //  * To do that we use timer 0.
+    //  */
+    // #if MAINCLOCK/100 <= 0xFF
+    //     TCCR0B |= 0x01;
+    //     unsigned int ticksCount = 255 - (MAINCLOCK/100);
+    // #elif(MAINCLOCK/8)/1000 <= 0xFF
+    //     TCCR0B |= 0x02;
+    //     unsigned int ticksCount = 255 - ((MAINCLOCK/8)/100);
+    // #elif(MAINCLOCK/64)/1000 <= 0xFF
+    //     TCCR0B |= 0x03;
+    //     unsigned int ticksCount = 255 - ((MAINCLOCK/64)/100);
+    // #elif(MAINCLOCK/256)/1000 <= 0xFF
+    //     TCCR0B |= 0x04;
+    //     unsigned int ticksCount = 255 - ((MAINCLOCK/256)/100);
+    // #elif(MAINCLOCK/1024)/1000 <= 0xFF
+    //     TCCR0B |= 0x05;
+    //     unsigned int ticksCount = 255 - ((MAINCLOCK/1024)/100);
+    // #else
+    //     #error *** Incompatible Clock set at MAINCLOCK. ***
+    // #endif
+    // /* Wait 10ms */
+    // unsigned int i;
+    // for (i = 0; i < 10; i++) {
+    //     TCNT0 = ticksCount;
+    //     while (TCNT0 >= ticksCount);
+    // }
 
-    /*
-     * At this point all modules should have put SDA low, we are able to see if someone is plugged into our input.
-     */
-    /* Set SDA (pin 4 of PORTC) into input mode. */
-    DDRC &= ~_BV(DDC4);
-    /* Set SDA (pin 4 of PORTC) into tristated mode (hight-impedance). */
-    PORTC = PORTC & ~_BV(DDC4);
+    // /*
+    //  * At this point all modules should have put SDA low, we are able to see if someone is plugged into our input.
+    //  */
+    // /* Set SDA (pin 4 of PORTC) into input mode. */
+    // DDRC &= ~_BV(DDC4);
+    // /* Set SDA (pin 4 of PORTC) into tristated mode (hight-impedance). */
+    // PORTC = PORTC & ~_BV(DDC4);
 
 
-    DDRC &= ~_BV(DDC5);
-    PORTC = PORTC & ~_BV(DDC5);
+    // DDRC &= ~_BV(DDC5);
+    // PORTC = PORTC & ~_BV(DDC5);
 
-    /* Read the value to know if a module is plugged before. */
-    if (!(PORTC & _BV(DDC4))) {
-        /*
-         * You are the first module of the robot!
-         * You have to initiate the auto addressing routine.
-         */
+    // /* Read the value to know if a module is plugged before. */
+    // if (!(PORTC & _BV(DDC4))) {
+    //     /*
+    //      * You are the first module of the robot!
+    //      * You have to initiate the auto addressing routine.
+    //      */
 
-        /* Enable led just for debug! */
-         // PORTB |= _BV(PORTB5);
-    } else {
-        /*
-         * You are not the first module of the robot!
-         * Someone else will probably initiate the auto addressing routine.
-         * You just have to wait your turn!
-         */
-    }
+    //     /* Enable led just for debug! */
+    //      // PORTB |= _BV(PORTB5);
+    // } else {
+    //     /*
+    //      * You are not the first module of the robot!
+    //      * Someone else will probably initiate the auto addressing routine.
+    //      * You just have to wait your turn!
+    //      */
+    // }
 // *****************************************************************************
-    // I2C
-    TWBR = 0x02;  // Set SCL Frequency to 400Khz
-    TWSR &= !(1<<TWPS1) & !(1<<TWPS0);  // SetPrescaler (for SCL frequency)
-    TWAR = (0x0A << 1) & ~(1<<TWGCE);  // I2C Address
-    TWAMR = 0x00;  // Not used
-    TWCR = ((1 << TWEA) | (1 << TWEN) | (1 << TWIE));  // Active ACK system
+
+    hal_init();
 
     // Save context
     // User side slave TX callback
@@ -126,7 +124,7 @@ void poppyNetwork_init(TX_CB tx_cb,
 }
 
 
-uint8_t poppyNetwork_read(uint8_t addr, msg_t *msg) {
+unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg) {
     i2cAddr(addr, TX);
     for (unsigned char i = 0; i < msg->size; i++) {
         msg->data[i] = i2cRead(1);
@@ -141,7 +139,7 @@ uint8_t poppyNetwork_read(uint8_t addr, msg_t *msg) {
     */
 }
 
-uint8_t poppyNetwork_write(uint8_t addr, msg_t *msg) {
+unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg) {
     if (i2cAddr(addr, TX)) {
         i2c_transmit(STOP);
         return 1;

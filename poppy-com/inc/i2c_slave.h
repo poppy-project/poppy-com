@@ -3,10 +3,12 @@
 
 #include "poppy-com/inc/context.h"
 
+void id_update(unsigned char id);
+
 // Callbacks
-void idle(msg_dir_t dir, volatile uint8_t data);
-void get_size(msg_dir_t dir, volatile uint8_t data);
-void get_data(msg_dir_t dir, volatile uint8_t data);
+void idle(msg_dir_t dir, volatile unsigned char *data);
+void get_size(msg_dir_t dir, volatile unsigned char *data);
+void get_data(msg_dir_t dir, volatile unsigned char *data);
 
 void msg_complete(msg_dir_t dir);
 

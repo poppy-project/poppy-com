@@ -1,65 +1,16 @@
-#include <util/twi.h>
-#include <avr/interrupt.h>
 #include "poppy-com/inc/i2c_slave.h"
+#include HAL
 
 
 // Global variables
 extern context_t ctx;
 
-// I2C Slave mode
-ISR(TWI_vect) {
-    //  Test if there is really an interrupt
-    if (TWCR&(1<<TWINT))
-        switch (TWSR) {
-        // SLAVE TRANSMITTER MODE
-            case TW_ST_SLA_ACK:   // 0xA8: SLA+R received, ACK returned.
-            case TW_ST_DATA_ACK:  // 0xB8: Data transmitted, ACK received.
-                // Slave TX callback
-                ctx.data_cb(TX, TWDR);
-                TWCR |= (1<<TWINT);
-                break;
-
-        // SLAVE RECEIVER MODE
-            // Previously addressed with own SLA+W; ACK has been returned.
-            case TW_SR_SLA_ACK:
-            // Previously addressed with general call; ACK has been returned.
-            case TW_SR_GCALL_ACK:
-                TWCR |= (1<<TWINT)|(1<<TWEA);
-            break;
-
-            // Data has been received on SLA+W; ACK has been returned.
-            case TW_SR_DATA_ACK:
-                // Slave RX callback
-                ctx.data_cb(RX, TWDR);
-                TWCR |= (1<<TWINT);
-            break;
-
-            // Data has been received on general call;ACK has been returned.
-            case TW_SR_GCALL_DATA_ACK:
-                // Slave RX general call callback
-                ctx.data_cb(RXGC, TWDR);
-                TWCR |= (1<<TWINT);
-            break;
-
-        // OTHER
-            case TW_BUS_ERROR:  // Error
-            case TW_NO_INFO:  // Error
-                TWCR |= (1<<TWINT)|(1<<TWSTO);
-                ctx.status.unexpected_state = TRUE;
-                ctx.data_cb = idle;
-            break;
-            default:
-                TWCR |= (1<<TWINT);
-            break;
-        }
-}
-
 /*
  * idle function is called when we are ready to receive or send a new message.
  */
-void idle(msg_dir_t dir, volatile uint8_t data) {
-    static uint8_t *data_to_send;
-    static uint8_t msg_size = 0;
+void idle(msg_dir_t dir, volatile unsigned char *data) {
+    static unsigned char *data_to_send;
+    static unsigned char msg_size = 0;
     switch (dir) {
         case TX:
             /*
@@ -67,11 +18,9 @@ void idle(msg_dir_t dir, volatile uint8_t data) {
              */
             if (msg_size) {
                 msg_size--;
-                TWDR = *data_to_send;
+                *data = *data_to_send;
                 data_to_send++;
             } else {
-                // Led on
-                PORTB |= _BV(PORTB5);
                 ctx.tx_cb(&ctx.msg);
             }
         break;
@@ -80,7 +29,7 @@ void idle(msg_dir_t dir, volatile uint8_t data) {
             /*
              * That should be a new message to receive.
              */
-             ctx.msg.reg = data;
+             ctx.msg.reg = *data;
             switch (ctx.msg.reg) {
                 case GET_ID:
                     // Reply with ID
@@ -100,7 +49,7 @@ void idle(msg_dir_t dir, volatile uint8_t data) {
                 case GET_STATUS:
                     // Reply with a status register
                     msg_size = 1;
-                    data_to_send = (uint8_t*)&ctx.status;
+                    data_to_send = (unsigned char*)&ctx.status;
                     // TODO(NR) ca devrais reset le status...
                 break;
                 case GET_FIRM_REVISION:
@@ -116,14 +65,14 @@ void idle(msg_dir_t dir, volatile uint8_t data) {
     }
 }
 
-void get_size(msg_dir_t dir, volatile uint8_t data) {
-    ctx.msg.size = data;
+void get_size(msg_dir_t dir, volatile unsigned char *data) {
+    ctx.msg.size = *data;
     ctx.data_cb = get_data;
 }
 
-void get_data(msg_dir_t dir, volatile uint8_t data) {
-    static uint8_t data_count = 0;
-    ctx.msg.data[data_count++] = data;
+void get_data(msg_dir_t dir, volatile unsigned char *data) {
+    static unsigned char data_count = 0;
+    ctx.msg.data[data_count++] = *data;
     if (data_count == ctx.msg.size) {
         ctx.data_cb = idle;
         data_count = 0;
@@ -136,9 +85,7 @@ void msg_complete(msg_dir_t dir) {
     switch (ctx.msg.reg) {
         case WRITE_ID:
             // Get and save a new given ID
-            ctx.id = ctx.msg.data[0];
-            TWAR = (ctx.id << 1) & ~(1<<TWGCE);
-            // TORO(NR) : Write this ID on EEPROM and use it as default at reboot (do this after debug)
+            id_update(ctx.msg.data[0]);
         break;
         case WRITE_FIRMWARE:
             // TODO(NR)
