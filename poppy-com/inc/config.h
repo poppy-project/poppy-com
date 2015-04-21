@@ -17,6 +17,9 @@
 #ifndef MAINCLOCK
     #define MAINCLOCK 16000000
 #endif
+
+#ifndef SCLFREQ
+    #define SCLFREQ 400000
 #endif
 
 #ifndef MAX_TRIES

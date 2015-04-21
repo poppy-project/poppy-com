@@ -10,11 +10,11 @@ extern context_t ctx;
 
 void hal_init(void) {
     // I2C
-    TWBR = 0x02;  // Set SCL Frequency to 400Khz
-    TWSR &= !(1<<TWPS1) & !(1<<TWPS0);  // SetPrescaler (for SCL frequency)
-    TWAR = (0x0A << 1) & ~(1<<TWGCE);  // I2C Address
+    TWBR = ((MAINCLOCK / SCLFREQ) - 16) / 2;
+    TWSR &= ~(1<<TWPS1) & ~(1<<TWPS0);  // SetPrescaler divisor to 1
+    TWAR = (0x0A << 1) | (1<<TWGCE);  // I2C Address and enable general call
     TWAMR = 0x00;  // Not used
-    TWCR = ((1 << TWEA) | (1 << TWEN) | (1 << TWIE));  // Active ACK system
+    TWCR = ((1 << TWEA) | (1 << TWEN) | (1 << TWIE));  // Enable ACK system
 }
 
 unsigned char i2c_transmit(com_state_t type) {
