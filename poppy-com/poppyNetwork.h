@@ -22,10 +22,8 @@ typedef void (*TX_CB) (msg_t *msg);
 void poppyNetwork_init(TX_CB tx_cb,
                        RX_CB rx_cb,
                        RX_CB rxgc_cb);
-unsigned char poppyNetwork_read(unsigned char addr,
-                           msg_t *msg);
-unsigned char poppyNetwork_write(unsigned char addr,
-                           msg_t *msg);
+unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg);
+unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg);
 
 /*
  **TODO**
@@ -35,8 +33,6 @@ unsigned char poppyNetwork_write(unsigned char addr,
  *Evaluer l'impact mémoire de la lib et limiter au maximum les structures de donnée lourde en interne, les déporter au niveau utilisateur.
  *
  *Faire la doc en commentaire
- *
- *Tester le GC
  *
  *Monter clk
  *
