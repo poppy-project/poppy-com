@@ -1,0 +1,39 @@
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -qq doxygen graphviz avr-gcc
+language: c
+compiler:
+  - avr-gcc
+script: make
+env:
+  global:
+    - secure: "DouAOOlgvhHqHE5fJDnOYaPdx4AN+oNLnxjzjKYeEdQxApt5fTyKaj5n9nuULVi6Ro0u7GiZ5nFsj+K0Lm/987ILPGO0Ba7o2jntXynvqYo906AhnmiPCJ4jKn76H3ufJR1Lw7Uyu8+OKfHiulpfx+6PnfouC3lzUmgSl+cuclQ="
+after_success:
+  - ## the following automatically builds the doxygen
+  - ## documentation and pushes it to the gh_pages branch
+  -
+  - # First, set up credentials using the environment variables
+  - # GIT_NAME, GIT_EMAIL and GH_TOKEN. These were passed
+  - # encrypted to travis and should have been decrypted
+  - # using travis' private key before this script was run.
+  - git config --global user.name "${GIT_NAME}"
+  - git config --global user.email ${GIT_EMAIL}
+  -
+  - # now we make the directory for the docs and cd into it
+  - mkdir Docs
+  - cd Docs/
+  -
+  - # clone the whole repo again, but switch to gh_pages branch
+  - git clone https://github.com/poppy-project/poppy-com.git
+  - git checkout gh-pages
+  -
+  - # go back up and build the documentation, pointing it towards
+  - # that dir we just made
+  - cd ../
+  - make docs
+  -
+  - # cd into the docs dir and commit and push the new docs.
+  - cd Docs
+  - git add --all .
+  - git commit -m "Auto-updating poppy-com documentation"
+  - git push https://${GH_TOKEN}@github.com/nicolas-rabault/poppy-com gh-pages

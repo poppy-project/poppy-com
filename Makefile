@@ -5,6 +5,10 @@
 # make clean = Clean out built project files.
 # make program = Download the hex file to the device, using avrdude.  Please
 #                customize the avrdude settings below first!
+# make docs = compile with doxygen the code documentation
+
+# Doxygen configuration file name
+DOXYFILE = .Doxyfile
 
 # Microcontroller Type
 # MCU = attiny13
@@ -396,3 +400,5 @@ clean_list :
 .PHONY : all begin finish end sizebefore sizeafter gccversion coff extcoff \
 	clean clean_list program
 
+docs:
+	doxygen $(DOXYFILE)
