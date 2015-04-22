@@ -1,6 +1,6 @@
 before_install:
   - sudo apt-get update
-  - sudo apt-get install -qq doxygen graphviz avr-gcc
+  - sudo apt-get install -qq doxygen graphviz avr-libc gcc-avr binutils-avr
 language: c
 compiler:
   - avr-gcc
@@ -19,21 +19,15 @@ after_success:
   - git config --global user.name "${GIT_NAME}"
   - git config --global user.email ${GIT_EMAIL}
   -
-  - # now we make the directory for the docs and cd into it
-  - mkdir Docs
-  - cd Docs/
-  -
   - # clone the whole repo again, but switch to gh_pages branch
-  - git clone https://github.com/poppy-project/poppy-com.git
+  - mkdir full
+  - git clone https://github.com/poppy-project/poppy-com.git full
+  - cd full
+  - make docs
   - git checkout gh-pages
   -
-  - # go back up and build the documentation, pointing it towards
-  - # that dir we just made
-  - cd ../
-  - make docs
-  -
   - # cd into the docs dir and commit and push the new docs.
-  - cd Docs
-  - git add --all .
+  - git status
+  - git add Docs/*
   - git commit -m "Auto-updating poppy-com documentation"
-  - git push https://${GH_TOKEN}@github.com/nicolas-rabault/poppy-com gh-pages
+  - git push https://${GH_TOKEN}@github.com/poppy-project/poppy-com gh-pages
