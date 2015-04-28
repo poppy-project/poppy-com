@@ -1,0 +1,133 @@
+\hypertarget{template_8c}{\section{template.\-c \-File \-Reference}
+\label{template_8c}\index{template.\-c@{template.\-c}}
+}
+
+
+\-Poppy module application side template.  
+
+
+{\ttfamily \#include \char`\"{}poppy-\/com/poppy\-Network.\-h\char`\"{}}\*
+\-Include dependency graph for template.\-c\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{template_8c__incl}
+\end{center}
+\end{figure}
+\subsection*{\-Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{template_8c_ace61de97737b4ab184cc58f6fa90e61b}{rx\-\_\-cb} (\hyperlink{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1}{msg\-\_\-dir\-\_\-t} dir, \hyperlink{structmsg__t}{msg\-\_\-t} $\ast$msg)
+\begin{DoxyCompactList}\small\item\em \-Callback function for \-Slave mode messages reception. \end{DoxyCompactList}\item 
+void \hyperlink{template_8c_ab93d299989e0e94c4f6f91d95936a070}{rxgc\-\_\-cb} (\hyperlink{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1}{msg\-\_\-dir\-\_\-t} dir, \hyperlink{structmsg__t}{msg\-\_\-t} $\ast$msg)
+\begin{DoxyCompactList}\small\item\em \-Callback function for \-Slave mode messages reception with general call. \end{DoxyCompactList}\item 
+void \hyperlink{template_8c_ae4dafcb82441709916a9e68df792f44a}{tx\-\_\-cb} (\hyperlink{structmsg__t}{msg\-\_\-t} $\ast$msg)
+\begin{DoxyCompactList}\small\item\em \-Callback function for \-Slave mode messages transmission. \end{DoxyCompactList}\item 
+int \hyperlink{template_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\begin{DoxyCompactList}\small\item\em \-Your main module application process. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{\-Detailed \-Description}
+\-Poppy module application side template. \begin{DoxyAuthor}{\-Author}
+\-Nicolas \-Rabault 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{\-Version}
+0.\-1 
+\end{DoxyVersion}
+\begin{DoxyDate}{\-Date}
+22 \-Avril 2015
+\end{DoxyDate}
+\-Please feel free to copy this template and use it at base for your new \-Poppy module application. 
+
+\-Definition in file \hyperlink{template_8c_source}{template.\-c}.
+
+
+
+\subsection{\-Function \-Documentation}
+\hypertarget{template_8c_a840291bc02cba5474a4cb46a9b9566fe}{\index{template.\-c@{template.\-c}!main@{main}}
+\index{main@{main}!template.c@{template.\-c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf main} (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}}\label{template_8c_a840291bc02cba5474a4cb46a9b9566fe}
+
+
+\-Your main module application process. 
+
+\begin{DoxyReturn}{\-Returns}
+integer 
+\end{DoxyReturn}
+
+
+\-Definition at line 65 of file template.\-c.
+
+\hypertarget{template_8c_ace61de97737b4ab184cc58f6fa90e61b}{\index{template.\-c@{template.\-c}!rx\-\_\-cb@{rx\-\_\-cb}}
+\index{rx\-\_\-cb@{rx\-\_\-cb}!template.c@{template.\-c}}
+\subsubsection[{rx\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf rx\-\_\-cb} (
+\begin{DoxyParamCaption}
+\item[{{\bf msg\-\_\-dir\-\_\-t}}]{dir, }
+\item[{{\bf msg\-\_\-t} $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}}\label{template_8c_ace61de97737b4ab184cc58f6fa90e61b}
+
+
+\-Callback function for \-Slave mode messages reception. 
+
+\-This is the minimal include you will need to use poppy-\/com in a module application
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em dir} & \-Message direction. (\-That will be remove!) \\
+\hline
+{\em msg} & \-Received message. \\
+\hline
+\end{DoxyParams}
+
+
+\-Definition at line 27 of file template.\-c.
+
+\hypertarget{template_8c_ab93d299989e0e94c4f6f91d95936a070}{\index{template.\-c@{template.\-c}!rxgc\-\_\-cb@{rxgc\-\_\-cb}}
+\index{rxgc\-\_\-cb@{rxgc\-\_\-cb}!template.c@{template.\-c}}
+\subsubsection[{rxgc\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf rxgc\-\_\-cb} (
+\begin{DoxyParamCaption}
+\item[{{\bf msg\-\_\-dir\-\_\-t}}]{dir, }
+\item[{{\bf msg\-\_\-t} $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}}\label{template_8c_ab93d299989e0e94c4f6f91d95936a070}
+
+
+\-Callback function for \-Slave mode messages reception with general call. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em dir} & \-Message direction. (\-That will be remove!) \\
+\hline
+{\em msg} & \-Received message. \\
+\hline
+\end{DoxyParams}
+
+
+\-Definition at line 40 of file template.\-c.
+
+\hypertarget{template_8c_ae4dafcb82441709916a9e68df792f44a}{\index{template.\-c@{template.\-c}!tx\-\_\-cb@{tx\-\_\-cb}}
+\index{tx\-\_\-cb@{tx\-\_\-cb}!template.c@{template.\-c}}
+\subsubsection[{tx\-\_\-cb}]{\setlength{\rightskip}{0pt plus 5cm}void {\bf tx\-\_\-cb} (
+\begin{DoxyParamCaption}
+\item[{{\bf msg\-\_\-t} $\ast$}]{msg}
+\end{DoxyParamCaption}
+)}}\label{template_8c_ae4dafcb82441709916a9e68df792f44a}
+
+
+\-Callback function for \-Slave mode messages transmission. 
+
+
+\begin{DoxyParams}{\-Parameters}
+{\em msg} & \-Transmitted message. \-You have to put something in this \hyperlink{structmsg__t}{msg\-\_\-t}. \\
+\hline
+\end{DoxyParams}
+
+
+\-Definition at line 52 of file template.\-c.
+
