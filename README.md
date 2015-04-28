@@ -1,5 +1,8 @@
-Poppy 2.0 communication lib                         {#mainpage}
+Poppy 2.0 communication lib  {#mainpage}
 ===========================
+
+[![Build Status](https://travis-ci.org/poppy-project/poppy-com.svg?branch=master)](https://travis-ci.org/poppy-project/poppy-com)
+Please read [the doc](http://poppy-project.github.io/poppy-com/)
 
 The role of this code is to manage the Poppy 2.0 communication stack between all modules.
 
