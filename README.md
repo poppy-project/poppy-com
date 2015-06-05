@@ -16,14 +16,7 @@ How to start a new Poppy 2.0 module code project
 Lib installation
 ________________
 
-Just do a fork and add a remote repository pointing on the poppy-com repository.
-    TODO :
-    http://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes
-
-    ex :
-    git remote add read-only alt-machine:/path/to/repo
-    tu n'as plus qu'a faire un git pull read-only master pour merger
-    read-only étant un "alias"
+Just do a fork of this repository to create your hown module. To avoid any trouble during update take care to create a specific branch for all your developpements.
 
 Lib modification
 ________________
