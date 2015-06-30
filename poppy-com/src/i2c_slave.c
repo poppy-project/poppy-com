@@ -63,6 +63,11 @@ void idle(msg_dir_t dir, volatile unsigned char *data) {
                 break;
             }
         break;
+        case END:
+            if (msg_size > 0)
+                ctx.status.rx_error = TRUE;
+            msg_size = 0;
+        break;
     }
 }
 

@@ -22,7 +22,8 @@
 typedef enum {
     TX,   /*!< Slave transmiter mode. */
     RX,   /*!< Slave receiver mode. */
-    RXGC  /*!< Slave receiver général call mode. */
+    RXGC, /*!< Slave receiver général call mode. */
+    END   /*!< Slave receiver stop. */
 }msg_dir_t;
 
 

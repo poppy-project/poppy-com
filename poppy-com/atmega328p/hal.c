@@ -146,6 +146,10 @@ ISR(TWI_vect) {
                 ctx.status.unexpected_state = TRUE;
                 ctx.data_cb = idle;
             break;
+            case TW_SR_STOP:
+                TWCR |= (1<<TWINT)|(1<<TWSTO);
+                ctx.data_cb = idle;
+                ctx.data_cb(END, &TWDR);
             default:
                 TWCR |= (1<<TWINT);
             break;
