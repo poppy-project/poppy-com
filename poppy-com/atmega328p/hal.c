@@ -153,7 +153,7 @@ ISR(TWI_vect) {
 
 void id_update(unsigned char id) {
     ctx.id = id;
-    TWAR = (ctx.id << 1) & ~(1 << TWGCE);
+    TWAR = (ctx.id << 1) | (1 << TWGCE);
     /*
      * TORO(NR) : Write this ID on EEPROM and use it as default at
      *            reboot (do this after debug)
