@@ -18,6 +18,27 @@
 #include "poppy-com/poppyNetwork.h"
 
 /**
+ * \enum msg_dir_t
+ * \brief Module specific register enumerator.
+ *
+ * This structure is used to list all the specific module register.
+ * The first register should be equal to PROTOCOL_REGISTER_NB, because is the
+ * first free register.
+ * The last register should be MODULE_REGISTER_NB, for the user space register
+ * enumerator...
+ */
+typedef enum {
+    /*
+     * Add all you register id here like :
+     * FIRST_MODULE_REGISTER = PROTOCOL_REGISTER_NB,
+     * SECOND_MODULE_REGISTER,
+     * THIRD_MODULE_REGISTER,
+     * ...
+     */
+    MODULE_REGISTER_NB
+}module_register_t;
+
+/**
  * \fn void rx_cb(msg_dir_t dir, msg_t *msg)
  * \brief Callback function for Slave mode messages reception.
  *
