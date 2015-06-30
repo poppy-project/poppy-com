@@ -12,9 +12,19 @@
 #include HALBOOT
 #include "poppy-com/poppyNetwork.h"
 
+/**
+ * \enum msg_dir_t
+ * \brief Module specific register enumerator.
+ *
+ * This structure is used to list all the specific module register.
+ * The first register should be equal to PROTOCOL_REGISTER_NB, because is the
+ * first free register.
+ * The last register should be MODULE_REGISTER_NB, for the user space register
+ * enumerator...
+ */
 typedef enum {
     BOOTLOADER_WRITE_ID = PROTOCOL_REGISTER_NB,/*!< Get and save a new given ID. */
-    BOOTLOADER_REGISTER_NB /*!< This is the minim register value available for applicative side. */
+    MODULE_REGISTER_NB /*!< This is the minim register value available for the applicative side. */
 }boot_register_t;
 
 volatile unsigned char token = 0;
