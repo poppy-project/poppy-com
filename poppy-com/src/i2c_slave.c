@@ -1,10 +1,8 @@
 #include "poppy-com/inc/i2c_slave.h"
 #include HAL
 
-
 // Global variables
 extern context_t ctx;
-
 /*
  * idle function is called when we are ready to receive or send a new message.
  */
@@ -17,6 +15,9 @@ void idle(msg_dir_t dir, volatile unsigned char *data) {
              * At this point we should have something ready to send.
              */
             if (msg_size) {
+                /* This case is dedicated to protocol messages
+                 * TODO(NR) transformer data_to_send etmsg_size en msg_t global
+                 */
                 msg_size--;
                 *data = *data_to_send;
                 data_to_send++;

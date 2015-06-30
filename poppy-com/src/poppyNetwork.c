@@ -11,7 +11,6 @@
 #include "poppy-com/inc/context.h"
 #include HAL
 
-
 extern context_t ctx;
 
 // Startup and network configuration
@@ -28,7 +27,6 @@ void poppyNetwork_init(TX_CB tx_cb,
     // User side slave RX general call callback
     ctx.rxgc_cb = rxgc_cb;
 
-
     // Data callback
     ctx.data_cb = idle;
 
@@ -37,7 +35,6 @@ void poppyNetwork_init(TX_CB tx_cb,
     // Module type
     ctx.type = MODULETYPE;
 
-
     // Status
     ctx.status = (status_t) {.rx_error = FALSE,
                              .master_write = FALSE,
@@ -45,9 +42,8 @@ void poppyNetwork_init(TX_CB tx_cb,
                              .warning = FALSE};
 }
 
-
 unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg) {
-    i2cAddr(addr, TX);
+    i2cAddr(addr, TX);  // TODO(NR) add if.
     for (unsigned char i = 0; i < msg->size; i++) {
         msg->data[i] = i2cRead(1);
     }
