@@ -98,7 +98,10 @@ void msg_complete(msg_dir_t dir) {
             ctx.status.rx_error = TRUE;
         break;
         default:
-            ctx.rx_cb(dir, &ctx.msg);
+            if (dir == RX)
+                ctx.rx_cb(dir, &ctx.msg);
+            else
+                ctx.rxgc_cb(dir, &ctx.msg);
         break;
     }
 }
