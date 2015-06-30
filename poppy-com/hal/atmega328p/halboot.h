@@ -14,6 +14,7 @@ typedef enum {
     BOTH_ENABLE
 }pin_state_t;
 
+void halboot_init(void);
 unsigned char pin(void);
 void pass_token(void);
 

@@ -9,6 +9,25 @@
 // Global variables
 extern context_t ctx;
 
+void halboot_init(void) {
+
+    /*
+     * A normal bootloader init set left and right to input mode.
+     * No starter  autodetection is needed. a specific bloc will start
+     */
+
+    // set right pin to in mode
+    DDRD &= ~_BV(RIGHTPIN);
+
+    // set left pin to out mode
+    DDRD |= _BV(LEFTPIN);
+
+    // Set Pull-up for right pin
+    PORTD = 0x01;
+
+    // Set left to 0
+    PORTD &= ~_BV(LEFTPIN);
+}
 
 unsigned char pin(void) {
     static unsigned char pin = 0x00;

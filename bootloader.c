@@ -92,6 +92,7 @@ void Init(void) {
     TCCR0B |= 0x03;  // Set up timer at Fcpu/64
 
     poppyNetwork_init(tx_cb, rx_cb, rxgc_cb);
+    halboot_init();
 
     // enable interrupt
     sei();
@@ -169,6 +170,17 @@ void master(void) {
 
 int main(void) {
     Init();
+
+    // Led off
+    PORTB &= ~_BV(PORTB5);
+
+    Timerms(5);
+    // Read IN pin for autodetect starter
+    if (PIND & 0x01) {
+        // led on
+        PORTB  |= _BV(PORTB5);
+        master();
+    }
 
     while (1) {
         if (token == 0) {
