@@ -36,7 +36,10 @@ unsigned char get_extern_module_type(unsigned char addr, unsigned char *module_t
         i2c_transmit(STOP);
         return 1;
     }
-    *module_type = i2cRead(FALSE);
+    if (i2cRead(FALSE, module_type)) {
+        i2c_transmit(STOP);
+        return 1;
+    }
     i2c_transmit(STOP);
     return 0;
 }

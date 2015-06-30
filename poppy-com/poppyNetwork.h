@@ -66,10 +66,9 @@ void poppyNetwork_init(TX_CB tx_cb,
  * \param addr Address of the slave.
  * \param msg Message to send to the slave, he come back with the reply of the slave.
  *
- * TODO :
- * - Write before read management
  */
-unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg);
+unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
+                                unsigned char reply_size);
 
 /**
  * \fn unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg)

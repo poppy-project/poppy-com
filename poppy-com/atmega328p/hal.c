@@ -88,7 +88,7 @@ unsigned char i2cWrite(unsigned char data) {
     return 0;
 }
 
-unsigned char i2cRead(unsigned char ack_enable) {
+unsigned char i2cRead(unsigned char ack_enable, unsigned char *data) {
     if (ack_enable) {
         if (i2c_transmit(DATA) != TW_MR_DATA_ACK) {
             ctx.status.master_read = TRUE;
@@ -100,7 +100,8 @@ unsigned char i2cRead(unsigned char ack_enable) {
             return 1;
         }
     }
-    return TWDR;
+    *data = TWDR;
+    return 0;
 }
 
 // I2C Slave mode

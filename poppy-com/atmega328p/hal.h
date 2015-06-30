@@ -19,7 +19,7 @@ void id_update(unsigned char id);
 
 unsigned char i2cAddr(unsigned char addr, msg_dir_t dir);
 unsigned char i2cWrite(unsigned char data);
-unsigned char i2cRead(unsigned char ack_enable);
+unsigned char i2cRead(unsigned char ack_enable, unsigned char *data);
 unsigned char i2c_transmit(com_state_t type);
 
 #endif /* HAL_H_ */

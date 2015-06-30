@@ -42,10 +42,41 @@ void poppyNetwork_init(TX_CB tx_cb,
                              .warning = FALSE};
 }
 
-unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg) {
-    i2cAddr(addr, TX);  // TODO(NR) add if.
-    for (unsigned char i = 0; i < msg->size; i++) {
-        msg->data[i] = i2cRead(1);
+unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
+                                unsigned char reply_size) {
+    unsigned char i = 0;
+
+    // Write the command
+    if (i2cAddr(addr, TX)) {
+        i2c_transmit(STOP);
+        return 1;
+    }
+    if (i2cWrite(msg->reg)) {
+        i2c_transmit(STOP);
+        return 1;
+    }
+    if (i2cWrite(msg->size)) {
+        i2c_transmit(STOP);
+        return 1;
+    }
+    for (i = 0; i < msg->size; i++) {
+        if (i2cWrite(msg->data[i])) {
+            i2c_transmit(STOP);
+            return 1;
+        }
+    }
+
+    // Read the reply
+    if (i2cAddr(addr, RX)) {
+        i2c_transmit(STOP);
+        return 1;
+    }
+    msg->size = reply_size;
+    for (i = 0; i < msg->size; i++) {
+        if (i2cRead(FALSE, &msg->data[i])) {
+            i2c_transmit(STOP);
+            return 1;
+        }
     }
     i2c_transmit(STOP);
     return 0;
