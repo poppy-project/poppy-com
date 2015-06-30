@@ -80,12 +80,6 @@ unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
     }
     i2c_transmit(STOP);
     return 0;
-    /*
-     * TODO(NR) : dabord faire un WRITE puis un READ du coup msg contiens un
-     *            truc a envoyer. La taille dans msg correspond donc au message
-     *            en WRITE ensuite on dois spécifier le nombre d'octets a
-     *            recevoir en READ et reremplir le msg.
-    */
 }
 
 unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg) {

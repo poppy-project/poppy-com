@@ -15,8 +15,8 @@ void idle(msg_dir_t dir, volatile unsigned char *data) {
              * At this point we should have something ready to send.
              */
             if (msg_size) {
-                /* This case is dedicated to protocol messages
-                 * TODO(NR) transformer data_to_send etmsg_size en msg_t global
+                /*
+                 *This case is dedicated to protocol messages
                  */
                 msg_size--;
                 *data = *data_to_send;
