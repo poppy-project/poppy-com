@@ -18,45 +18,34 @@ typedef struct {
 } status_t;
 
 /*
- * Tous les messages coté applicatif devrons avoir une structure de type :
+ * All applicativ side message should have a structure like :
  * ADDR - REGISTER - SIZE - DATA[512] - CHECKSUM
  */
 typedef enum {
-    // Reply with ID
-    GET_ID,
-    // Get and save a new given ID
-    WRITE_ID,
-    // Reply with module_type number
-    GET_MODULE_TYPE,
-    // Reply with a status register
-    GET_STATUS,
-    // Reply with the actual firmware revision number
-    GET_FIRM_REVISION,
-    // Get a New firmware and write it in flash
-    WRITE_FIRMWARE
+    GET_ID,              /*!< Reply with ID. */
+    WRITE_ID,            /*!< Get and save a new given ID. */
+    GET_MODULE_TYPE,     /*!< Reply with module_type number. */
+    GET_STATUS,          /*!< Reply with a status register. */
+    GET_FIRM_REVISION,   /*!< Reply with the actual firmware revision number. */
+    WRITE_FIRMWARE,      /*!< Get a New firmware and write it in flash. */
+    GET_COM_REVISION,    /*!< Reply with the actual communication protocole version (1 default). */
+    PROTOCOL_REGISTER_NB /*!< This is the minim  l register value available for applicative side. */
 }register_t;
 
 typedef struct {
-        // Data management callback.
-        DATA_CB data_cb;
-        // User side slave TX callback
-        TX_CB tx_cb;
-        // User side slave RX callback
-        RX_CB rx_cb;
-        // User side slave RX general call callback
-        RX_CB rxgc_cb;
+    // Callback pointers
+        DATA_CB data_cb;    /*!< Data management callback. */
+        TX_CB tx_cb;        /*!< User side slave TX callback. */
+        RX_CB rx_cb;        /*!< User side slave RX callback. */
+        RX_CB rxgc_cb;      /*!< User side slave RX general call callback. */
 
     // Module infomations
-        // Module id
-        unsigned char id;
-        // Module type
-        unsigned char type;
+        unsigned char id;   /*!< Module ID. */
+        unsigned char type; /*!< Module type. */
 
     // Variables
-        // Status
-        status_t status;
-        // Message
-        msg_t msg;
+        status_t status;    /*!< Status. */
+        msg_t msg;          /*!< Message. */
     }context_t;
 
 context_t ctx;
