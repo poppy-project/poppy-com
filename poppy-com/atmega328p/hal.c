@@ -62,6 +62,7 @@ unsigned char i2cAddr(unsigned char addr, msg_dir_t dir) {
             // ACK received
             return 0;
         break;
+        case TW_MR_SLA_NACK:
         case TW_MT_SLA_NACK:
             // NACK received
         case TW_MT_ARB_LOST:
