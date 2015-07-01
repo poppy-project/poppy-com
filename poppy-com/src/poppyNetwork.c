@@ -93,6 +93,7 @@ unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg) {
     for (unsigned char i = 0; i < msg->size; i++) {
         i2cWrite(msg->data[i]);
     }
+    i2cWrite(crc(&msg->data[0], msg->size));
     i2c_transmit(STOP);
     return 0;
 }

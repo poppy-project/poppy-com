@@ -76,12 +76,15 @@ void get_size(msg_dir_t dir, volatile unsigned char *data) {
 
 void get_data(msg_dir_t dir, volatile unsigned char *data) {
     static unsigned char data_count = 0;
-    ctx.msg.data[data_count++] = *data;
-    if (data_count == ctx.msg.size) {
+    if (data_count < ctx.msg.size) {
+        ctx.msg.data[data_count++] = *data;
+    } else {
         ctx.data_cb = idle;
         data_count = 0;
-        msg_complete(dir);
-        // In the future call the checksum function
+        if (*data == crc(&ctx.msg.data[0], ctx.msg.size))
+            msg_complete(dir);
+        else
+            ctx.status.rx_error = TRUE;
     }
 }
 

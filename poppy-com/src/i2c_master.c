@@ -19,6 +19,7 @@ unsigned char set_extern_id(unsigned char addr, unsigned char newid) {
         i2c_transmit(STOP);
         return 1;
     }
+    i2cWrite(crc(newid, 1));
     i2c_transmit(STOP);
     return 0;
 }
