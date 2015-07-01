@@ -45,7 +45,7 @@ void rxgc_cb(msg_dir_t dir, msg_t *msg) {
                 id_update(msg->data[0]);
                 token++;
             }
-            break;
+        break;
         default:
         break;
     }
@@ -115,23 +115,17 @@ void Timerms(unsigned int nb) {
 }
 
 void master(void) {
-    Timerms(5);
-    msg_t msg1 = {.reg = 0x55, .size = 1, .data[0] = 0xCA};
-
-    msg_t msg2 = {.reg = 0x55, .size = 1, .data[0] = 0xFE};
+    msg_t msg = {.reg = LED_TEST, .size = 1, .data[0] = 0xFE};
+    msg_t addr = {.reg = BOOTLOADER_WRITE_ID, .size = 1, .data[0] = DEFAULTID+1};
 
     char i = 0;
     char nb_modul = 0;
-    msg_t addr, type;
     unsigned char module_type;
 
-    // Set right to 1
+    Timerms(5);
+
+    // Set left to 1
     PORTD |= _BV(PORTD1);
-
-    addr.reg = BOOTLOADER_WRITE_ID;
-    addr.size = 1;
-    addr.data[0] = DEFAULTID+1;
-
 
     while (1) {
         if (poppyNetwork_write(0x00, &addr) == 1)
@@ -147,11 +141,13 @@ void master(void) {
         for (i = DEFAULTID+1; i <= (DEFAULTID+nb_modul); i++) {
             // Led on
             PORTB |= _BV(PORTB5);
-            poppyNetwork_write(i, &msg2);
+            poppyNetwork_write(i, &msg);
+            msg.data[0] = 0xCA;
             Timerms(100);
             // Led off
             PORTB &= ~_BV(PORTB5);
-            poppyNetwork_write(i, &msg1);
+            poppyNetwork_write(i, &msg);
+            msg.data[0] = 0xFE;
             Timerms(100);
         }
     }
