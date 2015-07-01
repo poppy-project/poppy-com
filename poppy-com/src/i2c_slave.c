@@ -56,7 +56,6 @@ void idle(msg_dir_t dir, volatile unsigned char *data) {
                     // Reply with the actual firmware revision number
                     // TODO(NR)
                 break;
-                case WRITE_FIRMWARE:
                 default:
                     ctx.data_cb = get_size;
                 break;
@@ -91,9 +90,6 @@ void msg_complete(msg_dir_t dir) {
         case WRITE_ID:
             // Get and save a new given ID
             id_update(ctx.msg.data[0]);
-        break;
-        case WRITE_FIRMWARE:
-            // TODO(NR)
         break;
         case GET_ID:
         case GET_MODULE_TYPE:

@@ -27,7 +27,6 @@ typedef enum {
     GET_MODULE_TYPE,     /*!< Reply with module_type number. */
     GET_STATUS,          /*!< Reply with a status register. */
     GET_FIRM_REVISION,   /*!< Reply with the actual firmware revision number. */
-    WRITE_FIRMWARE,      /*!< Get a New firmware and write it in flash. */
     GET_COM_REVISION,    /*!< Reply with the actual communication protocole version (1 default). */
     PROTOCOL_REGISTER_NB /*!< This is the minim  l register value available for applicative side. */
 }register_t;
