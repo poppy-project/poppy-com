@@ -19,8 +19,7 @@ void idle(msg_dir_t dir, volatile unsigned char *data) {
                  *This case is dedicated to protocol messages
                  */
                 msg_size--;
-                *data = *data_to_send;
-                data_to_send++;
+                *data = *data_to_send++;
             } else {
                 ctx.tx_cb(&ctx.msg);
             }

@@ -23,7 +23,8 @@ unsigned char set_extern_id(unsigned char addr, unsigned char newid) {
     return 0;
 }
 
-unsigned char get_extern_module_type(unsigned char addr, unsigned char *module_type) {
+unsigned char get_extern_module_type(unsigned char addr,
+                                     unsigned char *module_type) {
     if (i2cAddr(addr, TX)) {
         i2c_transmit(STOP);
         return 1;
