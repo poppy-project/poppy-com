@@ -23,19 +23,33 @@
  * enumerator...
  */
 typedef enum {
-    BOOTLOADER_WRITE_ID = PROTOCOL_REGISTER_NB,/*!< Get and save a new given ID. */
-    MODULE_REGISTER_NB /*!< This is the minim register value available for the applicative side. */
+    BOOTLOADER_WRITE_ID = PROTOCOL_REGISTER_NB, /*!< Get and save a new given ID. */
+    WRITE_FIRMWARE,                             /*!< Get a New firmware and write it in flash. */
+    LED_TEST,
+    MODULE_REGISTER_NB                          /*!< This is the minim register value available for the applicative side. */
 }boot_register_t;
 
 volatile unsigned char token = 0;
 
 void rx_cb(msg_dir_t dir, msg_t *msg) {
-    if (msg->data[0] == 0xFE)
-        // led on
-        PORTB |= _BV(PORTB5);
-    else
-        // led off
-        PORTB &= ~_BV(PORTB5);
+    switch (msg->reg) {
+        case WRITE_FIRMWARE:
+            /* TODO(NR) : get received data and write it in flash.
+             * TODO(NR) : compute a CRC of this value by accumulation (This will
+             * be the revision). And save this value in eeprom and in context.
+             */
+        break;
+        case LED_TEST:
+            if (msg->data[0] == 0xFE)
+                // led on
+                PORTB |= _BV(PORTB5);
+            else
+                // led off
+                PORTB &= ~_BV(PORTB5);
+        break;
+        default:
+        break;
+    }
 }
 
 void rxgc_cb(msg_dir_t dir, msg_t *msg) {
