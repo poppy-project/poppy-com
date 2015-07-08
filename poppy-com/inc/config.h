@@ -31,6 +31,8 @@
 
 #if MCU == atmega328p
     #define HAL "poppy-com/atmega328p/hal.h"
+#elif MCU == stub
+    #define HAL "poppy-com/stub/hal.h"
 #endif
 
 #endif /* CONFIG_H_ */
