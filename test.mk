@@ -10,15 +10,18 @@
 # Doxygen configuration file name
 DOXYFILE = .Doxyfile
 
+VPATH = test/
+
 # Microcontroller Type
 # MCU = attiny13
 # MCU = attiny2313
 # MCU = atmega8
-MCU = atmega328p
+# MCU = atmega328p
+MCU = stub
 # MCU = attiny45
 
 # Target file name (without extension).
-TARGET = template
+TARGET = test
 
 # Programming hardware: type avrdude -c ?
 # to get a full listing.
@@ -52,7 +55,8 @@ poppy-com/src/i2c_slave.c \
 poppy-com/src/poppyNetwork.c \
 poppy-com/$(MCU)/hal.c
 # Application source files
-SRC +=
+SRC += \
+test/src/test_mngmnt.c
 
 # You can also wrap lines by appending a backslash to the end of the line:
 #SRC += baz.c \
@@ -72,7 +76,15 @@ ASRC =
 
 # List any extra directories to look for include files here.
 #     Each directory must be seperated by a space.
-EXTRAINCDIRS = poppy-com/ poppy-com/inc/ poppy-com/src/ poppy-com/$(MCU)/
+EXTRAINCDIRS = \
+poppy-com/ \
+poppy-com/inc/ \
+poppy-com/src/ \
+poppy-com/$(MCU)/ \
+test/ \
+test/inc \
+test/src
+
 
 
 # Optional compiler flags.
@@ -82,11 +94,9 @@ EXTRAINCDIRS = poppy-com/ poppy-com/inc/ poppy-com/src/ poppy-com/$(MCU)/
 #  -Wall...:  warning level
 #  -Wa,...:   tell GCC to pass this to the assembler.
 #    -ahlms:  create assembler listing
-CFLAGS = -g -O$(OPT) \
--funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums \
--Wall -Wstrict-prototypes \
--Wa,-adhlns=$(<:.c=.lst) \
+CFLAGS = -O$(OPT) \
 -DMCU=$(MCU) \
+-Wall \
 $(patsubst %,-I%,$(EXTRAINCDIRS))
 
 
@@ -107,7 +117,7 @@ CFLAGS += -std=gnu99
 #             for use in COFF files, additional information about filenames
 #             and function names needs to be present in the assembler source
 #             files -- see avr-libc docs [FIXME: not yet described there]
-ASFLAGS = -Wa,-adhlns=$(<:.S=.lst),-gstabs
+ASFLAGS = -Wa,-gstabs
 
 
 
@@ -115,7 +125,7 @@ ASFLAGS = -Wa,-adhlns=$(<:.S=.lst),-gstabs
 #  -Wl,...:   tell GCC to pass this to linker.
 #  -Map:      create map file
 #  --cref:    add cross reference to  map file
-LDFLAGS = -Wl,-Map=$(TARGET).map,--cref
+LDFLAGS =
 
 
 
@@ -178,11 +188,11 @@ AVRDUDE_FLAGS += -E reset #keep chip disabled while cable attached
 # Define programs and commands.
 SHELL = sh
 
-CC = avr-gcc
+CC = gcc
 
-OBJCOPY = avr-objcopy
-OBJDUMP = avr-objdump
-SIZE = avr-size
+OBJCOPY = objcopy
+OBJDUMP = objdump
+SIZE = size
 
 
 # Programming support using avrdude.
@@ -226,14 +236,14 @@ LST = $(ASRC:.S=.lst) $(SRC:.c=.lst)
 
 # Combine all necessary flags and optional flags.
 # Add target processor to flags.
-ALL_CFLAGS = -mmcu=$(MCU) -I. $(CFLAGS)
-ALL_ASFLAGS = -mmcu=$(MCU) -I. -x assembler-with-cpp $(ASFLAGS)
+ALL_CFLAGS = -I. $(CFLAGS)
+ALL_ASFLAGS = -I. -x assembler-with-cpp $(ASFLAGS)
 
 
 
 # Default target: make program!
-all: begin gccversion sizebefore $(TARGET).elf $(TARGET).hex $(TARGET).eep \
-	$(TARGET).lss $(TARGET).sym sizeafter finished end
+all: begin gccversion $(TARGET).eep \
+	 finished end
 #   $(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
 
 # Eye candy.
@@ -249,11 +259,6 @@ finished:
 end:
 	@echo $(MSG_END)
 	@echo
-
-test: run
-
-run:
-	make -f test.mk
 
 # Display size of file.
 sizebefore:
@@ -295,37 +300,16 @@ extcoff: $(TARGET).elf
 
 
 # Program the device.
-program: $(TARGET).hex $(TARGET).eep
+program: $(TARGET).hex
 	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
 
 
 
 
 # Create final output files (.hex, .eep) from ELF output file.
-%.hex: %.elf
-	@echo
-	@echo $(MSG_FLASH) $@
-	$(OBJCOPY) -O $(FORMAT) -R .eeprom $< $@
 
 %.eep: %.elf
 	@echo
-	@echo $(MSG_EEPROM) $@
-	-$(OBJCOPY) -j .eeprom --set-section-flags=.eeprom="alloc,load" \
-	--change-section-lma .eeprom=0 -O $(FORMAT) $< $@
-
-# Create extended listing file from ELF output file.
-%.lss: %.elf
-	@echo
-	@echo $(MSG_EXTENDED_LISTING) $@
-	$(OBJDUMP) -h -S $< > $@
-
-# Create a symbol table from ELF output file.
-%.sym: %.elf
-	@echo
-	@echo $(MSG_SYMBOL_TABLE) $@
-	avr-nm -n $< > $@
-
-
 
 # Link: create ELF output file from object files.
 .SECONDARY : $(TARGET).elf
@@ -381,9 +365,7 @@ clean_list :
 	$(REMOVE) $(SRC:.c=.s)
 	$(REMOVE) $(SRC:.c=.d)
 	$(REMOVE) *~
-	$(REMOVE) test.elf
-	$(REMOVE) test.o
-	$(REMOVE) test.d
+	# $(REMOVE) ../test.*
 
 # Automatically generate C source code dependencies.
 # (Code originally taken from the GNU make user manual and modified
