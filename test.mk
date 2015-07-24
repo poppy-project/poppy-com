@@ -97,6 +97,7 @@ test/src
 CFLAGS = -O$(OPT) \
 -DMCU=$(MCU) \
 -Wall \
+-coverage \
 $(patsubst %,-I%,$(EXTRAINCDIRS))
 
 
@@ -364,6 +365,7 @@ clean_list :
 	$(REMOVE) $(LST)
 	$(REMOVE) $(SRC:.c=.s)
 	$(REMOVE) $(SRC:.c=.d)
+	$(REMOVE) $(SRC:.c=.gc*)
 	$(REMOVE) *~
 	# $(REMOVE) ../test.*
 

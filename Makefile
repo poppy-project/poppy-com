@@ -384,6 +384,7 @@ clean_list :
 	$(REMOVE) test.elf
 	$(REMOVE) test.o
 	$(REMOVE) test.d
+	make -f test.mk clean
 
 # Automatically generate C source code dependencies.
 # (Code originally taken from the GNU make user manual and modified

@@ -1,62 +1,38 @@
 language: c
 
-matrix:
-  include:
-    - compiler: avr-gcc
-      before_install:
-        - sudo apt-get update
-        - sudo apt-get install -qq doxygen graphviz avr-libc gcc-avr binutils-avr
-      script: make
-      after_success:
-        - ## the following automatically builds the doxygen
-        - ## documentation and pushes it to the gh_pages branch
-        -
-        - # First, set up credentials using the environment variables
-        - # GIT_NAME, GIT_EMAIL and GH_TOKEN. These were passed
-        - # encrypted to travis and should have been decrypted
-        - # using travis' private key before this script was run.
-        - git config --global user.name "${GIT_NAME}"
-        - git config --global user.email ${GIT_EMAIL}
-        -
-        - # clone the whole repo again, but switch to gh_pages branch
-        - mkdir full
-        - git clone https://github.com/poppy-project/poppy-com.git full
-        - cd full
-        - make docs
-        - git checkout gh-pages
-        -
-        - # cd into the docs dir and commit and push the new docs.
-        - git status
-        - git add Docs/*
-        - git commit -m "Auto-updating poppy-com documentation"
-        - git push https://${GH_TOKEN}@github.com/poppy-project/poppy-com gh-pages
-    - compiler: gcc
-      script: make test && ./test.elf
-    - compiler: clang
-      script: make test && ./test.elf
+sudo: true
+
 env:
   global:
+    # Git and Github credentials for pushing documentation
+    - GIT_EMAIL=poppy-bot-ci@inria.fr
+    - GIT_NAME=poppy-bot
+    # GH_TOKEN encrypted below > travis encrypt GH_TOKEN=XXXXXX --add
     - secure: "DouAOOlgvhHqHE5fJDnOYaPdx4AN+oNLnxjzjKYeEdQxApt5fTyKaj5n9nuULVi6Ro0u7GiZ5nFsj+K0Lm/987ILPGO0Ba7o2jntXynvqYo906AhnmiPCJ4jKn76H3ufJR1Lw7Uyu8+OKfHiulpfx+6PnfouC3lzUmgSl+cuclQ="
-# after_success:
-#   - ## the following automatically builds the doxygen
-#   - ## documentation and pushes it to the gh_pages branch
-#   -
-#   - # First, set up credentials using the environment variables
-#   - # GIT_NAME, GIT_EMAIL and GH_TOKEN. These were passed
-#   - # encrypted to travis and should have been decrypted
-#   - # using travis' private key before this script was run.
-#   - git config --global user.name "${GIT_NAME}"
-#   - git config --global user.email ${GIT_EMAIL}
-#   -
-#   - # clone the whole repo again, but switch to gh_pages branch
-#   - mkdir full
-#   - git clone https://github.com/poppy-project/poppy-com.git full
-#   - cd full
-#   - make docs
-#   - git checkout gh-pages
-#   -
-#   - # cd into the docs dir and commit and push the new docs.
-#   - git status
-#   - git add Docs/*
-#   - git commit -m "Auto-updating poppy-com documentation"
-#   - git push https://${GH_TOKEN}@github.com/poppy-project/poppy-com gh-pages
+    # COVERALLS_REPO_TOKEN not needed for travis
+    # - secure: "jakEx084j88EtXmKb43lauyP3BiSEr67w"
+
+matrix:
+  include:
+    - os: linux
+      language: c
+      env: SUITE=tests
+
+    - os: linux
+      language: c
+      env: SUITE=build
+
+install:
+  - . ./ci/install.sh
+
+script:
+ - . ./ci/script.sh
+
+after_success:
+ - . ./ci/after_success.sh
+
+notifications:
+  email:
+    - poppy-bot-ci@inria.fr
+  on_failure: change
+  on_success: change

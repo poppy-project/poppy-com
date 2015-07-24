@@ -8,4 +8,6 @@
 *.lst
 *.map
 *.sym
+*.gc*
+*.info
 /Docs
