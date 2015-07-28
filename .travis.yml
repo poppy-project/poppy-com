@@ -9,7 +9,7 @@ env:
     - GIT_EMAIL=poppy-bot-ci@inria.fr
     # GH_TOKEN encrypted below > travis encrypt GH_TOKEN=XXXXXX --add
     # You have to overwrite your hown token to push the documentation to your repo.
-    - secure: "aFIfwsoUphxk6Jb9jI0iW3zrp4tnadu9FaH3HyIF+6hDW6RcCyoFQxDfmm+0dUNSdtSZ9KSTHvn/L0PAepmk+rv8OLqHqU4tWa+y8YC2/5IWJqhdlbs7Ob/6l7S8T3Cg6vRuQc/8uhCV3fW+qPbc1sE3WvR9RTNu0NUEUGM3c04="
+    - secure: "w2Nkf8XwZqchDsNjNnYj/B9Z2ERsXu3KCnCVmwi6HP2LfvhOKTa9Ik49OqqwX3nuIVJDEDL/4rnriEFpV5VlXh9mQiKoijs1hbG/OJxDR3r+/F7sdIr5AXBA+aR9A1VhT8Sg8owZCsPvsZXh4oJQbIY4KOEc73YkOiRWQqIeG/m774IEZb1HE9NuGdjy5EDYeLbg4FGmJb0/jM+9Eu1VdGrJ8sx6lpVRVBAqHN/Avi8EiyZqkoh/yzI25uK5PC4XtmYd4dewTkbLWRY+imwK9aETx6lv30Q0MT9FHiYZDHbk9miCY3nKadZ/mBtSCNa30Je2OOSaaPVJO2BPVMrvZwMlFL1g8cddCxbq9lPKtcW81gPCZXPyeMeNkCw2ZXPJqcGhfPXgwjVVmYuQ8Trp3WS016sDcSxgPYyoLVkQSs+T3PRqXrQPttD9D5v38ZlIKieA2+Vvbtej/Y4IS7ZBSoAhl43CdlcHVxpFDczxMYeCqpYKIT+rScVPRhKeuI8eF48JSE6O1fFHNTQwmqE5jB1+Ue+s3KucE+vH6Jh3Pg3PCkn7qk/9ul5dBUkk4NW+6RD3FPLAt3hT9gwKUKkKMcDj0SIhCTEFxkSVcW0FMnp6Gifg//uk6YtNQkbtAayP6hF8XPLr3YxjFaM11M4fJJ1Y7T+4K5/a17bXpipOa9A="
 
 matrix:
   include:
