@@ -21,8 +21,8 @@ if [ "$SUITE" = "build" ]; then
     # cd into the docs dir and commit and push the new docs.
     git status
     git add Docs/*
-    git commit -m "Auto-updating poppy-com documentation"
-    git push https://$GH_TOKEN@github.com/poppy-project/poppy-com gh-pages
+    git commit -m "Auto-updating $TRAVIS_REPO_SLUG documentation"
+    git push https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG gh-pages
 
 elif [ "$SUITE" = "tests" ]; then
     coveralls --exclude stdio2 -e test -e test_mngmnt -e hal --gcov-options '\-lp'

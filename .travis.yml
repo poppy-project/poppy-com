@@ -5,12 +5,11 @@ sudo: true
 env:
   global:
     # Git and Github credentials for pushing documentation
-    - GIT_EMAIL=poppy-bot-ci@inria.fr
     - GIT_NAME=poppy-bot
+    - GIT_EMAIL=poppy-bot-ci@inria.fr
     # GH_TOKEN encrypted below > travis encrypt GH_TOKEN=XXXXXX --add
-    - secure: "DouAOOlgvhHqHE5fJDnOYaPdx4AN+oNLnxjzjKYeEdQxApt5fTyKaj5n9nuULVi6Ro0u7GiZ5nFsj+K0Lm/987ILPGO0Ba7o2jntXynvqYo906AhnmiPCJ4jKn76H3ufJR1Lw7Uyu8+OKfHiulpfx+6PnfouC3lzUmgSl+cuclQ="
-    # COVERALLS_REPO_TOKEN not needed for travis
-    # - secure: "jakEx084j88EtXmKb43lauyP3BiSEr67w"
+    # You have to overwrite your hown token to push the documentation to your repo.
+    - secure: "aFIfwsoUphxk6Jb9jI0iW3zrp4tnadu9FaH3HyIF+6hDW6RcCyoFQxDfmm+0dUNSdtSZ9KSTHvn/L0PAepmk+rv8OLqHqU4tWa+y8YC2/5IWJqhdlbs7Ob/6l7S8T3Cg6vRuQc/8uhCV3fW+qPbc1sE3WvR9RTNu0NUEUGM3c04="
 
 matrix:
   include:
@@ -33,6 +32,6 @@ after_success:
 
 notifications:
   email:
-    - poppy-bot-ci@inria.fr
+    - secure: "XNZOOSgfG1Z460l9HWAcAMZYyQbfD9LpMJTiZYjySPW5gGmgtKzxxRYnsJlgMDeP6NUOn6VG7u6CFbuxPSQo4rZODntN21xKI+4Ketah8jYGkTK0qwf7fA3K9KGdYbVQTMsudHm5GjOjt6CuKi++Tq4ZqhB3cJxUzGPNYtiRmR0="
   on_failure: change
   on_success: change
