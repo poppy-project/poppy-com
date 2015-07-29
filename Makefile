@@ -15,7 +15,11 @@ DOXYFILE = .Doxyfile
 # MCU = attiny2313
 # MCU = atmega8
 MCU = atmega328p
+# MCU = atmega64
 # MCU = attiny45
+
+# Main clock speed (Hz) Type
+MAINCLOCK = 16000000
 
 # Target file name (without extension).
 TARGET = template
@@ -25,6 +29,7 @@ TARGET = template
 # AVRDUDE_PROGRAMMER = dapa
 # AVRDUDE_PROGRAMMER = usbtiny
 AVRDUDE_PROGRAMMER = dragon_isp
+# AVRDUDE_PROGRAMMER = dragon_jtag
 # AVRDUDE_PROGRAMMER = dt006
 
 AVRDUDE_PORT = usb # not really needed for usb
@@ -87,6 +92,7 @@ CFLAGS = -g -O$(OPT) \
 -Wall -Wstrict-prototypes \
 -Wa,-adhlns=$(<:.c=.lst) \
 -DMCU=$(MCU) \
+-DMAINCLOCK=$(MAINCLOCK) \
 $(patsubst %,-I%,$(EXTRAINCDIRS))
 
 
