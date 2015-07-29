@@ -1,7 +1,7 @@
 Poppy 2.0 communication lib  {#mainpage}
 ===========================
 
-[![Build Status](https://travis-ci.org/MakingBot/MakingBot-master-com.svg?branch=update)](https://travis-ci.org/MakingBot/MakingBot-master-com)[![Coverage Status](https://coveralls.io/repos/MakingBot/MakingBot-master-com/badge.svg?branch=update&service=github)](https://coveralls.io/github/MakingBot/MakingBot-master-com?branch=update)
+[![Build Status](https://travis-ci.org/MakingBot/MakingBot-master-com.svg?branch=pull)](https://travis-ci.org/MakingBot/MakingBot-master-com)[![Coverage Status](https://coveralls.io/repos/MakingBot/MakingBot-master-com/badge.svg?branch=pull&service=github)](https://coveralls.io/github/MakingBot/MakingBot-master-com?branch=pull)
 Please read [the doc](http://MakingBot.github.io/MakingBot-master-com/)
 
 The role of this code is to manage the Poppy 2.0 communication stack between all modules.
