@@ -22,7 +22,7 @@ if [ "$SUITE" = "build" ]; then
     sed -i '/Please read /cPlease read [the doc](http://'$OWNER_NAME'.github.io/'$REPO_NAME'/)\' README.md
     git add README.md
     git commit -m "Auto-updating README badges."
-    git push https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH
+    git push --quiet https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH
     # Switch to gh_pages branch
     make docs
     git checkout gh-pages
@@ -30,7 +30,7 @@ if [ "$SUITE" = "build" ]; then
     git status
     git add Docs/*
     git commit -m "Auto-updating $TRAVIS_REPO_SLUG documentation"
-    git push https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG gh-pages
+    git push --quiet https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG gh-pages
 
 elif [ "$SUITE" = "tests" ]; then
     coveralls --exclude stdio2 -e test -e test_mngmnt -e hal --gcov-options '\-lp'
