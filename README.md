@@ -13,10 +13,16 @@ To understand how this protocole work, please read the [protocol definition](doc
 How to start a new Poppy 2.0 module code project
 ------------------------------------------------
 
-Lib installation
-________________
+Lib use
+_______
 
-Just do a fork of this repository to create your hown module. To avoid any trouble during update take care to create a specific branch for all your developpements.
+Just do a fork of this repository to create your hown module. To avoid any trouble during future updates, take care to not modifying any files in the poppy-pross folder or create a specific branch for all your developpements.
+
+In this repo travis is used to create documentation, update readme, and pass some tests.
+To acivate all this things you have to follow some steps :
+ - enable your repo on [travis](https://travis-ci.org/) and on [coveralls](https://coveralls.io).
+ - [Create an encrypted token for travis.](doc/travis_encrypt.md)
+ - replace your encrypted token to the .travis.yml
 
 Lib modification
 ________________
