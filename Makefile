@@ -11,15 +11,14 @@
 DOXYFILE = .Doxyfile
 
 # Microcontroller Type
-# MCU = attiny13
-# MCU = attiny2313
-# MCU = atmega8
 MCU = atmega328p
 # MCU = atmega64
-# MCU = attiny45
 
-# Main clock speed (Hz) Type
+# Main clock speed (Hz)
 MAINCLOCK = 16000000
+
+# Maximum I2C speed (HZ)
+SCLFREQ = 400000
 
 # Target file name (without extension).
 TARGET = template
@@ -93,6 +92,7 @@ CFLAGS = -g -O$(OPT) \
 -Wa,-adhlns=$(<:.c=.lst) \
 -DMCU=$(MCU) \
 -DMAINCLOCK=$(MAINCLOCK) \
+-DSCLFREQ=$(SCLFREQ) \
 $(patsubst %,-I%,$(EXTRAINCDIRS))
 
 
