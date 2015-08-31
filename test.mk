@@ -13,12 +13,7 @@ DOXYFILE = .Doxyfile
 VPATH = test/
 
 # Microcontroller Type
-# MCU = attiny13
-# MCU = attiny2313
-# MCU = atmega8
-# MCU = atmega328p
 MCU = stub
-# MCU = attiny45
 
 # Target file name (without extension).
 TARGET = test
@@ -53,7 +48,7 @@ SRC += \
 poppy-com/src/i2c_master.c \
 poppy-com/src/i2c_slave.c \
 poppy-com/src/poppyNetwork.c \
-poppy-com/$(MCU)/hal.c
+poppy-com/hal/$(MCU)/hal.c
 # Application source files
 SRC += \
 test/src/test_mngmnt.c
@@ -80,7 +75,7 @@ EXTRAINCDIRS = \
 poppy-com/ \
 poppy-com/inc/ \
 poppy-com/src/ \
-poppy-com/$(MCU)/ \
+poppy-com/hal/$(MCU)/ \
 test/ \
 test/inc \
 test/src

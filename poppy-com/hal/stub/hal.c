@@ -1,4 +1,4 @@
-#include "poppy-com/stub/hal.h"
+#include "poppy-com/hal/stub/hal.h"
 #include "poppy-com/inc/i2c_slave.h"
 
 typedef enum {

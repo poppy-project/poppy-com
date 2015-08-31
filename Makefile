@@ -54,7 +54,7 @@ SRC += \
 poppy-com/src/i2c_master.c \
 poppy-com/src/i2c_slave.c \
 poppy-com/src/poppyNetwork.c \
-poppy-com/$(MCU)/hal.c
+poppy-com/hal/$(MCU)/hal.c
 # Application source files
 SRC +=
 
@@ -76,7 +76,7 @@ ASRC =
 
 # List any extra directories to look for include files here.
 #     Each directory must be seperated by a space.
-EXTRAINCDIRS = poppy-com/ poppy-com/inc/ poppy-com/src/ poppy-com/$(MCU)/
+EXTRAINCDIRS = poppy-com/ poppy-com/inc/ poppy-com/src/ poppy-com/hal/$(MCU)/
 
 
 # Optional compiler flags.
