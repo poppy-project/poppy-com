@@ -1,5 +1,5 @@
-#Get Travis encrypted credentials
-=================================
+Get Travis encrypted credentials
+================================
 
 The trickiest part of all this is that you want to give Travis the ability to run your deploy script and push changes to gh-pages, without checking in the necessary credentials to your repo. The solution for this is to use Travis's [encryption support](http://docs.travis-ci.com/user/encryption-keys/).
 
