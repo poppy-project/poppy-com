@@ -1,8 +1,10 @@
 #!/bin/sh
 
 if [ "$SUITE" = "build" ]; then
-    sudo apt-get update -qq
-    sudo apt-get install -qq doxygen graphviz avr-libc gcc-avr binutils-avr
+    sudo apt-get install python-software-properties
+    sudo apt-add-repository -y ppa:libreoffice/libreoffice-4-2
+    sudo apt-get update
+    sudo apt-get install doxygen graphviz avr-libc gcc-avr binutils-avr
 
 elif [ "$SUITE" = "tests" ]; then
     sudo pip install cpp-coveralls

@@ -12,20 +12,19 @@ if [ "$SUITE" = "build" ]; then
     git config --global user.email $GIT_EMAIL
 
     # Clone the whole repo again.
-    mkdir full
-    git clone https://github.com/$TRAVIS_REPO_SLUG.git full
-    cd full
-    git checkout $TRAVIS_BRANCH
+    git checkout test
     OWNER_NAME=`echo $TRAVIS_REPO_SLUG | awk -F"/" '{print $1}'`
     REPO_NAME=`echo $TRAVIS_REPO_SLUG | awk -F"/" '{print $2}'`
     sed -i '/Build Status/c[![Build Status](https://travis-ci.org/'$TRAVIS_REPO_SLUG'.svg?branch='$TRAVIS_BRANCH')](https://travis-ci.org/'$TRAVIS_REPO_SLUG')[![Coverage Status](https://coveralls.io/repos/'$TRAVIS_REPO_SLUG'/badge.svg?branch='$TRAVIS_BRANCH'&service=github)](https://coveralls.io/github/'$TRAVIS_REPO_SLUG'?branch='$TRAVIS_BRANCH')' README.md
-    sed -i '/Please read /cPlease read [the doc](http://'$OWNER_NAME'.github.io/'$REPO_NAME'/)\' README.md
+    sed -i '/Please read /cPlease read [the code documentation](http://'$OWNER_NAME'.github.io/'$REPO_NAME'/)\' README.md
     git add README.md
     git commit -m "Auto-updating README badges."
     git push --quiet https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH
     # Switch to gh_pages branch
     make docs
-    git checkout gh-pages
+    git clone -b gh-pages https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG.git full
+    cp -r Docs full/
+    cd full
     # cd into the docs dir and commit and push the new docs.
     git status
     git add Docs/*
