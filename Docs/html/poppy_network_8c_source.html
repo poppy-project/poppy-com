@@ -92,148 +92,92 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00011"></a>00011 <span class="preprocessor">#include &quot;poppy-com/inc/context.h&quot;</span>
 <a name="l00012"></a>00012 <span class="preprocessor">#include HAL</span>
 <a name="l00013"></a>00013 <span class="preprocessor"></span>
-<a name="l00014"></a>00014 <span class="comment">//TO BE RM</span>
-<a name="l00015"></a>00015 <span class="comment">// #include &lt;avr/io.h&gt;</span>
-<a name="l00016"></a>00016 
-<a name="l00017"></a>00017 <span class="keyword">extern</span> <a class="code" href="structcontext__t.html">context_t</a> ctx;
-<a name="l00018"></a>00018 
-<a name="l00019"></a>00019 <span class="comment">// Startup and network configuration</span>
-<a name="l00020"></a><a class="code" href="poppy_network_8h.html#ada0ea1c998dbd2179bf435c285d043f0">00020</a> <span class="keywordtype">void</span> <a class="code" href="poppy_network_8h.html#ada0ea1c998dbd2179bf435c285d043f0" title="Initialisation of the Poppy communication lib.">poppyNetwork_init</a>(TX_CB <a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a" title="Callback function for Slave mode messages transmission.">tx_cb</a>,
-<a name="l00021"></a>00021                        RX_CB <a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b" title="Callback function for Slave mode messages reception.">rx_cb</a>,
-<a name="l00022"></a>00022                        RX_CB <a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070" title="Callback function for Slave mode messages reception with general call.">rxgc_cb</a>) {
-<a name="l00023"></a>00023 <span class="comment">// *************************This is bootload, no com_lib************************</span>
-<a name="l00024"></a>00024     <span class="comment">// /*</span>
-<a name="l00025"></a>00025     <span class="comment">//  * Set pin PB4 to 0.</span>
-<a name="l00026"></a>00026     <span class="comment">//  * This is used to detect if someone is plugged into the input.</span>
-<a name="l00027"></a>00027     <span class="comment">//  * Set pin PB5 to 0.</span>
-<a name="l00028"></a>00028     <span class="comment">//  * This is used to isolate the network input and output.</span>
-<a name="l00029"></a>00029     <span class="comment">//  */</span>
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031     <span class="comment">// /* Set pin 5 of PORTB in output mode. */</span>
-<a name="l00032"></a>00032     <span class="comment">// DDRB |= _BV(DDB5);</span>
-<a name="l00033"></a>00033     <span class="comment">// /* Set pin 4 of PORTB in output mode. */</span>
-<a name="l00034"></a>00034     <span class="comment">// DDRB |= _BV(DDB4);</span>
-<a name="l00035"></a>00035     <span class="comment">// /* Set pin 5 low to isolate input and output. */</span>
-<a name="l00036"></a>00036     <span class="comment">// PORTB &amp;= ~_BV(PORTB5);</span>
-<a name="l00037"></a>00037     <span class="comment">// /* Set pin 4 low to pull SDA low. */</span>
-<a name="l00038"></a>00038     <span class="comment">// PORTB &amp;= ~_BV(PORTB5);</span>
-<a name="l00039"></a>00039 
-<a name="l00040"></a>00040     <span class="comment">// /*</span>
-<a name="l00041"></a>00041     <span class="comment">//  * Wait for a while just to be sure that all other modules are started.</span>
-<a name="l00042"></a>00042     <span class="comment">//  * To do that we use timer 0.</span>
-<a name="l00043"></a>00043     <span class="comment">//  */</span>
-<a name="l00044"></a>00044     <span class="comment">// #if MAINCLOCK/100 &lt;= 0xFF</span>
-<a name="l00045"></a>00045     <span class="comment">//     TCCR0B |= 0x01;</span>
-<a name="l00046"></a>00046     <span class="comment">//     unsigned int ticksCount = 255 - (MAINCLOCK/100);</span>
-<a name="l00047"></a>00047     <span class="comment">// #elif(MAINCLOCK/8)/1000 &lt;= 0xFF</span>
-<a name="l00048"></a>00048     <span class="comment">//     TCCR0B |= 0x02;</span>
-<a name="l00049"></a>00049     <span class="comment">//     unsigned int ticksCount = 255 - ((MAINCLOCK/8)/100);</span>
-<a name="l00050"></a>00050     <span class="comment">// #elif(MAINCLOCK/64)/1000 &lt;= 0xFF</span>
-<a name="l00051"></a>00051     <span class="comment">//     TCCR0B |= 0x03;</span>
-<a name="l00052"></a>00052     <span class="comment">//     unsigned int ticksCount = 255 - ((MAINCLOCK/64)/100);</span>
-<a name="l00053"></a>00053     <span class="comment">// #elif(MAINCLOCK/256)/1000 &lt;= 0xFF</span>
-<a name="l00054"></a>00054     <span class="comment">//     TCCR0B |= 0x04;</span>
-<a name="l00055"></a>00055     <span class="comment">//     unsigned int ticksCount = 255 - ((MAINCLOCK/256)/100);</span>
-<a name="l00056"></a>00056     <span class="comment">// #elif(MAINCLOCK/1024)/1000 &lt;= 0xFF</span>
-<a name="l00057"></a>00057     <span class="comment">//     TCCR0B |= 0x05;</span>
-<a name="l00058"></a>00058     <span class="comment">//     unsigned int ticksCount = 255 - ((MAINCLOCK/1024)/100);</span>
-<a name="l00059"></a>00059     <span class="comment">// #else</span>
-<a name="l00060"></a>00060     <span class="comment">//     #error *** Incompatible Clock set at MAINCLOCK. ***</span>
-<a name="l00061"></a>00061     <span class="comment">// #endif</span>
-<a name="l00062"></a>00062     <span class="comment">// /* Wait 10ms */</span>
-<a name="l00063"></a>00063     <span class="comment">// unsigned int i;</span>
-<a name="l00064"></a>00064     <span class="comment">// for (i = 0; i &lt; 10; i++) {</span>
-<a name="l00065"></a>00065     <span class="comment">//     TCNT0 = ticksCount;</span>
-<a name="l00066"></a>00066     <span class="comment">//     while (TCNT0 &gt;= ticksCount);</span>
-<a name="l00067"></a>00067     <span class="comment">// }</span>
+<a name="l00014"></a>00014 <span class="keyword">extern</span> <a class="code" href="structcontext__t.html">context_t</a> ctx;
+<a name="l00015"></a>00015 
+<a name="l00016"></a>00016 <span class="comment">// Startup and network configuration</span>
+<a name="l00017"></a><a class="code" href="poppy_network_8h.html#ada0ea1c998dbd2179bf435c285d043f0">00017</a> <span class="keywordtype">void</span> <a class="code" href="poppy_network_8h.html#ada0ea1c998dbd2179bf435c285d043f0" title="Initialisation of the Poppy communication lib.">poppyNetwork_init</a>(TX_CB <a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a" title="Callback function for Slave mode messages transmission.">tx_cb</a>,
+<a name="l00018"></a>00018                        RX_CB <a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b" title="Callback function for Slave mode messages reception.">rx_cb</a>,
+<a name="l00019"></a>00019                        RX_CB <a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070" title="Callback function for Slave mode messages reception with general call.">rxgc_cb</a>) {
+<a name="l00020"></a>00020     hal_init();
+<a name="l00021"></a>00021 
+<a name="l00022"></a>00022     <span class="comment">// Save context</span>
+<a name="l00023"></a>00023     <span class="comment">// User side slave TX callback</span>
+<a name="l00024"></a>00024     ctx.<a class="code" href="structcontext__t.html#a06d2b435c29a01be998e6383fec2ef50">tx_cb</a> = <a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a" title="Callback function for Slave mode messages transmission.">tx_cb</a>;
+<a name="l00025"></a>00025     <span class="comment">// User side slave RX callback</span>
+<a name="l00026"></a>00026     ctx.<a class="code" href="structcontext__t.html#a9d4451da3b62a2ec269ae7fd2f6b24b8">rx_cb</a> = <a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b" title="Callback function for Slave mode messages reception.">rx_cb</a>;
+<a name="l00027"></a>00027     <span class="comment">// User side slave RX general call callback</span>
+<a name="l00028"></a>00028     ctx.<a class="code" href="structcontext__t.html#a108cbe016d12bac90d1582ed0cca91e8">rxgc_cb</a> = <a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070" title="Callback function for Slave mode messages reception with general call.">rxgc_cb</a>;
+<a name="l00029"></a>00029 
+<a name="l00030"></a>00030     <span class="comment">// Data callback</span>
+<a name="l00031"></a>00031     ctx.<a class="code" href="structcontext__t.html#ae79525e2fb5ec4ad5b6beb03c0fd9579">data_cb</a> = idle;
+<a name="l00032"></a>00032 
+<a name="l00033"></a>00033     <span class="comment">// Module id</span>
+<a name="l00034"></a>00034     ctx.<a class="code" href="structcontext__t.html#afcfccef1ae4111aee136acf0d92b4379">id</a> = DEFAULTID;
+<a name="l00035"></a>00035     <span class="comment">// Module type</span>
+<a name="l00036"></a>00036     ctx.<a class="code" href="structcontext__t.html#a2dbb966924ef90bfba1876ad8a3872af">type</a> = MODULETYPE;
+<a name="l00037"></a>00037 
+<a name="l00038"></a>00038     <span class="comment">// Status</span>
+<a name="l00039"></a>00039     ctx.<a class="code" href="structcontext__t.html#a0e49b82a79be5df63399ddbcc0cc022c">status</a> = (<a class="code" href="structstatus__t.html">status_t</a>) {.rx_error = FALSE,
+<a name="l00040"></a>00040                              .master_write = FALSE,
+<a name="l00041"></a>00041                              .unexpected_state = FALSE,
+<a name="l00042"></a>00042                              .warning = FALSE};
+<a name="l00043"></a>00043 }
+<a name="l00044"></a>00044 
+<a name="l00045"></a>00045 <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> poppyNetwork_read(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> addr, <a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg,
+<a name="l00046"></a>00046                                 <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> reply_size) {
+<a name="l00047"></a>00047     <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> i = 0;
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049     <span class="comment">// Write the command</span>
+<a name="l00050"></a>00050     <span class="keywordflow">if</span> (i2cAddr(addr, <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e">TX</a>)) {
+<a name="l00051"></a>00051         i2c_transmit(STOP);
+<a name="l00052"></a>00052         <span class="keywordflow">return</span> 1;
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054     <span class="keywordflow">if</span> (i2cWrite(msg-&gt;<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a>)) {
+<a name="l00055"></a>00055         i2c_transmit(STOP);
+<a name="l00056"></a>00056         <span class="keywordflow">return</span> 1;
+<a name="l00057"></a>00057     }
+<a name="l00058"></a>00058     <span class="keywordflow">if</span> (i2cWrite(msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>)) {
+<a name="l00059"></a>00059         i2c_transmit(STOP);
+<a name="l00060"></a>00060         <span class="keywordflow">return</span> 1;
+<a name="l00061"></a>00061     }
+<a name="l00062"></a>00062     <span class="keywordflow">for</span> (i = 0; i &lt; msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>; i++) {
+<a name="l00063"></a>00063         <span class="keywordflow">if</span> (i2cWrite(msg-&gt;<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[i])) {
+<a name="l00064"></a>00064             i2c_transmit(STOP);
+<a name="l00065"></a>00065             <span class="keywordflow">return</span> 1;
+<a name="l00066"></a>00066         }
+<a name="l00067"></a>00067     }
 <a name="l00068"></a>00068 
-<a name="l00069"></a>00069     <span class="comment">// /*</span>
-<a name="l00070"></a>00070     <span class="comment">//  * At this point all modules should have put SDA low, we are able to see if someone is plugged into our input.</span>
-<a name="l00071"></a>00071     <span class="comment">//  */</span>
-<a name="l00072"></a>00072     <span class="comment">// /* Set SDA (pin 4 of PORTC) into input mode. */</span>
-<a name="l00073"></a>00073     <span class="comment">// DDRC &amp;= ~_BV(DDC4);</span>
-<a name="l00074"></a>00074     <span class="comment">// /* Set SDA (pin 4 of PORTC) into tristated mode (hight-impedance). */</span>
-<a name="l00075"></a>00075     <span class="comment">// PORTC = PORTC &amp; ~_BV(DDC4);</span>
-<a name="l00076"></a>00076 
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078     <span class="comment">// DDRC &amp;= ~_BV(DDC5);</span>
-<a name="l00079"></a>00079     <span class="comment">// PORTC = PORTC &amp; ~_BV(DDC5);</span>
-<a name="l00080"></a>00080 
-<a name="l00081"></a>00081     <span class="comment">// /* Read the value to know if a module is plugged before. */</span>
-<a name="l00082"></a>00082     <span class="comment">// if (!(PORTC &amp; _BV(DDC4))) {</span>
-<a name="l00083"></a>00083     <span class="comment">//     /*</span>
-<a name="l00084"></a>00084     <span class="comment">//      * You are the first module of the robot!</span>
-<a name="l00085"></a>00085     <span class="comment">//      * You have to initiate the auto addressing routine.</span>
-<a name="l00086"></a>00086     <span class="comment">//      */</span>
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088     <span class="comment">//     /* Enable led just for debug! */</span>
-<a name="l00089"></a>00089     <span class="comment">//      // PORTB |= _BV(PORTB5);</span>
-<a name="l00090"></a>00090     <span class="comment">// } else {</span>
-<a name="l00091"></a>00091     <span class="comment">//     /*</span>
-<a name="l00092"></a>00092     <span class="comment">//      * You are not the first module of the robot!</span>
-<a name="l00093"></a>00093     <span class="comment">//      * Someone else will probably initiate the auto addressing routine.</span>
-<a name="l00094"></a>00094     <span class="comment">//      * You just have to wait your turn!</span>
-<a name="l00095"></a>00095     <span class="comment">//      */</span>
-<a name="l00096"></a>00096     <span class="comment">// }</span>
-<a name="l00097"></a>00097 <span class="comment">// *****************************************************************************</span>
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099     hal_init();
-<a name="l00100"></a>00100 
-<a name="l00101"></a>00101     <span class="comment">// Save context</span>
-<a name="l00102"></a>00102     <span class="comment">// User side slave TX callback</span>
-<a name="l00103"></a>00103     ctx.tx_cb = <a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a" title="Callback function for Slave mode messages transmission.">tx_cb</a>;
-<a name="l00104"></a>00104     <span class="comment">// User side slave RX callback</span>
-<a name="l00105"></a>00105     ctx.rx_cb = <a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b" title="Callback function for Slave mode messages reception.">rx_cb</a>;
-<a name="l00106"></a>00106     <span class="comment">// User side slave RX general call callback</span>
-<a name="l00107"></a>00107     ctx.rxgc_cb = <a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070" title="Callback function for Slave mode messages reception with general call.">rxgc_cb</a>;
-<a name="l00108"></a>00108 
-<a name="l00109"></a>00109 
-<a name="l00110"></a>00110     <span class="comment">// Data callback</span>
-<a name="l00111"></a>00111     ctx.data_cb = idle;
-<a name="l00112"></a>00112 
-<a name="l00113"></a>00113     <span class="comment">// Module id</span>
-<a name="l00114"></a>00114     ctx.id = DEFAULTID;
-<a name="l00115"></a>00115     <span class="comment">// Module type</span>
-<a name="l00116"></a>00116     ctx.type = MODULETYPE;
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118 
-<a name="l00119"></a>00119     <span class="comment">// Status</span>
-<a name="l00120"></a>00120     ctx.status = (<a class="code" href="structstatus__t.html">status_t</a>) {.rx_error = FALSE,
-<a name="l00121"></a>00121                              .master_write = FALSE,
-<a name="l00122"></a>00122                              .unexpected_state = FALSE,
-<a name="l00123"></a>00123                              .warning = FALSE};
-<a name="l00124"></a>00124 }
-<a name="l00125"></a>00125 
-<a name="l00126"></a>00126 
-<a name="l00127"></a><a class="code" href="poppy_network_8h.html#a71d1ecc05254cb0e6f3b529c127710eb">00127</a> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="poppy_network_8h.html#a71d1ecc05254cb0e6f3b529c127710eb" title="Master mode read function.">poppyNetwork_read</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> addr, <a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg) {
-<a name="l00128"></a>00128     i2cAddr(addr, <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e">TX</a>);
-<a name="l00129"></a>00129     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> i = 0; i &lt; msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>; i++) {
-<a name="l00130"></a>00130         msg-&gt;<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[i] = i2cRead(1);
-<a name="l00131"></a>00131     }
-<a name="l00132"></a>00132     i2c_transmit(STOP);
-<a name="l00133"></a>00133     <span class="keywordflow">return</span> 0;
-<a name="l00134"></a>00134     <span class="comment">/*</span>
-<a name="l00135"></a>00135 <span class="comment">     * TODO(NR) : dabord faire un WRITE puis un READ du coup msg contiens un</span>
-<a name="l00136"></a>00136 <span class="comment">     *            truc a envoyer. La taille dans msg correspond donc au message</span>
-<a name="l00137"></a>00137 <span class="comment">     *            en WRITE ensuite on dois spécifier le nombre d&#39;octets a</span>
-<a name="l00138"></a>00138 <span class="comment">     *            recevoir en READ et reremplir le msg.</span>
-<a name="l00139"></a>00139 <span class="comment">    */</span>
-<a name="l00140"></a>00140 }
-<a name="l00141"></a>00141 
-<a name="l00142"></a><a class="code" href="poppy_network_8h.html#a6967645d5bf4139f439a8fa125f2f099">00142</a> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="poppy_network_8h.html#a6967645d5bf4139f439a8fa125f2f099" title="Master mode write function.">poppyNetwork_write</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> addr, <a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg) {
-<a name="l00143"></a>00143     <span class="keywordflow">if</span> (i2cAddr(addr, <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e">TX</a>)) {
-<a name="l00144"></a>00144         i2c_transmit(STOP);
-<a name="l00145"></a>00145         <span class="keywordflow">return</span> 1;
-<a name="l00146"></a>00146     }
-<a name="l00147"></a>00147     <span class="comment">// Write DATA</span>
-<a name="l00148"></a>00148     i2cWrite(msg-&gt;<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a>);
-<a name="l00149"></a>00149     i2cWrite(msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>);
-<a name="l00150"></a>00150     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> i = 0; i &lt; msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>; i++) {
-<a name="l00151"></a>00151         i2cWrite(msg-&gt;<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[i]);
-<a name="l00152"></a>00152     }
-<a name="l00153"></a>00153     i2c_transmit(STOP);
-<a name="l00154"></a>00154     <span class="keywordflow">return</span> 0;
-<a name="l00155"></a>00155 }
+<a name="l00069"></a>00069     <span class="comment">// Read the reply</span>
+<a name="l00070"></a>00070     <span class="keywordflow">if</span> (i2cAddr(addr, <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531">RX</a>)) {
+<a name="l00071"></a>00071         i2c_transmit(STOP);
+<a name="l00072"></a>00072         <span class="keywordflow">return</span> 1;
+<a name="l00073"></a>00073     }
+<a name="l00074"></a>00074     msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a> = reply_size;
+<a name="l00075"></a>00075     <span class="keywordflow">for</span> (i = 0; i &lt; msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>; i++) {
+<a name="l00076"></a>00076         <span class="keywordflow">if</span> (i2cRead(FALSE, &amp;msg-&gt;<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[i])) {
+<a name="l00077"></a>00077             i2c_transmit(STOP);
+<a name="l00078"></a>00078             <span class="keywordflow">return</span> 1;
+<a name="l00079"></a>00079         }
+<a name="l00080"></a>00080     }
+<a name="l00081"></a>00081     i2c_transmit(STOP);
+<a name="l00082"></a>00082     <span class="keywordflow">return</span> 0;
+<a name="l00083"></a>00083 }
+<a name="l00084"></a>00084 
+<a name="l00085"></a><a class="code" href="poppy_network_8h.html#a6967645d5bf4139f439a8fa125f2f099">00085</a> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> <a class="code" href="poppy_network_8h.html#a6967645d5bf4139f439a8fa125f2f099" title="Master mode write function.">poppyNetwork_write</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> addr, <a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg) {
+<a name="l00086"></a>00086     <span class="keywordflow">if</span> (i2cAddr(addr, <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e">TX</a>)) {
+<a name="l00087"></a>00087         i2c_transmit(STOP);
+<a name="l00088"></a>00088         <span class="keywordflow">return</span> 1;
+<a name="l00089"></a>00089     }
+<a name="l00090"></a>00090     <span class="comment">// Write DATA</span>
+<a name="l00091"></a>00091     i2cWrite(msg-&gt;<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a>);
+<a name="l00092"></a>00092     i2cWrite(msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>);
+<a name="l00093"></a>00093     <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> i = 0; i &lt; msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>; i++) {
+<a name="l00094"></a>00094         i2cWrite(msg-&gt;<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[i]);
+<a name="l00095"></a>00095     }
+<a name="l00096"></a>00096     i2cWrite(crc(&amp;msg-&gt;<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[0], msg-&gt;<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>));
+<a name="l00097"></a>00097     i2c_transmit(STOP);
+<a name="l00098"></a>00098     <span class="keywordflow">return</span> 0;
+<a name="l00099"></a>00099 }
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -252,7 +196,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 28 2015 15:09:11 for poppy-com by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 1 2015 10:50:37 for poppy-com by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

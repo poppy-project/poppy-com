@@ -92,7 +92,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="poppy_network_8h__dep__incl.png" border="0" usemap="#poppy-com_2poppy_network_8hdep" alt=""/></div>
 <map name="poppy-com_2poppy_network_8hdep" id="poppy-com_2poppy_network_8hdep">
-<area shape="rect" id="node3" href="context_8h_source.html" title="poppy&#45;com/inc/context.h" alt="" coords="352,83,517,112"/><area shape="rect" id="node14" href="poppy_network_8c_source.html" title="poppy&#45;com/src/poppyNetwork.c" alt="" coords="424,237,629,267"/><area shape="rect" id="node23" href="template_8c.html" title="Poppy module application side template." alt="" coords="733,83,816,112"/><area shape="rect" id="node5" href="hal_8h_source.html" title="poppy&#45;com/atmega328p/hal.h" alt="" coords="5,160,197,189"/><area shape="rect" id="node9" href="i2c__slave_8h_source.html" title="poppy&#45;com/inc/i2c_slave.h" alt="" coords="221,160,397,189"/><area shape="rect" id="node16" href="i2c__master_8h_source.html" title="poppy&#45;com/inc/i2c_master.h" alt="" coords="472,160,659,189"/><area shape="rect" id="node7" href="hal_8c_source.html" title="poppy&#45;com/atmega328p/hal.c" alt="" coords="5,237,197,267"/><area shape="rect" id="node12" href="i2c__slave_8c_source.html" title="poppy&#45;com/src/i2c_slave.c" alt="" coords="221,237,400,267"/><area shape="rect" id="node18" href="i2c__master_8c_source.html" title="poppy&#45;com/src/i2c_master.c" alt="" coords="653,237,840,267"/></map>
+<area shape="rect" id="node3" href="context_8h_source.html" title="poppy&#45;com/inc/context.h" alt="" coords="671,83,836,112"/><area shape="rect" id="node18" href="poppy_network_8c_source.html" title="poppy&#45;com/src/poppyNetwork.c" alt="" coords="861,237,1067,267"/><area shape="rect" id="node31" href="test_8c_source.html" title="test/test.c" alt="" coords="1301,237,1381,267"/><area shape="rect" id="node35" href="template_8c.html" title="Poppy module application side template." alt="" coords="1263,83,1345,112"/><area shape="rect" id="node5" href="atmega328p_2hal_8h_source.html" title="poppy&#45;com/hal/atmega328p/hal.h" alt="" coords="5,160,219,189"/><area shape="rect" id="node9" href="i2c__slave_8h_source.html" title="poppy&#45;com/inc/i2c_slave.h" alt="" coords="468,160,644,189"/><area shape="rect" id="node20" href="atmega64_2hal_8h_source.html" title="poppy&#45;com/hal/atmega64/hal.h" alt="" coords="243,160,443,189"/><area shape="rect" id="node23" href="stub_2hal_8h_source.html" title="poppy&#45;com/hal/stub/hal.h" alt="" coords="669,160,837,189"/><area shape="rect" id="node26" href="i2c__master_8h_source.html" title="poppy&#45;com/inc/i2c_master.h" alt="" coords="1001,160,1188,189"/><area shape="rect" id="node7" href="atmega328p_2hal_8c_source.html" title="poppy&#45;com/hal/atmega328p/hal.c" alt="" coords="5,237,219,267"/><area shape="rect" id="node12" href="atmega64_2hal_8c_source.html" title="poppy&#45;com/hal/atmega64/hal.c" alt="" coords="243,237,443,267"/><area shape="rect" id="node14" href="stub_2hal_8c_source.html" title="poppy&#45;com/hal/stub/hal.c" alt="" coords="669,237,837,267"/><area shape="rect" id="node16" href="i2c__slave_8c_source.html" title="poppy&#45;com/src/i2c_slave.c" alt="" coords="467,237,645,267"/><area shape="rect" id="node28" href="i2c__master_8c_source.html" title="poppy&#45;com/src/i2c_master.c" alt="" coords="1091,237,1277,267"/></map>
 </div>
 </div>
 <p><a href="poppy_network_8h_source.html">Go to the source code of this file.</a></p>
@@ -111,15 +111,16 @@ typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><b>TX_CB</b> )
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1">msg_dir_t</a> { <a class="el" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e">TX</a>, 
 <a class="el" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531">RX</a>, 
-<a class="el" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1acb3c9419352b04839e939d4d3f32ce77">RXGC</a>
+<a class="el" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1acb3c9419352b04839e939d4d3f32ce77">RXGC</a>, 
+<a class="el" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1adc6f24fd6915a3f2786a1b7045406924">END</a>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Message direction enum.  <a href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poppy_network_8h.html#ada0ea1c998dbd2179bf435c285d043f0">poppyNetwork_init</a> (TX_CB <a class="el" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a">tx_cb</a>, RX_CB <a class="el" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b">rx_cb</a>, RX_CB <a class="el" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070">rxgc_cb</a>)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialisation of the Poppy communication lib.  <a href="#ada0ea1c998dbd2179bf435c285d043f0"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poppy_network_8h.html#a71d1ecc05254cb0e6f3b529c127710eb">poppyNetwork_read</a> (unsigned char addr, <a class="el" href="structmsg__t.html">msg_t</a> *msg)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Master mode read function.  <a href="#a71d1ecc05254cb0e6f3b529c127710eb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7501ac4221ee0c891e53e11e976c6aee"></a><!-- doxytag: member="poppyNetwork.h::poppyNetwork_read" ref="a7501ac4221ee0c891e53e11e976c6aee" args="(unsigned char addr, msg_t *msg, unsigned char reply_size)" -->
+unsigned char&#160;</td><td class="memItemRight" valign="bottom"><b>poppyNetwork_read</b> (unsigned char addr, <a class="el" href="structmsg__t.html">msg_t</a> *msg, unsigned char reply_size)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">unsigned char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="poppy_network_8h.html#a6967645d5bf4139f439a8fa125f2f099">poppyNetwork_write</a> (unsigned char addr, <a class="el" href="structmsg__t.html">msg_t</a> *msg)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Master mode write function.  <a href="#a6967645d5bf4139f439a8fa125f2f099"></a><br/></td></tr>
 </table>
@@ -144,7 +145,10 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Message direction enum. </p>
-<p>This structure is used to get the message direction but it seems to be useles because we have defferent interrupt for each msg_dir case. </p>
+<p>Module specific register enumerator.</p>
+<p>This structure is used to get the message direction but it seems to be useles because we have defferent interrupt for each msg_dir case.</p>
+<p>This is the minimal include you will need to use poppy-com in a module application</p>
+<p>This structure is used to list all the specific module register. The first register should be equal to PROTOCOL_REGISTER_NB, because is the first free register. The last register should be MODULE_REGISTER_NB, for the user space register enumerator... </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
 <tr><td valign="top"><em><a class="anchor" id="a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e"></a><!-- doxytag: member="TX" ref="a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e" args="" -->TX</em>&nbsp;</td><td>
 <p>Slave transmiter mode. </p>
@@ -154,6 +158,9 @@ Functions</h2></td></tr>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a1def9945bd875d4a35c81b0c452053d1acb3c9419352b04839e939d4d3f32ce77"></a><!-- doxytag: member="RXGC" ref="a1def9945bd875d4a35c81b0c452053d1acb3c9419352b04839e939d4d3f32ce77" args="" -->RXGC</em>&nbsp;</td><td>
 <p>Slave receiver général call mode. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a1def9945bd875d4a35c81b0c452053d1adc6f24fd6915a3f2786a1b7045406924"></a><!-- doxytag: member="END" ref="a1def9945bd875d4a35c81b0c452053d1adc6f24fd6915a3f2786a1b7045406924" args="" -->END</em>&nbsp;</td><td>
+<p>Slave receiver stop. </p>
 </td></tr>
 </table>
 </dd>
@@ -200,59 +207,12 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">tx_cb</td><td>function pointer into the tx callback. </td></tr>
     <tr><td class="paramname">rx_cb</td><td>function pointer into the rx callback. </td></tr>
-    <tr><td class="paramname">rxgc_cb</td><td>function pointer into the rx general call callback.</td></tr>
+    <tr><td class="paramname">rxgc_cb</td><td>function pointer into the rx general call callback. </td></tr>
   </table>
   </dd>
 </dl>
-<p>TODO :</p>
-<ul>
-<li>Return success or not.</li>
-<li>Check NULL pointers. </li>
-</ul>
 
-<p>Definition at line <a class="el" href="poppy_network_8c_source.html#l00020">20</a> of file <a class="el" href="poppy_network_8c_source.html">poppyNetwork.c</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a71d1ecc05254cb0e6f3b529c127710eb"></a><!-- doxytag: member="poppyNetwork.h::poppyNetwork_read" ref="a71d1ecc05254cb0e6f3b529c127710eb" args="(unsigned char addr, msg_t *msg)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned char <a class="el" href="poppy_network_8h.html#a71d1ecc05254cb0e6f3b529c127710eb">poppyNetwork_read</a> </td>
-          <td>(</td>
-          <td class="paramtype">unsigned char&#160;</td>
-          <td class="paramname"><em>addr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="structmsg__t.html">msg_t</a> *&#160;</td>
-          <td class="paramname"><em>msg</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Master mode read function. </p>
-<dl class="params"><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">addr</td><td>Address of the slave. </td></tr>
-    <tr><td class="paramname">msg</td><td>Message to send to the slave, he come back with the reply of the slave.</td></tr>
-  </table>
-  </dd>
-</dl>
-<p>TODO :</p>
-<ul>
-<li>Write before read management </li>
-</ul>
-
-<p>Definition at line <a class="el" href="poppy_network_8c_source.html#l00127">127</a> of file <a class="el" href="poppy_network_8c_source.html">poppyNetwork.c</a>.</p>
+<p>Definition at line <a class="el" href="poppy_network_8c_source.html#l00017">17</a> of file <a class="el" href="poppy_network_8c_source.html">poppyNetwork.c</a>.</p>
 
 </div>
 </div>
@@ -290,7 +250,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="poppy_network_8c_source.html#l00142">142</a> of file <a class="el" href="poppy_network_8c_source.html">poppyNetwork.c</a>.</p>
+<p>Definition at line <a class="el" href="poppy_network_8c_source.html#l00085">85</a> of file <a class="el" href="poppy_network_8c_source.html">poppyNetwork.c</a>.</p>
 
 </div>
 </div>
@@ -312,7 +272,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 28 2015 15:09:11 for poppy-com by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 1 2015 10:50:37 for poppy-com by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

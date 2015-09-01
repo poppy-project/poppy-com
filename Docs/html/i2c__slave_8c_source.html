@@ -82,27 +82,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#include &quot;poppy-com/inc/i2c_slave.h&quot;</span>
 <a name="l00002"></a>00002 <span class="preprocessor">#include HAL</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
-<a name="l00004"></a>00004 
-<a name="l00005"></a>00005 <span class="comment">// Global variables</span>
-<a name="l00006"></a>00006 <span class="keyword">extern</span> <a class="code" href="structcontext__t.html">context_t</a> ctx;
-<a name="l00007"></a>00007 
-<a name="l00008"></a>00008 <span class="comment">/*</span>
-<a name="l00009"></a>00009 <span class="comment"> * idle function is called when we are ready to receive or send a new message.</span>
-<a name="l00010"></a>00010 <span class="comment"> */</span>
-<a name="l00011"></a>00011 <span class="keywordtype">void</span> idle(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <span class="keyword">volatile</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data) {
-<a name="l00012"></a>00012     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data_to_send;
-<a name="l00013"></a>00013     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> msg_size = 0;
-<a name="l00014"></a>00014     <span class="keywordflow">switch</span> (dir) {
-<a name="l00015"></a>00015         <span class="keywordflow">case</span> <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e">TX</a>:
-<a name="l00016"></a>00016             <span class="comment">/*</span>
-<a name="l00017"></a>00017 <span class="comment">             * At this point we should have something ready to send.</span>
-<a name="l00018"></a>00018 <span class="comment">             */</span>
-<a name="l00019"></a>00019             <span class="keywordflow">if</span> (msg_size) {
-<a name="l00020"></a>00020                 msg_size--;
-<a name="l00021"></a>00021                 *data = *data_to_send;
-<a name="l00022"></a>00022                 data_to_send++;
+<a name="l00004"></a>00004 <span class="comment">// Global variables</span>
+<a name="l00005"></a>00005 <span class="keyword">extern</span> <a class="code" href="structcontext__t.html">context_t</a> ctx;
+<a name="l00006"></a>00006 <span class="comment">/*</span>
+<a name="l00007"></a>00007 <span class="comment"> * idle function is called when we are ready to receive or send a new message.</span>
+<a name="l00008"></a>00008 <span class="comment"> */</span>
+<a name="l00009"></a>00009 <span class="keywordtype">void</span> idle(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <span class="keyword">volatile</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data) {
+<a name="l00010"></a>00010     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data_to_send;
+<a name="l00011"></a>00011     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> msg_size = 0;
+<a name="l00012"></a>00012     <span class="keywordflow">switch</span> (dir) {
+<a name="l00013"></a>00013         <span class="keywordflow">case</span> <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e">TX</a>:
+<a name="l00014"></a>00014             <span class="comment">/*</span>
+<a name="l00015"></a>00015 <span class="comment">             * At this point we should have something ready to send.</span>
+<a name="l00016"></a>00016 <span class="comment">             */</span>
+<a name="l00017"></a>00017             <span class="keywordflow">if</span> (msg_size) {
+<a name="l00018"></a>00018                 <span class="comment">/*</span>
+<a name="l00019"></a>00019 <span class="comment">                 *This case is dedicated to protocol messages</span>
+<a name="l00020"></a>00020 <span class="comment">                 */</span>
+<a name="l00021"></a>00021                 msg_size--;
+<a name="l00022"></a>00022                 *data = *data_to_send++;
 <a name="l00023"></a>00023             } <span class="keywordflow">else</span> {
-<a name="l00024"></a>00024                 ctx.tx_cb(&amp;ctx.msg);
+<a name="l00024"></a>00024                 ctx.<a class="code" href="structcontext__t.html#a06d2b435c29a01be998e6383fec2ef50">tx_cb</a>(&amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>);
 <a name="l00025"></a>00025             }
 <a name="l00026"></a>00026         <span class="keywordflow">break</span>;
 <a name="l00027"></a>00027         <span class="keywordflow">case</span> <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531">RX</a>:
@@ -110,79 +110,86 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a name="l00029"></a>00029             <span class="comment">/*</span>
 <a name="l00030"></a>00030 <span class="comment">             * That should be a new message to receive.</span>
 <a name="l00031"></a>00031 <span class="comment">             */</span>
-<a name="l00032"></a>00032              ctx.msg.<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a> = *data;
-<a name="l00033"></a>00033             <span class="keywordflow">switch</span> (ctx.msg.<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a>) {
+<a name="l00032"></a>00032              ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a> = *data;
+<a name="l00033"></a>00033             <span class="keywordflow">switch</span> (ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a>) {
 <a name="l00034"></a>00034                 <span class="keywordflow">case</span> GET_ID:
 <a name="l00035"></a>00035                     <span class="comment">// Reply with ID</span>
 <a name="l00036"></a>00036                     msg_size = 1;
-<a name="l00037"></a>00037                     data_to_send = &amp;ctx.id;
+<a name="l00037"></a>00037                     data_to_send = &amp;ctx.<a class="code" href="structcontext__t.html#afcfccef1ae4111aee136acf0d92b4379">id</a>;
 <a name="l00038"></a>00038                 <span class="keywordflow">break</span>;
 <a name="l00039"></a>00039                 <span class="keywordflow">case</span> WRITE_ID:
 <a name="l00040"></a>00040                     <span class="comment">// Get and save a new given ID</span>
-<a name="l00041"></a>00041                     ctx.msg.<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a> = 1;
-<a name="l00042"></a>00042                     ctx.data_cb = get_data;
+<a name="l00041"></a>00041                     ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a> = 1;
+<a name="l00042"></a>00042                     ctx.<a class="code" href="structcontext__t.html#ae79525e2fb5ec4ad5b6beb03c0fd9579">data_cb</a> = get_data;
 <a name="l00043"></a>00043                 <span class="keywordflow">break</span>;
 <a name="l00044"></a>00044                 <span class="keywordflow">case</span> GET_MODULE_TYPE:
 <a name="l00045"></a>00045                     <span class="comment">// Reply with module_type number</span>
 <a name="l00046"></a>00046                     msg_size = 1;
-<a name="l00047"></a>00047                     data_to_send = &amp;ctx.type;
+<a name="l00047"></a>00047                     data_to_send = &amp;ctx.<a class="code" href="structcontext__t.html#a2dbb966924ef90bfba1876ad8a3872af">type</a>;
 <a name="l00048"></a>00048                 <span class="keywordflow">break</span>;
 <a name="l00049"></a>00049                 <span class="keywordflow">case</span> GET_STATUS:
 <a name="l00050"></a>00050                     <span class="comment">// Reply with a status register</span>
 <a name="l00051"></a>00051                     msg_size = 1;
-<a name="l00052"></a>00052                     data_to_send = (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)&amp;ctx.status;
+<a name="l00052"></a>00052                     data_to_send = (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*)&amp;ctx.<a class="code" href="structcontext__t.html#a0e49b82a79be5df63399ddbcc0cc022c">status</a>;
 <a name="l00053"></a>00053                     <span class="comment">// TODO(NR) ca devrais reset le status...</span>
 <a name="l00054"></a>00054                 <span class="keywordflow">break</span>;
 <a name="l00055"></a>00055                 <span class="keywordflow">case</span> GET_FIRM_REVISION:
 <a name="l00056"></a>00056                     <span class="comment">// Reply with the actual firmware revision number</span>
 <a name="l00057"></a>00057                     <span class="comment">// TODO(NR)</span>
 <a name="l00058"></a>00058                 <span class="keywordflow">break</span>;
-<a name="l00059"></a>00059                 <span class="keywordflow">case</span> WRITE_FIRMWARE:
-<a name="l00060"></a>00060                 <span class="keywordflow">default</span>:
-<a name="l00061"></a>00061                     ctx.data_cb = get_size;
-<a name="l00062"></a>00062                 <span class="keywordflow">break</span>;
-<a name="l00063"></a>00063             }
-<a name="l00064"></a>00064         <span class="keywordflow">break</span>;
-<a name="l00065"></a>00065     }
-<a name="l00066"></a>00066 }
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068 <span class="keywordtype">void</span> get_size(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <span class="keyword">volatile</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data) {
-<a name="l00069"></a>00069     ctx.msg.<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a> = *data;
-<a name="l00070"></a>00070     ctx.data_cb = get_data;
-<a name="l00071"></a>00071 }
-<a name="l00072"></a>00072 
-<a name="l00073"></a>00073 <span class="keywordtype">void</span> get_data(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <span class="keyword">volatile</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data) {
-<a name="l00074"></a>00074     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> data_count = 0;
-<a name="l00075"></a>00075     ctx.msg.<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[data_count++] = *data;
-<a name="l00076"></a>00076     <span class="keywordflow">if</span> (data_count == ctx.msg.<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>) {
-<a name="l00077"></a>00077         ctx.data_cb = idle;
-<a name="l00078"></a>00078         data_count = 0;
-<a name="l00079"></a>00079         msg_complete(dir);
-<a name="l00080"></a>00080         <span class="comment">// In the future call the checksum function</span>
-<a name="l00081"></a>00081     }
-<a name="l00082"></a>00082 }
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084 <span class="keywordtype">void</span> msg_complete(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir) {
-<a name="l00085"></a>00085     <span class="keywordflow">switch</span> (ctx.msg.<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a>) {
-<a name="l00086"></a>00086         <span class="keywordflow">case</span> WRITE_ID:
-<a name="l00087"></a>00087             <span class="comment">// Get and save a new given ID</span>
-<a name="l00088"></a>00088             id_update(ctx.msg.<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[0]);
-<a name="l00089"></a>00089         <span class="keywordflow">break</span>;
-<a name="l00090"></a>00090         <span class="keywordflow">case</span> WRITE_FIRMWARE:
-<a name="l00091"></a>00091             <span class="comment">// TODO(NR)</span>
-<a name="l00092"></a>00092         <span class="keywordflow">break</span>;
-<a name="l00093"></a>00093         <span class="keywordflow">case</span> GET_ID:
-<a name="l00094"></a>00094         <span class="keywordflow">case</span> GET_MODULE_TYPE:
-<a name="l00095"></a>00095         <span class="keywordflow">case</span> GET_STATUS:
-<a name="l00096"></a>00096         <span class="keywordflow">case</span> GET_FIRM_REVISION:
-<a name="l00097"></a>00097             <span class="comment">// ERROR</span>
-<a name="l00098"></a>00098             ctx.status.rx_error = TRUE;
-<a name="l00099"></a>00099         <span class="keywordflow">break</span>;
-<a name="l00100"></a>00100         <span class="keywordflow">default</span>:
-<a name="l00101"></a>00101             ctx.rx_cb(dir, &amp;ctx.msg);
-<a name="l00102"></a>00102         <span class="keywordflow">break</span>;
-<a name="l00103"></a>00103     }
-<a name="l00104"></a>00104 }
+<a name="l00059"></a>00059                 <span class="keywordflow">default</span>:
+<a name="l00060"></a>00060                     ctx.<a class="code" href="structcontext__t.html#ae79525e2fb5ec4ad5b6beb03c0fd9579">data_cb</a> = get_size;
+<a name="l00061"></a>00061                 <span class="keywordflow">break</span>;
+<a name="l00062"></a>00062             }
+<a name="l00063"></a>00063         <span class="keywordflow">break</span>;
+<a name="l00064"></a>00064         <span class="keywordflow">case</span> <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1adc6f24fd6915a3f2786a1b7045406924">END</a>:
+<a name="l00065"></a>00065             <span class="keywordflow">if</span> (msg_size &gt; 0)
+<a name="l00066"></a>00066                 ctx.<a class="code" href="structcontext__t.html#a0e49b82a79be5df63399ddbcc0cc022c">status</a>.rx_error = TRUE;
+<a name="l00067"></a>00067             msg_size = 0;
+<a name="l00068"></a>00068         <span class="keywordflow">break</span>;
+<a name="l00069"></a>00069     }
+<a name="l00070"></a>00070 }
+<a name="l00071"></a>00071 
+<a name="l00072"></a>00072 <span class="keywordtype">void</span> get_size(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <span class="keyword">volatile</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data) {
+<a name="l00073"></a>00073     ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a> = *data;
+<a name="l00074"></a>00074     ctx.<a class="code" href="structcontext__t.html#ae79525e2fb5ec4ad5b6beb03c0fd9579">data_cb</a> = get_data;
+<a name="l00075"></a>00075 }
+<a name="l00076"></a>00076 
+<a name="l00077"></a>00077 <span class="keywordtype">void</span> get_data(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <span class="keyword">volatile</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data) {
+<a name="l00078"></a>00078     <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> data_count = 0;
+<a name="l00079"></a>00079     <span class="keywordflow">if</span> (data_count &lt; ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>) {
+<a name="l00080"></a>00080         ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[data_count++] = *data;
+<a name="l00081"></a>00081     } <span class="keywordflow">else</span> {
+<a name="l00082"></a>00082         ctx.<a class="code" href="structcontext__t.html#ae79525e2fb5ec4ad5b6beb03c0fd9579">data_cb</a> = idle;
+<a name="l00083"></a>00083         data_count = 0;
+<a name="l00084"></a>00084         <span class="keywordflow">if</span> (*data == crc(&amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[0], ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">size</a>))
+<a name="l00085"></a>00085             msg_complete(dir);
+<a name="l00086"></a>00086         <span class="keywordflow">else</span>
+<a name="l00087"></a>00087             ctx.<a class="code" href="structcontext__t.html#a0e49b82a79be5df63399ddbcc0cc022c">status</a>.rx_error = TRUE;
+<a name="l00088"></a>00088     }
+<a name="l00089"></a>00089 }
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091 <span class="keywordtype">void</span> msg_complete(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir) {
+<a name="l00092"></a>00092     <span class="keywordflow">switch</span> (ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a>) {
+<a name="l00093"></a>00093         <span class="keywordflow">case</span> WRITE_ID:
+<a name="l00094"></a>00094             <span class="comment">// Get and save a new given ID</span>
+<a name="l00095"></a>00095             id_update(ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[0]);
+<a name="l00096"></a>00096         <span class="keywordflow">break</span>;
+<a name="l00097"></a>00097         <span class="keywordflow">case</span> GET_ID:
+<a name="l00098"></a>00098         <span class="keywordflow">case</span> GET_MODULE_TYPE:
+<a name="l00099"></a>00099         <span class="keywordflow">case</span> GET_STATUS:
+<a name="l00100"></a>00100         <span class="keywordflow">case</span> GET_FIRM_REVISION:
+<a name="l00101"></a>00101             <span class="comment">// ERROR</span>
+<a name="l00102"></a>00102             ctx.<a class="code" href="structcontext__t.html#a0e49b82a79be5df63399ddbcc0cc022c">status</a>.rx_error = TRUE;
+<a name="l00103"></a>00103         <span class="keywordflow">break</span>;
+<a name="l00104"></a>00104         <span class="keywordflow">default</span>:
+<a name="l00105"></a>00105             <span class="keywordflow">if</span> (dir == <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531">RX</a>)
+<a name="l00106"></a>00106                 ctx.<a class="code" href="structcontext__t.html#a9d4451da3b62a2ec269ae7fd2f6b24b8">rx_cb</a>(dir, &amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>);
+<a name="l00107"></a>00107             <span class="keywordflow">else</span>
+<a name="l00108"></a>00108                 ctx.<a class="code" href="structcontext__t.html#a108cbe016d12bac90d1582ed0cca91e8">rxgc_cb</a>(dir, &amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>);
+<a name="l00109"></a>00109         <span class="keywordflow">break</span>;
+<a name="l00110"></a>00110     }
+<a name="l00111"></a>00111 }
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -201,7 +208,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 28 2015 15:09:11 for poppy-com by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 1 2015 10:50:37 for poppy-com by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

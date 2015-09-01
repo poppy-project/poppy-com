@@ -82,34 +82,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="template_8c.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 
 <a name="l00018"></a>00018 <span class="preprocessor">#include &quot;<a class="code" href="poppy_network_8h.html" title="Poppy communication main include file.">poppy-com/poppyNetwork.h</a>&quot;</span>
 <a name="l00019"></a>00019 
-<a name="l00027"></a><a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b">00027</a> <span class="keywordtype">void</span> <a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b" title="Callback function for Slave mode messages reception.">rx_cb</a>(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg) {
-<a name="l00028"></a>00028     <span class="comment">/*</span>
-<a name="l00029"></a>00029 <span class="comment">     * Add your RX code here.</span>
-<a name="l00030"></a>00030 <span class="comment">     */</span>
-<a name="l00031"></a>00031 }
-<a name="l00032"></a>00032 
-<a name="l00040"></a><a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070">00040</a> <span class="keywordtype">void</span> <a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070" title="Callback function for Slave mode messages reception with general call.">rxgc_cb</a>(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg) {
-<a name="l00041"></a>00041     <span class="comment">/*</span>
-<a name="l00042"></a>00042 <span class="comment">     * Add your RX general call code here.</span>
-<a name="l00043"></a>00043 <span class="comment">     */</span>
-<a name="l00044"></a>00044 }
-<a name="l00045"></a>00045 
-<a name="l00052"></a><a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a">00052</a> <span class="keywordtype">void</span> <a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a" title="Callback function for Slave mode messages transmission.">tx_cb</a>(<a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg) {
-<a name="l00053"></a>00053     <span class="comment">/*</span>
-<a name="l00054"></a>00054 <span class="comment">     * Add your TX code here.</span>
-<a name="l00055"></a>00055 <span class="comment">     */</span>
-<a name="l00056"></a>00056 }
-<a name="l00057"></a>00057 
-<a name="l00058"></a>00058 
-<a name="l00065"></a><a class="code" href="template_8c.html#a840291bc02cba5474a4cb46a9b9566fe">00065</a> <span class="keywordtype">int</span> <a class="code" href="template_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Your main module application process.">main</a>(<span class="keywordtype">void</span>) {
-<a name="l00066"></a>00066     <a class="code" href="poppy_network_8h.html#ada0ea1c998dbd2179bf435c285d043f0" title="Initialisation of the Poppy communication lib.">poppyNetwork_init</a>(<a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a" title="Callback function for Slave mode messages transmission.">tx_cb</a>, <a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b" title="Callback function for Slave mode messages reception.">rx_cb</a>, <a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070" title="Callback function for Slave mode messages reception with general call.">rxgc_cb</a>);
-<a name="l00067"></a>00067 
-<a name="l00068"></a>00068     <span class="comment">/*</span>
-<a name="l00069"></a>00069 <span class="comment">     * Add your main code here.</span>
-<a name="l00070"></a>00070 <span class="comment">     */</span>
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072     <span class="keywordflow">return</span> 0;
-<a name="l00073"></a>00073 }
+<a name="l00030"></a>00030 <span class="keyword">typedef</span> <span class="keyword">enum</span> {
+<a name="l00031"></a>00031     <span class="comment">/*</span>
+<a name="l00032"></a>00032 <span class="comment">     * Add all you register id here like :</span>
+<a name="l00033"></a>00033 <span class="comment">     * FIRST_MODULE_REGISTER = PROTOCOL_REGISTER_NB,</span>
+<a name="l00034"></a>00034 <span class="comment">     * SECOND_MODULE_REGISTER,</span>
+<a name="l00035"></a>00035 <span class="comment">     * THIRD_MODULE_REGISTER,</span>
+<a name="l00036"></a>00036 <span class="comment">     * ...</span>
+<a name="l00037"></a>00037 <span class="comment">     */</span>
+<a name="l00038"></a>00038     MODULE_REGISTER_NB
+<a name="l00039"></a>00039 }module_register_t;
+<a name="l00040"></a>00040 
+<a name="l00048"></a><a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b">00048</a> <span class="keywordtype">void</span> <a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b" title="Callback function for Slave mode messages reception.">rx_cb</a>(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg) {
+<a name="l00049"></a>00049     <span class="comment">/*</span>
+<a name="l00050"></a>00050 <span class="comment">     * Add your RX code here.</span>
+<a name="l00051"></a>00051 <span class="comment">     */</span>
+<a name="l00052"></a>00052 }
+<a name="l00053"></a>00053 
+<a name="l00061"></a><a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070">00061</a> <span class="keywordtype">void</span> <a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070" title="Callback function for Slave mode messages reception with general call.">rxgc_cb</a>(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1" title="Message direction enum.">msg_dir_t</a> dir, <a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg) {
+<a name="l00062"></a>00062     <span class="comment">/*</span>
+<a name="l00063"></a>00063 <span class="comment">     * Add your RX general call code here.</span>
+<a name="l00064"></a>00064 <span class="comment">     */</span>
+<a name="l00065"></a>00065 }
+<a name="l00066"></a>00066 
+<a name="l00073"></a><a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a">00073</a> <span class="keywordtype">void</span> <a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a" title="Callback function for Slave mode messages transmission.">tx_cb</a>(<a class="code" href="structmsg__t.html" title="Message structure.">msg_t</a> *msg) {
+<a name="l00074"></a>00074     <span class="comment">/*</span>
+<a name="l00075"></a>00075 <span class="comment">     * Add your TX code here.</span>
+<a name="l00076"></a>00076 <span class="comment">     */</span>
+<a name="l00077"></a>00077 }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079 
+<a name="l00086"></a><a class="code" href="template_8c.html#a840291bc02cba5474a4cb46a9b9566fe">00086</a> <span class="keywordtype">int</span> <a class="code" href="template_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Your main module application process.">main</a>(<span class="keywordtype">void</span>) {
+<a name="l00087"></a>00087     <a class="code" href="poppy_network_8h.html#ada0ea1c998dbd2179bf435c285d043f0" title="Initialisation of the Poppy communication lib.">poppyNetwork_init</a>(<a class="code" href="template_8c.html#ae4dafcb82441709916a9e68df792f44a" title="Callback function for Slave mode messages transmission.">tx_cb</a>, <a class="code" href="template_8c.html#ace61de97737b4ab184cc58f6fa90e61b" title="Callback function for Slave mode messages reception.">rx_cb</a>, <a class="code" href="template_8c.html#ab93d299989e0e94c4f6f91d95936a070" title="Callback function for Slave mode messages reception with general call.">rxgc_cb</a>);
+<a name="l00088"></a>00088 
+<a name="l00089"></a>00089     <span class="comment">/*</span>
+<a name="l00090"></a>00090 <span class="comment">     * Add your main code here.</span>
+<a name="l00091"></a>00091 <span class="comment">     */</span>
+<a name="l00092"></a>00092 
+<a name="l00093"></a>00093     <span class="keywordflow">return</span> 0;
+<a name="l00094"></a>00094 }
 </pre></div></div><!-- contents -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
@@ -128,7 +139,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 28 2015 15:09:11 for poppy-com by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 1 2015 10:50:37 for poppy-com by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>
