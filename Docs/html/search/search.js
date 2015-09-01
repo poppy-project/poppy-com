@@ -10,7 +10,7 @@ var indexSectionsWithContent =
   0: "cdeghimprst",
   1: "cms",
   2: "pt",
-  3: "mprt",
+  3: "p",
   4: "dimrst",
   5: "m",
   6: "ert",

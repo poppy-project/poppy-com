@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>poppy-com: doc/travis_encrypt.md Source File</title>
+<title>poppy-com: poppy-com/hal/atmega64/halboot.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,7 +66,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -81,33 +80,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_979ad034e6ede13b46590bd6794bdc02.html">poppy-com</a></li><li class="navelem"><a class="el" href="dir_9d4ff7bc96c0557fa4c0fcf068a57647.html">hal</a></li><li class="navelem"><a class="el" href="dir_4d6253a89a5f2d786a5f2450e5aa6577.html">atmega64</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">doc/travis_encrypt.md</div>  </div>
+<div class="title">halboot.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;Get Travis encrypted credentials</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;================================</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;The trickiest part of all <span class="keyword">this</span> is that you want to give Travis the ability to run your deploy script and push changes to gh-pages, without checking in the necessary credentials to your repo. The solution <span class="keywordflow">for</span> <span class="keyword">this</span> is to use Travis<span class="stringliteral">&#39;s [encryption support](http://docs.travis-ci.com/user/encryption-keys/).</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="stringliteral"></span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="stringliteral">We&#39;</span>ll generate a GitHub personal access token (essentially an application-specific password) and encrypt it, then put the encrypted version in our `.travis.yml` file. Then we can check in the `.travis.yml` file with no issues.</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;First, generate a token at https:<span class="comment">//github.com/settings/applications</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;Then, install the Travis client and <span class="keywordflow">do</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;```</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;travis encrypt GH_TOKEN=&lt;secret github generated token here&gt;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;```</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;This will give you a very <span class="keywordtype">long</span> line like</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;```</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;secure: <span class="stringliteral">&quot;&lt;.... encrypted data ....&gt;&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;```</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;If you don<span class="stringliteral">&#39;t want to install Ruby/RubyGems and such, there are reports that the [travis-encrypt](http://npmjs.org/travis-encrypt) npm package works just as well.</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef HALBOOT_H_</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define HALBOOT_H_</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;poppy-com/inc/context.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="comment">// No pin are enabled</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    NO_PIN_ENABLE,</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="comment">// The left pin already enabled</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    LEFT_ENABLE,</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="comment">// The right pin already enabled</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    RIGHT_ENABLE,</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">// input and output pin are already enabled</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    BOTH_ENABLE</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;}pin_state_t;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> pin(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> pass_token(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HALBOOT_H_ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
