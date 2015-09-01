@@ -1,16 +1,16 @@
-<map id="G" name="G">
-<area shape="rect" id="node3" href="$context_8h_source.html" title="poppy&#45;com/inc/context.h" alt="" coords="671,83,836,112"/>
-<area shape="rect" id="node18" href="$poppy_network_8c_source.html" title="poppy&#45;com/src/poppyNetwork.c" alt="" coords="861,237,1067,267"/>
-<area shape="rect" id="node31" href="$test_8c_source.html" title="test/test.c" alt="" coords="1301,237,1381,267"/>
-<area shape="rect" id="node35" href="$template_8c.html" title="Poppy module application side template." alt="" coords="1263,83,1345,112"/>
-<area shape="rect" id="node5" href="$atmega328p_2hal_8h_source.html" title="poppy&#45;com/hal/atmega328p/hal.h" alt="" coords="5,160,219,189"/>
-<area shape="rect" id="node9" href="$i2c__slave_8h_source.html" title="poppy&#45;com/inc/i2c_slave.h" alt="" coords="468,160,644,189"/>
-<area shape="rect" id="node20" href="$atmega64_2hal_8h_source.html" title="poppy&#45;com/hal/atmega64/hal.h" alt="" coords="243,160,443,189"/>
-<area shape="rect" id="node23" href="$stub_2hal_8h_source.html" title="poppy&#45;com/hal/stub/hal.h" alt="" coords="669,160,837,189"/>
-<area shape="rect" id="node26" href="$i2c__master_8h_source.html" title="poppy&#45;com/inc/i2c_master.h" alt="" coords="1001,160,1188,189"/>
-<area shape="rect" id="node7" href="$atmega328p_2hal_8c_source.html" title="poppy&#45;com/hal/atmega328p/hal.c" alt="" coords="5,237,219,267"/>
-<area shape="rect" id="node12" href="$atmega64_2hal_8c_source.html" title="poppy&#45;com/hal/atmega64/hal.c" alt="" coords="243,237,443,267"/>
-<area shape="rect" id="node14" href="$stub_2hal_8c_source.html" title="poppy&#45;com/hal/stub/hal.c" alt="" coords="669,237,837,267"/>
-<area shape="rect" id="node16" href="$i2c__slave_8c_source.html" title="poppy&#45;com/src/i2c_slave.c" alt="" coords="467,237,645,267"/>
-<area shape="rect" id="node28" href="$i2c__master_8c_source.html" title="poppy&#45;com/src/i2c_master.c" alt="" coords="1091,237,1277,267"/>
+<map id="poppy&#45;com/poppyNetwork.h" name="poppy&#45;com/poppyNetwork.h">
+<area shape="rect" id="node3" href="$context_8h_source.html" title="poppy&#45;com/inc/context.h" alt="" coords="591,83,756,112"/>
+<area shape="rect" id="node18" href="$poppy_network_8c_source.html" title="poppy&#45;com/src/poppyNetwork.c" alt="" coords="765,265,971,295"/>
+<area shape="rect" id="node31" href="$test_8c_source.html" title="test/test.c" alt="" coords="1205,265,1285,295"/>
+<area shape="rect" id="node35" href="$template_8c.html" title="Poppy module application side template. " alt="" coords="1167,83,1249,112"/>
+<area shape="rect" id="node5" href="$atmega328p_2hal_8h_source.html" title="poppy&#45;com/hal/atmega328p\l/hal.h" alt="" coords="5,161,187,207"/>
+<area shape="rect" id="node9" href="$i2c__slave_8h_source.html" title="poppy&#45;com/inc/i2c_slave.h" alt="" coords="404,169,580,199"/>
+<area shape="rect" id="node20" href="$atmega64_2hal_8h_source.html" title="poppy&#45;com/hal/atmega64\l/hal.h" alt="" coords="211,161,379,207"/>
+<area shape="rect" id="node23" href="$stub_2hal_8h_source.html" title="poppy&#45;com/hal/stub\l/hal.h" alt="" coords="605,161,741,207"/>
+<area shape="rect" id="node26" href="$i2c__master_8h_source.html" title="poppy&#45;com/inc/i2c_master.h" alt="" coords="905,169,1092,199"/>
+<area shape="rect" id="node7" href="$atmega328p_2hal_8c_source.html" title="poppy&#45;com/hal/atmega328p\l/hal.c" alt="" coords="5,257,187,303"/>
+<area shape="rect" id="node12" href="$atmega64_2hal_8c_source.html" title="poppy&#45;com/hal/atmega64\l/hal.c" alt="" coords="211,257,379,303"/>
+<area shape="rect" id="node14" href="$stub_2hal_8c_source.html" title="poppy&#45;com/hal/stub\l/hal.c" alt="" coords="605,257,741,303"/>
+<area shape="rect" id="node16" href="$i2c__slave_8c_source.html" title="poppy&#45;com/src/i2c_slave.c" alt="" coords="403,265,581,295"/>
+<area shape="rect" id="node28" href="$i2c__master_8c_source.html" title="poppy&#45;com/src/i2c_master.c" alt="" coords="995,265,1181,295"/>
 </map>
