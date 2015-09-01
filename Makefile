@@ -21,7 +21,7 @@ MAINCLOCK = 16000000
 SCLFREQ = 400000
 
 # Target file name (without extension).
-TARGET = template
+TARGET = bootloader
 
 # Programming hardware: type avrdude -c ?
 # to get a full listing.
@@ -54,7 +54,8 @@ SRC += \
 poppy-com/src/i2c_master.c \
 poppy-com/src/i2c_slave.c \
 poppy-com/src/poppyNetwork.c \
-poppy-com/hal/$(MCU)/hal.c
+poppy-com/hal/$(MCU)/hal.c \
+poppy-com/hal/$(MCU)/halboot.c
 # Application source files
 SRC +=
 
