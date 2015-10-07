@@ -35,3 +35,7 @@ notifications:
     - secure: "XNZOOSgfG1Z460l9HWAcAMZYyQbfD9LpMJTiZYjySPW5gGmgtKzxxRYnsJlgMDeP6NUOn6VG7u6CFbuxPSQo4rZODntN21xKI+4Ketah8jYGkTK0qwf7fA3K9KGdYbVQTMsudHm5GjOjt6CuKi++Tq4ZqhB3cJxUzGPNYtiRmR0="
   on_failure: change
   on_success: change
+  slack:
+    - secure: ff2ZS7GGHeLZrDXz51Fw3oLdNtZe3Y16Q+WdPFxz8hPU84Eg0BMZNwOQjrE651XQWWILKzYNuOEz6m9ktvBHnTB7+WXgnm3M3VXlWBN78GiGdAAXbUMR1JuaKEJSAHdRrSqtXjQOTjjFRSo+XEOuVKfnygNl9U7KVpvhrrj12FA=
+  sla:
+    - secure: T5uJOsXeh28QKW9oVw3gkC7bL7gVWixwgCRdWxRyaFKJUnaa4h9Spxfvo/jwvbGi7fRyVyWynShLnclASb8g3DZ5GLaOe7HjJaUE4wbV9Yo7P/xQcuWa31MOWNgKy+tfaThJlE3QbPhHNJg+1Ykx9NfqrK6gqE+b3D706erYfPs=
