@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/poppy-project/poppy-com.svg?branch=master)](https://travis-ci.org/poppy-project/poppy-com)[![Coverage Status](https://coveralls.io/repos/poppy-project/poppy-com/badge.svg?branch=master&service=github)](https://coveralls.io/github/poppy-project/poppy-com?branch=master)
-Please read [the code documentation](http://poppy-project.github.io/poppy-com/)
+Please read [the code documentation](http://poppy-project.github.io/poppy-com/Docs/html/index.html)
 
 <span \mainpage<span></span>
 
