@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/poppy-project/poppy-com.svg?branch=master)](https://travis-ci.org/poppy-project/poppy-com)[![Coverage Status](https://coveralls.io/repos/poppy-project/poppy-com/badge.svg?branch=master&service=github)](https://coveralls.io/github/poppy-project/poppy-com?branch=master)
-Please read [the code documentation](http://poppy-project.github.io/poppy-com/Docs/html/index.html)
+Please read [the code documentation](http://poppy-project.github.io/poppy-com/)
 
 <span \mainpage<span></span>
 
@@ -14,8 +14,6 @@ To understand how this protocole work, please read the [protocol definition](doc
 
 How to start a new Poppy 2.0 module code project
 ------------------------------------------------
-
-__________________________________________________________________________
 
 First of all you have to fork this repository to create your hown module on your github account.
 To avoid any trouble during future updates of the poppy-pross lib, take care to not modifying any files in the poppy-com folder or create a specific branch for all your developpements.
@@ -37,3 +35,10 @@ To have a perfect integration and declaration of your module into a poppy 2.0 ne
  - create your specific hal folder if you need. To do that please read the [new hal creation documentation](doc/hal_creation.md).
 
 You can use the [template.c](template.c) file to format your main file and use it as base.
+
+__________________________________________________________________________
+
+Please feel free to use and contribute to this project.
+-------------------------------------------------------
+
+If you have any question please describe it in the [Poppy project forum](https://forum.poppy-project.org).
