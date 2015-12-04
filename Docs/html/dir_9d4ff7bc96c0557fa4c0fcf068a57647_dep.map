@@ -1,7 +1,8 @@
 <map id="poppy&#45;com/hal" name="poppy&#45;com/hal">
-<area shape="rect" id="node4" href="dir_3861f1495b14962f9faa29378ecc2ce5.html" title="atmega328p" alt="" coords="235,65,328,113"/>
-<area shape="rect" id="node5" href="dir_4d6253a89a5f2d786a5f2450e5aa6577.html" title="atmega64" alt="" coords="133,65,211,113"/>
-<area shape="rect" id="node6" href="dir_a0cece83c45bf75b81e72ff9b0d29205.html" title="stub" alt="" coords="37,65,109,113"/>
-<area shape="rect" id="graph3" href="dir_9d4ff7bc96c0557fa4c0fcf068a57647.html" alt="" coords="27,55,435,124"/>
-<area shape="rect" id="graph2" href="dir_979ad034e6ede13b46590bd6794bdc02.html" title="poppy&#45;com" alt="" coords="16,16,445,135"/>
+<area shape="rect" id="node4" href="dir_3861f1495b14962f9faa29378ecc2ce5.html" title="atmega328p" alt="" coords="331,65,424,113"/>
+<area shape="rect" id="node5" href="dir_4d6253a89a5f2d786a5f2450e5aa6577.html" title="atmega64" alt="" coords="229,65,307,113"/>
+<area shape="rect" id="node6" href="dir_a0cece83c45bf75b81e72ff9b0d29205.html" title="stub" alt="" coords="133,65,205,113"/>
+<area shape="rect" id="node7" href="dir_6f6503750d817f10bfce1586297d8c0b.html" title="template" alt="" coords="37,65,109,113"/>
+<area shape="rect" id="graph3" href="dir_9d4ff7bc96c0557fa4c0fcf068a57647.html" alt="" coords="27,55,531,124"/>
+<area shape="rect" id="graph2" href="dir_979ad034e6ede13b46590bd6794bdc02.html" title="poppy&#45;com" alt="" coords="16,16,541,135"/>
 </map>
