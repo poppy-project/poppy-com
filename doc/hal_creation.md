@@ -10,6 +10,6 @@ Start your new hal by creating a new folder on poppy-com/hal/
 
 You can choose the name of your MCU on your Makefile but you have to give exactly the same name to your new poppy-com/hal/MCU folder.
 
-You can use the HAL template in poppy-com/hal/template/ but it doesn't exist at the moment... Good luck
+You can use the HAL template in poppy-com/hal/template/
 
 If you have any question about hal creation please ask!

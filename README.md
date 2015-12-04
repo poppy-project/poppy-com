@@ -35,3 +35,5 @@ To have a perfect integration and declaration of your module into a poppy 2.0 ne
  - specify your MAINCLOCK frequency on the Makefile.
  - specify your SCLFREQ to specify the I2C max speed on the Makefile.
  - create your specific hal folder if you need. To do that please read the [new hal creation documentation](doc/hal_creation.md).
+
+You can use the [template.c](template.c) file to format your main file and use it as base.
