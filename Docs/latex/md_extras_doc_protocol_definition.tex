@@ -1,0 +1,30 @@
+The Poppy communication stack have two levels of messages.
+
+\subsection*{The module level messages }
+
+You only have to deal with this kind of message in your module application. These messages are dedicated to your module application, and you have to define it.
+
+The single limitation is to match with the \hyperlink{structmsg__t}{msg\-\_\-t} struct.
+
+All messages send or received should have a register and a size. A typical message on the bus will be \-:
+\begin{DoxyItemize}
+\item Slave addr
+\item Register
+\item Size
+\item Data\mbox{[}0\mbox{]}
+\item ...
+\item Data\mbox{[}size -\/ 1\mbox{]}
+\end{DoxyItemize}
+
+If you have a message with only a register needed you have to set size to 0. The message transmitted will be \-:
+\begin{DoxyItemize}
+\item Slave addr
+\item Register
+\item 0
+\end{DoxyItemize}
+
+Your registers definition for your application should be an enum who start at \char`\"{}last\-\_\-reg\-\_\-val\char`\"{} value.
+
+\subsection*{The poppy level messages }
+
+This level is directly integrated into the library, he manage all messages needed to your module declaration and synchronization with others modules on a Poppy robot. 
