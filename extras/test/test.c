@@ -6,8 +6,8 @@
  */
 
 
-#include "poppy-com/poppyNetwork.h"
-#include "poppy-com/inc/i2c_master.h"
+#include "src/poppyNetwork.h"
+#include "src/i2c_master.h"
 #include "extras/test/inc/test_mngmnt.h"
 
 #include <stdio.h>

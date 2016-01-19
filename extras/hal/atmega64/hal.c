@@ -1,7 +1,7 @@
 #include <util/twi.h>
 #include <avr/interrupt.h>
-#include "poppy-com/hal/atmega64/hal.h"
-#include "poppy-com/inc/i2c_slave.h"
+#include "extras/hal/atmega64/hal.h"
+#include "src/i2c_slave.h"
 
 // I2C Master mode
 

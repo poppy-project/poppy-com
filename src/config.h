@@ -5,7 +5,7 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-#include "poppy-com/inc/mod_list.h"
+#include "src/mod_list.h"
 
 #define DEFAULTID 0x01
 
@@ -30,11 +30,11 @@
 #endif
 
 #if MCU == atmega328p
-    #define HAL "poppy-com/hal/atmega328p/hal.h"
+    #define HAL "extras/hal/atmega328p/hal.h"
 #elif MCU == stub
-    #define HAL "poppy-com/hal/stub/hal.h"
+    #define HAL "extras/hal/stub/hal.h"
 #elif MCU== atmega64
-    #define HAL "poppy-com/hal/atmega64/hal.h"
+    #define HAL "extras/hal/atmega64/hal.h"
 #endif
 
 #endif /* CONFIG_H_ */
