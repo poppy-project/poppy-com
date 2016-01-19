@@ -10,7 +10,7 @@
 # Doxygen configuration file name
 DOXYFILE = .Doxyfile
 
-VPATH = test/
+VPATH = extras/test/
 
 # Microcontroller Type
 MCU = stub
@@ -51,7 +51,7 @@ poppy-com/src/poppyNetwork.c \
 poppy-com/hal/$(MCU)/hal.c
 # Application source files
 SRC += \
-test/src/test_mngmnt.c
+extras/test/src/test_mngmnt.c
 
 # You can also wrap lines by appending a backslash to the end of the line:
 #SRC += baz.c \
@@ -76,9 +76,9 @@ poppy-com/ \
 poppy-com/inc/ \
 poppy-com/src/ \
 poppy-com/hal/$(MCU)/ \
-test/ \
-test/inc \
-test/src
+extras/test/ \
+extras/test/inc \
+extras/test/src
 
 
 

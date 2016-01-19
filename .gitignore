@@ -10,4 +10,4 @@
 *.sym
 *.gc*
 *.info
-/Docs
+extras/Docs
