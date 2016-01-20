@@ -22,9 +22,4 @@ file(GLOB_RECURSE HAL_HEADERS "hal/include/*.h")
 
 add_library(poppyNetwork ${SOURCES} ${HEADERS} ${HAL_SOURCES} ${HAL_HEADERS})
 
-file(GLOB_RECURSE TEST_SOURCES "test/src/*.c")
-file(GLOB_RECURSE TEST_HEADERS "test/include/*.h")
-
-add_executable(test.elf ${TEST_SOURCES} ${TEST_HEADERS})
-target_link_libraries(test.elf poppyNetwork)
-target_include_directories(test.elf PRIVATE "test/include")
+add_subdirectory(test)
