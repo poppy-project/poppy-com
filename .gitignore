@@ -12,3 +12,5 @@
 *.info
 extras/Docs
 build
+*.user
+*~
