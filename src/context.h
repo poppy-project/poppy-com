@@ -29,14 +29,14 @@ typedef enum {
     GET_FIRM_REVISION,   /*!< Reply with the actual firmware revision number. */
     GET_COM_REVISION,    /*!< Reply with the actual communication protocole version (1 default). */
     PROTOCOL_REGISTER_NB /*!< This is the minim  l register value available for applicative side. */
-}register_t;
+} msg_type_t;
 
 typedef struct {
     // Callback pointers
         DATA_CB data_cb;    /*!< Data management callback. */
-        TX_CB tx_cb;        /*!< User side slave TX callback. */
-        RX_CB rx_cb;        /*!< User side slave RX callback. */
-        RX_CB rxgc_cb;      /*!< User side slave RX general call callback. */
+        TransmitCallback tx_cb;        /*!< User side slave TX callback. */
+        ReceiveCallback rx_cb;        /*!< User side slave RX callback. */
+        ReceiveCallback rxgc_cb;      /*!< User side slave RX general call callback. */
 
     // Module infomations
         unsigned char id;   /*!< Module ID. */
@@ -45,7 +45,7 @@ typedef struct {
     // Variables
         status_t status;    /*!< Status. */
         msg_t msg;          /*!< Message. */
-    }context_t;
+} context_t;
 
 context_t ctx;
 

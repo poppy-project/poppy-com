@@ -22,7 +22,7 @@
 typedef enum {
     TX,   /*!< Slave transmiter mode. */
     RX,   /*!< Slave receiver mode. */
-    RXGC, /*!< Slave receiver général call mode. */
+    RXGC, /*!< Slave receiver gï¿½nï¿½ral call mode. */
     END   /*!< Slave receiver stop. */
 }msg_dir_t;
 
@@ -36,13 +36,13 @@ typedef enum {
  * please refer to ?? documentation
  */
 typedef struct {
-    unsigned char reg;        /*!< Message register. */
+    unsigned char type;        /*!< Message register. */
     unsigned char size;       /*!< Message size. */
     unsigned char data[512];  /*!< Data (512 bytes max). */
 }msg_t;
 
-typedef void (*RX_CB) (msg_dir_t dir, msg_t *msg);
-typedef void (*TX_CB) (msg_t *msg);
+typedef void (*ReceiveCallback) (msg_dir_t dir, msg_t *msg);
+typedef void (*TransmitCallback) (msg_t *msg);
 
 /**
  * \fn void poppyNetwork_init(TX_CB tx_cb, RX_CB rx_cb, RX_CB rxgc_cb)
@@ -53,9 +53,9 @@ typedef void (*TX_CB) (msg_t *msg);
  * \param rxgc_cb function pointer into the rx general call callback.
  *
  */
-void poppyNetwork_init(TX_CB tx_cb,
-                       RX_CB rx_cb,
-                       RX_CB rxgc_cb);
+void poppyNetwork_init(TransmitCallback tx_cb,
+                       ReceiveCallback rx_cb,
+                       ReceiveCallback rxgc_cb);
 
 /**
  * \fn unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg)
@@ -82,7 +82,7 @@ unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg);
  *
  *Faire la doc en commentaire
  *
- *Gérer le checksum
+ *Gï¿½rer le checksum
 */
 
 #endif /* poppy_com_H_ */

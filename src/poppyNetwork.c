@@ -14,9 +14,9 @@
 extern context_t ctx;
 
 // Startup and network configuration
-void poppyNetwork_init(TX_CB tx_cb,
-                       RX_CB rx_cb,
-                       RX_CB rxgc_cb) {
+void poppyNetwork_init(TransmitCallback tx_cb,
+                       ReceiveCallback rx_cb,
+                       ReceiveCallback rxgc_cb) {
     hal_init();
 
     // Save context
@@ -51,7 +51,7 @@ unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
         i2c_transmit(STOP);
         return 1;
     }
-    if (i2cWrite(msg->reg)) {
+    if (i2cWrite(msg->type)) {
         i2c_transmit(STOP);
         return 1;
     }
@@ -88,7 +88,7 @@ unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg) {
         return 1;
     }
     // Write DATA
-    i2cWrite(msg->reg);
+    i2cWrite(msg->type);
     i2cWrite(msg->size);
     for (unsigned char i = 0; i < msg->size; i++) {
         i2cWrite(msg->data[i]);

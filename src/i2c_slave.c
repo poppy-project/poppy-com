@@ -29,8 +29,8 @@ void idle(msg_dir_t dir, volatile unsigned char *data) {
             /*
              * That should be a new message to receive.
              */
-             ctx.msg.reg = *data;
-            switch (ctx.msg.reg) {
+             ctx.msg.type = *data;
+            switch (ctx.msg.type) {
                 case GET_ID:
                     // Reply with ID
                     msg_size = 1;
@@ -89,7 +89,7 @@ void get_data(msg_dir_t dir, volatile unsigned char *data) {
 }
 
 void msg_complete(msg_dir_t dir) {
-    switch (ctx.msg.reg) {
+    switch (ctx.msg.type) {
         case WRITE_ID:
             // Get and save a new given ID
             id_update(ctx.msg.data[0]);

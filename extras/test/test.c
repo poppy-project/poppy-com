@@ -22,7 +22,7 @@ typedef enum {
 }module_register_t;
 
 void rx_cb(msg_dir_t dir, msg_t *msg) {
-    switch (msg->reg) {
+    switch (msg->type) {
         case TEST_REGISTER :
             test_value = ((int)msg->data[0] << 8) | (int)msg->data[1];
         break;
@@ -80,8 +80,12 @@ unsigned char get_module(void) {
 
 unsigned char write(void) {
     printf("\nWrite message :\n");
-    msg_t msg = {.reg = TEST_REGISTER, .size = 2, .data[0] = 0xCA,
-                 .data[1] = 0xFE};
+    msg_t msg = {
+      .type = TEST_REGISTER,
+      .size = 2,
+      .data[0] = 0xCA,
+      .data[1] = 0xFE
+    };
     if (test(!poppyNetwork_write(0x01, &msg))) return 1;
     if (test(test_value == 0xCAFE)) return 1;
     return 0;
