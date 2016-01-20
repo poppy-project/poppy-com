@@ -57,6 +57,18 @@ void poppyNetwork_init(TX_CB tx_cb,
                        RX_CB rx_cb,
                        RX_CB rxgc_cb);
 
+
+
+/**
+ * \fn void poppyNetwork_ChangeHardwareMode(hardwareMode_t newMode)
+ * \brief Change the communication mode.
+ *
+ * \param newMode the new communication mode (I2C or UART).
+ *
+ */
+void poppyNetwork_ChangeHardwareMode(hardwareMode_t newMode);
+
+
 /**
  * \fn unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg)
  * \brief Master mode read function.

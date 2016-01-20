@@ -11,13 +11,23 @@
 #include "src/context.h"
 #include HAL
 
+#include <Arduino.h>
+
 extern context_t ctx;
+
+void poppyNetwork_ChangeHardwareMode(hardwareMode_t newMode) {
+    ctx.hardMode = newMode;
+}
 
 // Startup and network configuration
 void poppyNetwork_init(TX_CB tx_cb,
                        RX_CB rx_cb,
                        RX_CB rxgc_cb) {
     hal_init();
+
+    // Initialization for UART mode
+    Serial.begin(1000000);  // 1M clock
+    Serial.setTimeout(1);   // 1ms timeout
 
     // Save context
     // User side slave TX callback
@@ -34,6 +44,8 @@ void poppyNetwork_init(TX_CB tx_cb,
     ctx.id = DEFAULTID;
     // Module type
     ctx.type = MODULETYPE;
+    // Module communication type
+    ctx.hardMode = DEFAULTHARDWAREMODE;
 
     // Status
     ctx.status = (status_t) {.rx_error = FALSE,
@@ -44,56 +56,82 @@ void poppyNetwork_init(TX_CB tx_cb,
 
 unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
                                 unsigned char reply_size) {
-    unsigned char i = 0;
+    if(ctx.hardMode == I2C) {
+        unsigned char i = 0;
 
-    // Write the command
-    if (i2cAddr(addr, TX)) {
-        i2c_transmit(STOP);
-        return 1;
-    }
-    if (i2cWrite(msg->reg)) {
-        i2c_transmit(STOP);
-        return 1;
-    }
-    if (i2cWrite(msg->size)) {
-        i2c_transmit(STOP);
-        return 1;
-    }
-    for (i = 0; i < msg->size; i++) {
-        if (i2cWrite(msg->data[i])) {
+        // Write the command
+        if (i2cAddr(addr, TX)) {
             i2c_transmit(STOP);
             return 1;
         }
-    }
-
-    // Read the reply
-    if (i2cAddr(addr, RX)) {
-        i2c_transmit(STOP);
-        return 1;
-    }
-    msg->size = reply_size;
-    for (i = 0; i < msg->size; i++) {
-        if (i2cRead(FALSE, &msg->data[i])) {
+        if (i2cWrite(msg->reg)) {
             i2c_transmit(STOP);
             return 1;
         }
+        if (i2cWrite(msg->size)) {
+            i2c_transmit(STOP);
+            return 1;
+        }
+        for (i = 0; i < msg->size; i++) {
+            if (i2cWrite(msg->data[i])) {
+                i2c_transmit(STOP);
+                return 1;
+            }
+        }
+
+        // Read the reply
+        if (i2cAddr(addr, RX)) {
+            i2c_transmit(STOP);
+            return 1;
+        }
+        msg->size = reply_size;
+        for (i = 0; i < msg->size; i++) {
+            if (i2cRead(FALSE, &msg->data[i])) {
+                i2c_transmit(STOP);
+                return 1;
+            }
+        }
+        i2c_transmit(STOP);
+        return 0;
     }
-    i2c_transmit(STOP);
-    return 0;
+    else   // UART mode
+    {
+        // Send request trame
+        Serial.write((addr<<1)|0x01);           // Adress byte construct like in I2C protocol
+        Serial.write(msg->reg);
+        Serial.write(msg->size);
+        Serial.write(msg->data,msg->size);
+
+        // Receive answer
+        Serial.write((addr<<1)|0x00);
+        msg->size = Serial.readBytes(msg->data,reply_size);
+    }
 }
 
 unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg) {
-    if (i2cAddr(addr, TX)) {
+    if(ctx.hardMode == I2C)
+    {
+        if (i2cAddr(addr, TX)) {
+            i2c_transmit(STOP);
+            return 1;
+        }
+        // Write DATA
+        i2cWrite(msg->reg);
+        i2cWrite(msg->size);
+        for (unsigned char i = 0; i < msg->size; i++) {
+            i2cWrite(msg->data[i]);
+        }
+        i2cWrite(crc(&msg->data[0], msg->size));
         i2c_transmit(STOP);
-        return 1;
+        return 0;
     }
-    // Write DATA
-    i2cWrite(msg->reg);
-    i2cWrite(msg->size);
-    for (unsigned char i = 0; i < msg->size; i++) {
-        i2cWrite(msg->data[i]);
+    else
+    {
+        // Send write trame
+        Serial.write((addr<<1)|0x01);           // Adress byte construct like in I2C protocol
+        Serial.write(msg->reg);
+        Serial.write(msg->size);
+        Serial.write(msg->data,msg->size);
+        Serial.write(crc(msg->data,msg->size));
     }
-    i2cWrite(crc(&msg->data[0], msg->size));
-    i2c_transmit(STOP);
-    return 0;
 }

@@ -31,6 +31,14 @@ typedef enum {
     PROTOCOL_REGISTER_NB /*!< This is the minim  l register value available for applicative side. */
 }register_t;
 
+/*
+ * Hardware communication mode: I2C or UART
+ */
+typedef enum {
+    I2C,              /*!< Reply with ID. */
+    UART              /*!< Get and save a new given ID. */
+}hardwareMode_t;
+
 typedef struct {
     // Callback pointers
         DATA_CB data_cb;    /*!< Data management callback. */
@@ -43,8 +51,9 @@ typedef struct {
         unsigned char type; /*!< Module type. */
 
     // Variables
-        status_t status;    /*!< Status. */
-        msg_t msg;          /*!< Message. */
+        status_t status;          /*!< Status. */
+        hardwareMode_t hardMode;  /*!< Communication mode. */
+        msg_t msg;                /*!< Message. */
     }context_t;
 
 context_t ctx;
