@@ -34,9 +34,9 @@ typedef enum {
 typedef struct {
     // Callback pointers
         DATA_CB data_cb;    /*!< Data management callback. */
-        TransmitCallback tx_cb;        /*!< User side slave TX callback. */
-        ReceiveCallback rx_cb;        /*!< User side slave RX callback. */
-        ReceiveCallback rxgc_cb;      /*!< User side slave RX general call callback. */
+        transmit_callback_t tx_cb;        /*!< User side slave TX callback. */
+        receive_callback_t rx_cb;        /*!< User side slave RX callback. */
+        receive_callback_t rxgc_cb;      /*!< User side slave RX general call callback. */
 
     // Module infomations
         unsigned char id;   /*!< Module ID. */

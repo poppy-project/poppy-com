@@ -41,8 +41,8 @@ typedef struct {
     unsigned char data[512];  /*!< Data (512 bytes max). */
 }msg_t;
 
-typedef void (*ReceiveCallback) (msg_dir_t dir, msg_t *msg);
-typedef void (*TransmitCallback) (msg_t *msg);
+typedef void (*receive_callback_t) (msg_dir_t dir, msg_t *msg);
+typedef void (*transmit_callback_t) (msg_t *msg);
 
 /**
  * \fn void poppyNetwork_init(TX_CB tx_cb, RX_CB rx_cb, RX_CB rxgc_cb)
@@ -53,9 +53,9 @@ typedef void (*TransmitCallback) (msg_t *msg);
  * \param rxgc_cb function pointer into the rx general call callback.
  *
  */
-void poppyNetwork_init(TransmitCallback tx_cb,
-                       ReceiveCallback rx_cb,
-                       ReceiveCallback rxgc_cb);
+void poppyNetwork_init(transmit_callback_t tx_cb,
+                       receive_callback_t rx_cb,
+                       receive_callback_t rxgc_cb);
 
 /**
  * \fn unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg)

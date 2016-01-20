@@ -14,9 +14,9 @@
 extern context_t ctx;
 
 // Startup and network configuration
-void poppyNetwork_init(TransmitCallback tx_cb,
-                       ReceiveCallback rx_cb,
-                       ReceiveCallback rxgc_cb) {
+void poppyNetwork_init(transmit_callback_t tx_cb,
+                       receive_callback_t rx_cb,
+                       receive_callback_t rxgc_cb) {
     hal_init();
 
     // Save context
