@@ -11,3 +11,4 @@
 *.gc*
 *.info
 extras/Docs
+build
