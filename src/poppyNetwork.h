@@ -27,6 +27,14 @@ typedef enum {
 }msg_dir_t;
 
 
+/*
+ * Hardware communication mode: I2C or UART
+ */
+typedef enum {
+    I2C,              /*!< Reply with ID. */
+    UART              /*!< Get and save a new given ID. */
+}hardwareMode_t;
+
 /**
  * \struct msg_t
  * \brief Message structure.

@@ -14,6 +14,7 @@
 #include <Arduino.h>
 
 extern context_t ctx;
+//extern volatile unsigned char communicationState;
 
 void poppyNetwork_ChangeHardwareMode(hardwareMode_t newMode) {
     ctx.hardMode = newMode;
@@ -28,6 +29,7 @@ void poppyNetwork_init(TX_CB tx_cb,
     // Initialization for UART mode
     Serial.begin(1000000);  // 1M clock
     Serial.setTimeout(1);   // 1ms timeout
+    //communicationState = 0x00;
 
     // Save context
     // User side slave TX callback
@@ -97,6 +99,8 @@ unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
     else   // UART mode
     {
         // Send request trame
+        //while(communicationState!=0);
+        //communicationState = 0x01;
         Serial.write((addr<<1)|0x01);           // Adress byte construct like in I2C protocol
         Serial.write(msg->reg);
         Serial.write(msg->size);
@@ -105,6 +109,7 @@ unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
         // Receive answer
         Serial.write((addr<<1)|0x00);
         msg->size = Serial.readBytes(msg->data,reply_size);
+        //communicationState = 0x00;
     }
 }
 
@@ -128,10 +133,13 @@ unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg) {
     else
     {
         // Send write trame
+        //while(communicationState!=0);
+        //communicationState = 0x01;
         Serial.write((addr<<1)|0x01);           // Adress byte construct like in I2C protocol
         Serial.write(msg->reg);
         Serial.write(msg->size);
         Serial.write(msg->data,msg->size);
         Serial.write(crc(msg->data,msg->size));
+        //communicationState = 0x00;
     }
 }
