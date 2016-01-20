@@ -11,13 +11,18 @@ set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   ${FLAGS} -std=c11")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FLAGS} -std=c++11")
 set(CMAKE_ASM_FLAGS "${CMAKE_ASM_FLAGS} ${FLAGS}")
 
-file(GLOB_RECURSE SOURCES "src/*")
+file(GLOB_RECURSE SOURCES "src/*.c")
+file(GLOB_RECURSE HEADERS "src/*.h")
 
 include_directories(.)
 
-file(GLOB_RECURSE HAL_SOURCES "extras/hal/${MCU}/*")
-add_library(poppyNetwork ${SOURCES} ${HAL_SOURCES})
+file(GLOB_RECURSE HAL_SOURCES "extras/hal/${MCU}/*.c")
+file(GLOB_RECURSE HAL_HEADERS "extras/hal/${MCU}/*.h")
 
-file(GLOB_RECURSE TEST_SOURCES "extras/test/*")
-add_executable(test.elf ${TEST_SOURCES})
+add_library(poppyNetwork ${SOURCES} ${HEADERS} ${HAL_SOURCES} ${HAL_HEADERS})
+
+file(GLOB_RECURSE TEST_SOURCES "extras/test/*.c")
+file(GLOB_RECURSE TEST_HEADERS "extras/test/*.h")
+
+add_executable(test.elf ${TEST_SOURCES} ${TEST_HEADERS})
 target_link_libraries(test.elf poppyNetwork)
