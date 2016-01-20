@@ -22,10 +22,10 @@ struct \hyperlink{structmsg__t}{msg\-\_\-t}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{poppy_network_8h_a4567ad10b049d681c2b327af74719feb}{typedef void($\ast$ {\bfseries R\-X\-\_\-\-C\-B} )(\hyperlink{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1}{msg\-\_\-dir\-\_\-t} dir, \hyperlink{structmsg__t}{msg\-\_\-t} $\ast$msg)}\label{poppy_network_8h_a4567ad10b049d681c2b327af74719feb}
+\hypertarget{poppy_network_8h_a8cca109a34f09ecb5513dce3cdf5c389}{typedef void($\ast$ {\bfseries Receive\-Callback} )(\hyperlink{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1}{msg\-\_\-dir\-\_\-t} dir, \hyperlink{structmsg__t}{msg\-\_\-t} $\ast$msg)}\label{poppy_network_8h_a8cca109a34f09ecb5513dce3cdf5c389}
 
 \item 
-\hypertarget{poppy_network_8h_aa4dbf6893d0f30bff45a345c1b4df124}{typedef void($\ast$ {\bfseries T\-X\-\_\-\-C\-B} )(\hyperlink{structmsg__t}{msg\-\_\-t} $\ast$msg)}\label{poppy_network_8h_aa4dbf6893d0f30bff45a345c1b4df124}
+\hypertarget{poppy_network_8h_aa33e63c50abdae29ee0a7b6a1a292385}{typedef void($\ast$ {\bfseries Transmit\-Callback} )(\hyperlink{structmsg__t}{msg\-\_\-t} $\ast$msg)}\label{poppy_network_8h_aa33e63c50abdae29ee0a7b6a1a292385}
 
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
@@ -40,8 +40,9 @@ enum \hyperlink{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1}{msg\-\_\-dir
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{poppy_network_8h_ada0ea1c998dbd2179bf435c285d043f0}{poppy\-Network\-\_\-init} (T\-X\-\_\-\-C\-B tx\-\_\-cb, R\-X\-\_\-\-C\-B rx\-\_\-cb, R\-X\-\_\-\-C\-B rxgc\-\_\-cb)
-\begin{DoxyCompactList}\small\item\em Initialisation of the Poppy communication lib. \end{DoxyCompactList}\item 
+\hypertarget{poppy_network_8h_a2b89bd1e9632ad48928b3102d667ca4c}{void {\bfseries poppy\-Network\-\_\-init} (Transmit\-Callback tx\-\_\-cb, Receive\-Callback rx\-\_\-cb, Receive\-Callback rxgc\-\_\-cb)}\label{poppy_network_8h_a2b89bd1e9632ad48928b3102d667ca4c}
+
+\item 
 \hypertarget{poppy_network_8h_a7501ac4221ee0c891e53e11e976c6aee}{unsigned char {\bfseries poppy\-Network\-\_\-read} (unsigned char addr, \hyperlink{structmsg__t}{msg\-\_\-t} $\ast$msg, unsigned char reply\-\_\-size)}\label{poppy_network_8h_a7501ac4221ee0c891e53e11e976c6aee}
 
 \item 
@@ -88,7 +89,7 @@ This structure is used to list all the specific module register. The first regis
 \hypertarget{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531}{R\-X}\label{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531}
 }]Slave receiver mode. \index{R\-X\-G\-C@{R\-X\-G\-C}!poppy\-Network.\-h@{poppy\-Network.\-h}}\index{poppy\-Network.\-h@{poppy\-Network.\-h}!R\-X\-G\-C@{R\-X\-G\-C}}\item[{\em 
 \hypertarget{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1acb3c9419352b04839e939d4d3f32ce77}{R\-X\-G\-C}\label{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1acb3c9419352b04839e939d4d3f32ce77}
-}]Slave receiver général call mode. \index{E\-N\-D@{E\-N\-D}!poppy\-Network.\-h@{poppy\-Network.\-h}}\index{poppy\-Network.\-h@{poppy\-Network.\-h}!E\-N\-D@{E\-N\-D}}\item[{\em 
+}]Slave receiver gï¿½nï¿½ral call mode. \index{E\-N\-D@{E\-N\-D}!poppy\-Network.\-h@{poppy\-Network.\-h}}\index{poppy\-Network.\-h@{poppy\-Network.\-h}!E\-N\-D@{E\-N\-D}}\item[{\em 
 \hypertarget{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1adc6f24fd6915a3f2786a1b7045406924}{E\-N\-D}\label{poppy_network_8h_a1def9945bd875d4a35c81b0c452053d1adc6f24fd6915a3f2786a1b7045406924}
 }]Slave receiver stop. \end{description}
 \end{Desc}
@@ -99,32 +100,6 @@ Definition at line 22 of file poppy\-Network.\-h.
 
 
 \subsection{Function Documentation}
-\hypertarget{poppy_network_8h_ada0ea1c998dbd2179bf435c285d043f0}{\index{poppy\-Network.\-h@{poppy\-Network.\-h}!poppy\-Network\-\_\-init@{poppy\-Network\-\_\-init}}
-\index{poppy\-Network\-\_\-init@{poppy\-Network\-\_\-init}!poppyNetwork.h@{poppy\-Network.\-h}}
-\subsubsection[{poppy\-Network\-\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}void poppy\-Network\-\_\-init (
-\begin{DoxyParamCaption}
-\item[{T\-X\-\_\-\-C\-B}]{tx\-\_\-cb, }
-\item[{R\-X\-\_\-\-C\-B}]{rx\-\_\-cb, }
-\item[{R\-X\-\_\-\-C\-B}]{rxgc\-\_\-cb}
-\end{DoxyParamCaption}
-)}}\label{poppy_network_8h_ada0ea1c998dbd2179bf435c285d043f0}
-
-
-Initialisation of the Poppy communication lib. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em tx\-\_\-cb} & function pointer into the tx callback. \\
-\hline
-{\em rx\-\_\-cb} & function pointer into the rx callback. \\
-\hline
-{\em rxgc\-\_\-cb} & function pointer into the rx general call callback. \\
-\hline
-\end{DoxyParams}
-
-
-Definition at line 17 of file poppy\-Network.\-c.
-
 \hypertarget{poppy_network_8h_a6967645d5bf4139f439a8fa125f2f099}{\index{poppy\-Network.\-h@{poppy\-Network.\-h}!poppy\-Network\-\_\-write@{poppy\-Network\-\_\-write}}
 \index{poppy\-Network\-\_\-write@{poppy\-Network\-\_\-write}!poppyNetwork.h@{poppy\-Network.\-h}}
 \subsubsection[{poppy\-Network\-\_\-write}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char poppy\-Network\-\_\-write (
