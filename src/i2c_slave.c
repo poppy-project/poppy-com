@@ -1,5 +1,5 @@
-#include "src/i2c_slave.h"
-#include HAL
+#include "i2c_slave.h"
+#include "hal.h"
 
 // Global variables
 extern context_t ctx;

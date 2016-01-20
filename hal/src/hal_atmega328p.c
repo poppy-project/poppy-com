@@ -1,7 +1,7 @@
 #include <util/twi.h>
 #include <avr/interrupt.h>
-#include "extras/hal/atmega328p/hal.h"
-#include "src/i2c_slave.h"
+#include "hal.h"
+#include "i2c_slave.h"
 
 // I2C Master mode
 

@@ -5,11 +5,11 @@
  *  Author: nico
  *  Abstract: basics functionalities of the Poppy communication protocol
  */
-#include "src/poppyNetwork.h"
-#include "src/i2c_master.h"
-#include "src/i2c_slave.h"
-#include "src/context.h"
-#include HAL
+#include "poppyNetwork.h"
+#include "i2c_master.h"
+#include "i2c_slave.h"
+#include "context.h"
+#include "hal.h"
 
 extern context_t ctx;
 

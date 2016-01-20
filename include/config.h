@@ -5,7 +5,7 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-#include "src/mod_list.h"
+#include "mod_list.h"
 
 #define DEFAULTID 0x01
 

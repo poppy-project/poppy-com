@@ -1,5 +1,5 @@
-#include "src/i2c_master.h"
-#include HAL
+#include "i2c_master.h"
+#include "hal.h"
 
 // I2C Master mode
 
