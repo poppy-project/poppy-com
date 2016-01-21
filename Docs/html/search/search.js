@@ -7,26 +7,18 @@
 
 var indexSectionsWithContent =
 {
-  0: "cdeghimprst",
+  0: "cdghimprst",
   1: "cms",
-  2: "pt",
-  3: "p",
-  4: "dimrst",
-  5: "m",
-  6: "ert",
-  7: "ghpr"
+  2: "dimrst",
+  3: "ghpr"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "files",
-  3: "functions",
-  4: "variables",
-  5: "enums",
-  6: "enumvalues",
-  7: "pages"
+  2: "variables",
+  3: "pages"
 };
 
 function convertToId(search)
