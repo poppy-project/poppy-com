@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>poppy_com: poppy-com/inc/context.h Source File</title>
+<title>poppy_com: src/context.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -63,7 +63,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -71,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,7 +81,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_979ad034e6ede13b46590bd6794bdc02.html">poppy-com</a></li><li class="navelem"><a class="el" href="dir_a92c00bf48d43c0ae54c2216da0428f4.html">inc</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_d64e691f25c25abb9f88a1678c45d230.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -93,13 +92,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef CONTEXT_H_</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CONTEXT_H_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;poppy-com/inc/config.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="poppy_network_8h.html">poppy-com/poppyNetwork.h</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;src/config.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;src/poppy_com.h&quot;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define TRUE 1</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define FALSE 0</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">typedef</span> void (*DATA_CB) (<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1">msg_dir_t</a> dir, <span class="keyword">volatile</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">typedef</span> void (*DATA_CB) (msg_dir_t dir, <span class="keyword">volatile</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *data);</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structstatus__t.html">   12</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> rx_error : 1;</div>
@@ -137,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">   47</a></span>&#160;        <a class="code" href="structmsg__t.html">msg_t</a> <a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>;          </div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }<a class="code" href="structcontext__t.html">context_t</a>;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<a class="code" href="structcontext__t.html">context_t</a> ctx;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">extern</span> <a class="code" href="structcontext__t.html">context_t</a> ctx;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CONTEXT_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="structcontext__t_html_a108cbe016d12bac90d1582ed0cca91e8"><div class="ttname"><a href="structcontext__t.html#a108cbe016d12bac90d1582ed0cca91e8">context_t::rxgc_cb</a></div><div class="ttdeci">RX_CB rxgc_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00039">context.h:39</a></div></div>
@@ -145,18 +144,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="structcontext__t_html_ae806cd53ff68971d122ab6f854d22b8d"><div class="ttname"><a href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">context_t::msg</a></div><div class="ttdeci">msg_t msg</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00047">context.h:47</a></div></div>
 <div class="ttc" id="structcontext__t_html_a9d4451da3b62a2ec269ae7fd2f6b24b8"><div class="ttname"><a href="structcontext__t.html#a9d4451da3b62a2ec269ae7fd2f6b24b8">context_t::rx_cb</a></div><div class="ttdeci">RX_CB rx_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00038">context.h:38</a></div></div>
 <div class="ttc" id="structcontext__t_html_a2dbb966924ef90bfba1876ad8a3872af"><div class="ttname"><a href="structcontext__t.html#a2dbb966924ef90bfba1876ad8a3872af">context_t::type</a></div><div class="ttdeci">unsigned char type</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00043">context.h:43</a></div></div>
-<div class="ttc" id="structmsg__t_html"><div class="ttname"><a href="structmsg__t.html">msg_t</a></div><div class="ttdoc">Message structure. </div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00038">poppyNetwork.h:38</a></div></div>
+<div class="ttc" id="structmsg__t_html"><div class="ttname"><a href="structmsg__t.html">msg_t</a></div><div class="ttdoc">Message structure. </div><div class="ttdef"><b>Definition:</b> <a href="poppy__com_8h_source.html#l00038">poppy_com.h:38</a></div></div>
 <div class="ttc" id="structcontext__t_html_a06d2b435c29a01be998e6383fec2ef50"><div class="ttname"><a href="structcontext__t.html#a06d2b435c29a01be998e6383fec2ef50">context_t::tx_cb</a></div><div class="ttdeci">TX_CB tx_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00037">context.h:37</a></div></div>
 <div class="ttc" id="structcontext__t_html_a0e49b82a79be5df63399ddbcc0cc022c"><div class="ttname"><a href="structcontext__t.html#a0e49b82a79be5df63399ddbcc0cc022c">context_t::status</a></div><div class="ttdeci">status_t status</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00046">context.h:46</a></div></div>
 <div class="ttc" id="structcontext__t_html"><div class="ttname"><a href="structcontext__t.html">context_t</a></div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00034">context.h:34</a></div></div>
 <div class="ttc" id="structcontext__t_html_ae79525e2fb5ec4ad5b6beb03c0fd9579"><div class="ttname"><a href="structcontext__t.html#ae79525e2fb5ec4ad5b6beb03c0fd9579">context_t::data_cb</a></div><div class="ttdeci">DATA_CB data_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00036">context.h:36</a></div></div>
 <div class="ttc" id="structstatus__t_html"><div class="ttname"><a href="structstatus__t.html">status_t</a></div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00012">context.h:12</a></div></div>
-<div class="ttc" id="poppy_network_8h_html"><div class="ttname"><a href="poppy_network_8h.html">poppyNetwork.h</a></div><div class="ttdoc">Poppy communication main include file. </div></div>
-<div class="ttc" id="poppy_network_8h_html_a1def9945bd875d4a35c81b0c452053d1"><div class="ttname"><a href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1">msg_dir_t</a></div><div class="ttdeci">msg_dir_t</div><div class="ttdoc">Module specific register enumerator. </div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00022">poppyNetwork.h:22</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 21 2016 17:01:49 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 21 2016 17:08:29 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
