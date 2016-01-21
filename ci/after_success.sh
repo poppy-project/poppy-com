@@ -12,11 +12,13 @@ if [ "$SUITE" = "build" ]; then
     git config --global user.email $GIT_EMAIL
 
     # Clone the whole repo again.
-    git checkout test
+    git checkout $TRAVIS_BRANCH
     OWNER_NAME=`echo $TRAVIS_REPO_SLUG | awk -F"/" '{print $1}'`
     REPO_NAME=`echo $TRAVIS_REPO_SLUG | awk -F"/" '{print $2}'`
+    echo $TRAVIS_BRANCH
     sed -i '/Build Status/c[![Build Status](https://travis-ci.org/'$TRAVIS_REPO_SLUG'.svg?branch='$TRAVIS_BRANCH')](https://travis-ci.org/'$TRAVIS_REPO_SLUG')[![Coverage Status](https://coveralls.io/repos/'$TRAVIS_REPO_SLUG'/badge.svg?branch='$TRAVIS_BRANCH')](https://coveralls.io/github/'$TRAVIS_REPO_SLUG'?branch='$TRAVIS_BRANCH')' README.md
     sed -i '/Please read /cPlease read [the code documentation](http://'$OWNER_NAME'.github.io/'$REPO_NAME'/)\' README.md
+    cat README.md
     git add README.md
     git commit -m "Auto-updating README badges."
     git push --quiet https://$GH_TOKEN@github.com/$TRAVIS_REPO_SLUG $TRAVIS_BRANCH
