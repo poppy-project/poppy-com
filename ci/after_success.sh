@@ -15,7 +15,7 @@ if [ "$SUITE" = "build" ]; then
     git checkout test
     OWNER_NAME=`echo $TRAVIS_REPO_SLUG | awk -F"/" '{print $1}'`
     REPO_NAME=`echo $TRAVIS_REPO_SLUG | awk -F"/" '{print $2}'`
-    sed -i '/Build Status/c[![Build Status](https://travis-ci.org/'$TRAVIS_REPO_SLUG'.svg?branch='$TRAVIS_BRANCH')](https://travis-ci.org/'$TRAVIS_REPO_SLUG')[![Coverage Status](https://coveralls.io/repos/'$TRAVIS_REPO_SLUG'/badge.svg?branch='$TRAVIS_BRANCH'&service=github)](https://coveralls.io/github/'$TRAVIS_REPO_SLUG'?branch='$TRAVIS_BRANCH')' README.md
+    sed -i '/Build Status/c[![Build Status](https://travis-ci.org/'$TRAVIS_REPO_SLUG'.svg?branch='$TRAVIS_BRANCH')](https://travis-ci.org/'$TRAVIS_REPO_SLUG')[![Coverage Status](https://coveralls.io/repos/'$TRAVIS_REPO_SLUG'/badge.svg?branch='$TRAVIS_BRANCH')](https://coveralls.io/github/'$TRAVIS_REPO_SLUG'?branch='$TRAVIS_BRANCH')' README.md
     sed -i '/Please read /cPlease read [the code documentation](http://'$OWNER_NAME'.github.io/'$REPO_NAME'/)\' README.md
     git add README.md
     git commit -m "Auto-updating README badges."
