@@ -9,5 +9,6 @@
 *.map
 *.sym
 *.gc*
+.tags*
 *.info
 /Docs
