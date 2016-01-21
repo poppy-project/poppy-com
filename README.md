@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/poppy-project/poppy-com.svg?branch=master)](https://travis-ci.org/poppy-project/poppy-com)[![Coverage Status](https://coveralls.io/repos/poppy-project/poppy-com/badge.svg?branch=master&service=github)](https://coveralls.io/github/poppy-project/poppy-com?branch=master)
-Please read [the code documentation](http://poppy-project.github.io/poppy-com/)
+[![Build Status](https://travis-ci.org/poppy-project/poppy_com.svg?branch=master)](https://travis-ci.org/poppy-project/poppy_com)[![Coverage Status](https://coveralls.io/repos/poppy-project/poppy_com/badge.svg?branch=master&service=github)](https://coveralls.io/github/poppy-project/poppy_com?branch=master)
+Please read [the code documentation](http://poppy-project.github.io/poppy_com/)
 
 <span \mainpage<span></span>
 

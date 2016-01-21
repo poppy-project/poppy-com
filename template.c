@@ -12,7 +12,7 @@
 
 
 /**
- * This is the minimal include you will need to use poppy-com in a module
+ * This is the minimal include you will need to use poppy_com in a module
  * application
  */
 #include "poppy-com/poppyNetwork.h"

@@ -49,7 +49,7 @@ SRC = $(TARGET).c
 
 # If there is more than one source file, append them above, or modify and
 # uncomment the following:
-# poppy-com source files
+# poppy_com source files
 SRC += \
 poppy-com/src/i2c_master.c \
 poppy-com/src/i2c_slave.c \

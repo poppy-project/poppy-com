@@ -3,7 +3,7 @@ HAL creation
 
 If your MCU is not already compatible with this librairy you have to create your hown HAL (Hardware Abstraction Layer).
 
-The creation of a new HAL is a big contribution to this project and you will have to pull-request it in the future. To do a good pull request create a new git branch at the poppy-com master level and put all your code inside.
+The creation of a new HAL is a big contribution to this project and you will have to pull-request it in the future. To do a good pull request create a new git branch at the poppy_com master level and put all your code inside.
 When your new HAL is fully operational please pullrequest your branch to contribute to the poppy-project.
 
 Start your new hal by creating a new folder on poppy-com/hal/
