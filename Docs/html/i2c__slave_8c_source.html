@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>poppy-com: src/i2c_slave.c Source File</title>
+<title>poppy_com: poppy-com/src/i2c_slave.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -22,7 +22,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">poppy-com
+   <div id="projectname">poppy_com
    &#160;<span id="projectnumber">0.1</span>
    </div>
    <div id="projectbrief">Poppy2.0 communication library</div>
@@ -82,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_bbafb7520dc4a14fc36d3b4b90381287.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_979ad034e6ede13b46590bd6794bdc02.html">poppy-com</a></li><li class="navelem"><a class="el" href="dir_821255dffc7b24ed127c7171e5a05762.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -90,7 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">i2c_slave.c</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;src/i2c_slave.h&quot;</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;poppy-com/inc/i2c_slave.h&quot;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include HAL</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// Global variables</span></div>
@@ -113,7 +113,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                msg_size--;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                *data = *data_to_send++;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                ctx.<a class="code" href="structcontext__t.html#a12db6f3e506312d989eb79877eae5e3b">tx_cb</a>(&amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                ctx.<a class="code" href="structcontext__t.html#a06d2b435c29a01be998e6383fec2ef50">tx_cb</a>(&amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>);</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            }</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531">RX</a>:</div>
@@ -121,8 +121,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <span class="comment">/*</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">             * That should be a new message to receive.</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">             */</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;             ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#ab5695ddf57fd2834cdfe4b6f6e89fc3e">type</a> = *data;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordflow">switch</span> (ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#ab5695ddf57fd2834cdfe4b6f6e89fc3e">type</a>) {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;             ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a> = *data;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordflow">switch</span> (ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a>) {</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="keywordflow">case</span> GET_ID:</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                    <span class="comment">// Reply with ID</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                    msg_size = 1;</div>
@@ -181,7 +181,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;}</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keywordtype">void</span> msg_complete(<a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1">msg_dir_t</a> dir) {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">switch</span> (ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#ab5695ddf57fd2834cdfe4b6f6e89fc3e">type</a>) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">switch</span> (ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">reg</a>) {</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">case</span> WRITE_ID:</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;            <span class="comment">// Get and save a new given ID</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;            id_update(ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>.<a class="code" href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">data</a>[0]);</div>
@@ -195,33 +195,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordflow">default</span>:</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            <span class="keywordflow">if</span> (dir == <a class="code" href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531">RX</a>)</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                ctx.<a class="code" href="structcontext__t.html#a73e2dad8cc38ed72d324ab0ae11f0f52">rx_cb</a>(dir, &amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                ctx.<a class="code" href="structcontext__t.html#a9d4451da3b62a2ec269ae7fd2f6b24b8">rx_cb</a>(dir, &amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>);</div>
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                ctx.<a class="code" href="structcontext__t.html#ae8acba22504829448da7fa1cf793c7a3">rxgc_cb</a>(dir, &amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                ctx.<a class="code" href="structcontext__t.html#a108cbe016d12bac90d1582ed0cca91e8">rxgc_cb</a>(dir, &amp;ctx.<a class="code" href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">msg</a>);</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    }</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;}</div>
+<div class="ttc" id="structcontext__t_html_a108cbe016d12bac90d1582ed0cca91e8"><div class="ttname"><a href="structcontext__t.html#a108cbe016d12bac90d1582ed0cca91e8">context_t::rxgc_cb</a></div><div class="ttdeci">RX_CB rxgc_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00039">context.h:39</a></div></div>
 <div class="ttc" id="structcontext__t_html_afcfccef1ae4111aee136acf0d92b4379"><div class="ttname"><a href="structcontext__t.html#afcfccef1ae4111aee136acf0d92b4379">context_t::id</a></div><div class="ttdeci">unsigned char id</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00042">context.h:42</a></div></div>
 <div class="ttc" id="structcontext__t_html_ae806cd53ff68971d122ab6f854d22b8d"><div class="ttname"><a href="structcontext__t.html#ae806cd53ff68971d122ab6f854d22b8d">context_t::msg</a></div><div class="ttdeci">msg_t msg</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00047">context.h:47</a></div></div>
+<div class="ttc" id="structcontext__t_html_a9d4451da3b62a2ec269ae7fd2f6b24b8"><div class="ttname"><a href="structcontext__t.html#a9d4451da3b62a2ec269ae7fd2f6b24b8">context_t::rx_cb</a></div><div class="ttdeci">RX_CB rx_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00038">context.h:38</a></div></div>
 <div class="ttc" id="poppy_network_8h_html_a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e"><div class="ttname"><a href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a951f819598b53b2729ee0e4c05e6888e">TX</a></div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00023">poppyNetwork.h:23</a></div></div>
 <div class="ttc" id="poppy_network_8h_html_a1def9945bd875d4a35c81b0c452053d1acb3c9419352b04839e939d4d3f32ce77"><div class="ttname"><a href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1acb3c9419352b04839e939d4d3f32ce77">RXGC</a></div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00025">poppyNetwork.h:25</a></div></div>
-<div class="ttc" id="structcontext__t_html_ae8acba22504829448da7fa1cf793c7a3"><div class="ttname"><a href="structcontext__t.html#ae8acba22504829448da7fa1cf793c7a3">context_t::rxgc_cb</a></div><div class="ttdeci">ReceiveCallback rxgc_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00039">context.h:39</a></div></div>
 <div class="ttc" id="poppy_network_8h_html_a1def9945bd875d4a35c81b0c452053d1adc6f24fd6915a3f2786a1b7045406924"><div class="ttname"><a href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1adc6f24fd6915a3f2786a1b7045406924">END</a></div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00026">poppyNetwork.h:26</a></div></div>
-<div class="ttc" id="structcontext__t_html_a12db6f3e506312d989eb79877eae5e3b"><div class="ttname"><a href="structcontext__t.html#a12db6f3e506312d989eb79877eae5e3b">context_t::tx_cb</a></div><div class="ttdeci">TransmitCallback tx_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00037">context.h:37</a></div></div>
-<div class="ttc" id="structcontext__t_html_a73e2dad8cc38ed72d324ab0ae11f0f52"><div class="ttname"><a href="structcontext__t.html#a73e2dad8cc38ed72d324ab0ae11f0f52">context_t::rx_cb</a></div><div class="ttdeci">ReceiveCallback rx_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00038">context.h:38</a></div></div>
-<div class="ttc" id="structmsg__t_html_ab5695ddf57fd2834cdfe4b6f6e89fc3e"><div class="ttname"><a href="structmsg__t.html#ab5695ddf57fd2834cdfe4b6f6e89fc3e">msg_t::type</a></div><div class="ttdeci">unsigned char type</div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00039">poppyNetwork.h:39</a></div></div>
 <div class="ttc" id="structmsg__t_html_a3736f2ca203e665223b225ca07def9b5"><div class="ttname"><a href="structmsg__t.html#a3736f2ca203e665223b225ca07def9b5">msg_t::size</a></div><div class="ttdeci">unsigned char size</div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00040">poppyNetwork.h:40</a></div></div>
 <div class="ttc" id="structcontext__t_html_a2dbb966924ef90bfba1876ad8a3872af"><div class="ttname"><a href="structcontext__t.html#a2dbb966924ef90bfba1876ad8a3872af">context_t::type</a></div><div class="ttdeci">unsigned char type</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00043">context.h:43</a></div></div>
 <div class="ttc" id="poppy_network_8h_html_a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531"><div class="ttname"><a href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1a4aca20d6e60fffb66e9668b3a6592531">RX</a></div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00024">poppyNetwork.h:24</a></div></div>
 <div class="ttc" id="structmsg__t_html_ab11ea949abe5142d3e5c5911cf971860"><div class="ttname"><a href="structmsg__t.html#ab11ea949abe5142d3e5c5911cf971860">msg_t::data</a></div><div class="ttdeci">unsigned char data[512]</div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00041">poppyNetwork.h:41</a></div></div>
+<div class="ttc" id="structcontext__t_html_a06d2b435c29a01be998e6383fec2ef50"><div class="ttname"><a href="structcontext__t.html#a06d2b435c29a01be998e6383fec2ef50">context_t::tx_cb</a></div><div class="ttdeci">TX_CB tx_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00037">context.h:37</a></div></div>
 <div class="ttc" id="structcontext__t_html_a0e49b82a79be5df63399ddbcc0cc022c"><div class="ttname"><a href="structcontext__t.html#a0e49b82a79be5df63399ddbcc0cc022c">context_t::status</a></div><div class="ttdeci">status_t status</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00046">context.h:46</a></div></div>
 <div class="ttc" id="structcontext__t_html"><div class="ttname"><a href="structcontext__t.html">context_t</a></div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00034">context.h:34</a></div></div>
 <div class="ttc" id="structcontext__t_html_ae79525e2fb5ec4ad5b6beb03c0fd9579"><div class="ttname"><a href="structcontext__t.html#ae79525e2fb5ec4ad5b6beb03c0fd9579">context_t::data_cb</a></div><div class="ttdeci">DATA_CB data_cb</div><div class="ttdef"><b>Definition:</b> <a href="context_8h_source.html#l00036">context.h:36</a></div></div>
+<div class="ttc" id="structmsg__t_html_a0aef01fbaf575c639d82d5beee92c421"><div class="ttname"><a href="structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421">msg_t::reg</a></div><div class="ttdeci">unsigned char reg</div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00039">poppyNetwork.h:39</a></div></div>
 <div class="ttc" id="poppy_network_8h_html_a1def9945bd875d4a35c81b0c452053d1"><div class="ttname"><a href="poppy_network_8h.html#a1def9945bd875d4a35c81b0c452053d1">msg_dir_t</a></div><div class="ttdeci">msg_dir_t</div><div class="ttdoc">Message direction enum. </div><div class="ttdef"><b>Definition:</b> <a href="poppy_network_8h_source.html#l00022">poppyNetwork.h:22</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Jan 20 2016 17:31:56 for poppy-com by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 21 2016 13:52:45 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

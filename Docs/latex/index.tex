@@ -4,7 +4,7 @@ The role of this code is to manage the Poppy 2.\-0 communication stack between a
 
 You can use it to develop you own Poppy 2.\-0 module code.
 
-To understand how this protocole work, please read the \hyperlink{protocol__definition_8md_source}{protocol definition}.
+To understand how this protocole work, please read the \hyperlink{md_doc_protocol_definition}{protocol definition}.
 
 \subsection*{How to start a new Poppy 2.\-0 module code project }
 
@@ -15,7 +15,7 @@ First of all you have to fork this repository to create your hown module on your
 In this repo travis is used to create documentation, update readme, and pass some tests. To activate all this things you have to follow some steps \-:
 \begin{DoxyItemize}
 \item enable your repo on \href{https://travis-ci.org/}{\tt travis} and on \href{https://coveralls.io}{\tt coveralls}.
-\item \hyperlink{travis__encrypt_8md_source}{Create an encrypted token for travis.}
+\item \hyperlink{md_doc_travis_encrypt}{Create an encrypted token for travis.}
 \item replace your encrypted token to the .travis.\-yml file of this repo.
 \end{DoxyItemize}
 
@@ -29,7 +29,7 @@ To have a perfect integration and declaration of your module into a poppy 2.\-0 
 \item specify your M\-C\-U on the Makefile.
 \item specify your M\-A\-I\-N\-C\-L\-O\-C\-K frequency on the Makefile.
 \item specify your S\-C\-L\-F\-R\-E\-Q to specify the I2\-C max speed on the Makefile.
-\item create your specific hal folder if you need. To do that please read the \hyperlink{hal__creation_8md_source}{new hal creation documentation}.
+\item create your specific hal folder if you need. To do that please read the \hyperlink{md_doc_hal_creation}{new hal creation documentation}.
 \end{DoxyItemize}
 
 You can use the \href{template.c}{\tt template.\-c} file to format your main file and use it as base.

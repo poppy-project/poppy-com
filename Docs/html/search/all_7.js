@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['readme',['README',['../md__r_e_a_d_m_e.html',1,'']]],
-  ['reg',['reg',['../structmsg__t.html#a0aef01fbaf575c639d82d5beee92c421',1,'msg_t']]],
-  ['rx_5fcb',['rx_cb',['../structcontext__t.html#a9d4451da3b62a2ec269ae7fd2f6b24b8',1,'context_t']]],
-  ['rxgc_5fcb',['rxgc_cb',['../structcontext__t.html#a108cbe016d12bac90d1582ed0cca91e8',1,'context_t']]]
+  ['protocole_20definition',['Protocole definition',['../md_doc_protocol_definition.html',1,'']]],
+  ['poppynetwork_2eh',['poppyNetwork.h',['../poppy_network_8h.html',1,'']]],
+  ['poppynetwork_5finit',['poppyNetwork_init',['../poppy_network_8h.html#ada0ea1c998dbd2179bf435c285d043f0',1,'poppyNetwork.c']]],
+  ['poppynetwork_5fwrite',['poppyNetwork_write',['../poppy_network_8h.html#a6967645d5bf4139f439a8fa125f2f099',1,'poppyNetwork.c']]]
 ];
