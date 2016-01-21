@@ -63,6 +63,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -71,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -85,7 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">README.md</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;[![Build Status](https:<span class="comment">//travis-ci.org/poppy-project/poppy_com.svg?branch=travis_test)](https://travis-ci.org/poppy-project/poppy_com)[![Coverage Status](https://coveralls.io/repos/poppy-project/poppy_com/badge.svg?branch=travis_test)](https://coveralls.io/github/poppy-project/poppy_com?branch=travis_test)</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;[![Build Status](https:<span class="comment">//travis-ci.org/poppy-project/poppy_com.svg?branch=master)](https://travis-ci.org/poppy-project/poppy_com)[![Coverage Status](https://coveralls.io/repos/poppy-project/poppy_com/badge.svg?branch=master)](https://coveralls.io/github/poppy-project/poppy_com?branch=master)</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;Please read [the code documentation](http:<span class="comment">//poppy-project.github.io/poppy_com/)</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;&lt;span \mainpage&lt;span&gt;&lt;/span&gt;</div>
@@ -103,7 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;------------------------------------------------</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;First of all you have to fork <span class="keyword">this</span> repository to create your hown module on your github account.</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;To avoid any trouble during future updates of the poppy-pross lib, take care to not modifying any files in the src folder or create a specific branch <span class="keywordflow">for</span> all your developpements.</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;To avoid any trouble during future updates of the poppy-pross lib, take care to not modifying any files in the poppy-com folder or create a specific branch <span class="keywordflow">for</span> all your developpements.</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;__________________________________________________________________________</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;In <span class="keyword">this</span> repo travis is used to create documentation, update readme, and pass some tests.</div>
@@ -121,7 +122,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; - specify your SCLFREQ to specify the I2C max speed on the Makefile.</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; - create your specific hal folder <span class="keywordflow">if</span> you need. To <span class="keywordflow">do</span> that please read the [<span class="keyword">new</span> hal creation documentation](doc/hal_creation.md).</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;You can use the [<span class="keyword">template</span>.c](<span class="keyword">template</span>.c) file to format your main file and use it as base.</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;You can use the [<span class="keyword">template</span>.c](<span class="keyword">template</span>.c) file to format your <a class="code" href="template_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> file and use it as base.</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;__________________________________________________________________________</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
@@ -129,10 +130,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;-------------------------------------------------------</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;If you have any question please describe it in the [Poppy project forum](https:<span class="comment">//forum.poppy-project.org).</span></div>
+<div class="ttc" id="template_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="template_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Your main module application process. </div><div class="ttdef"><b>Definition:</b> <a href="template_8c_source.html#l00086">template.c:86</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 21 2016 16:09:48 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jan 21 2016 16:28:11 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
