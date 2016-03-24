@@ -8,7 +8,7 @@ Poppy 2.0 communication lib
 
 The role of this code is to manage the Poppy 2.0 communication stack between all modules.
 
-You can use it to develop you own Poppy 2.0 module code.
+It is the basic library used to create new modules, you can use it to develop you own !
 
 To understand how this protocole work, please read the [protocol definition](doc/protocol_definition.md).
 
@@ -16,7 +16,8 @@ How to start a new Poppy 2.0 module code project
 ------------------------------------------------
 
 First of all you have to fork this repository to create your hown module on your github account.
-To avoid any trouble during future updates of the poppy-pross lib, take care to not modifying any files in the poppy-com folder or create a specific branch for all your developpements.
+scr folder contain the lib source code you sould not modifying it to keep compliance with other modules.
+To avoid any trouble during future updates of the poppy-pross lib, take care to not modifying any files in the src folder or create a specific branch for all your developpements.
 __________________________________________________________________________
 
 In this repo travis is used to create documentation, update readme, and pass some tests.
