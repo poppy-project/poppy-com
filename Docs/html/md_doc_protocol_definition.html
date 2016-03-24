@@ -80,32 +80,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Protocole definition </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The Poppy communication stack have two levels of messages.</p>
-<h2>The module level messages </h2>
-<p>You only have to deal with this kind of message in your module application. These messages are dedicated to your module application, and you have to define it.</p>
-<p>The single limitation is to match with the <a class="el" href="structmsg__t.html" title="Message structure. ">msg_t</a> struct.</p>
-<p>All messages send or received should have a register and a size. A typical message on the bus will be :</p>
+<div class="textblock"><h2>Hardware and data flow </h2>
+<p>Poppy communication protocol use 3 data wire :</p>
 <ul>
-<li>Slave addr</li>
-<li>Register</li>
-<li>Size</li>
-<li>Data[0]</li>
-<li>...</li>
-<li>Data[size - 1]</li>
+<li>SCL</li>
+<li>SDA</li>
+<li>PTP</li>
 </ul>
-<p>If you have a message with only a register needed you have to set size to 0. The message transmitted will be :</p>
+<p>Wire SCL and SDA are used to manage high-speed <b>I2C</b> (3.6Mhz). This bus is the <b>main communication way</b>. The <b>PTP</b> wire means "point to point", he manage hardware detection by passing tokens and allow to comminucate directly with the next or previous module with high speed serial communication.</p>
+<p>All messages I2C or PTP have the same structure :</p>
 <ul>
-<li>Slave addr</li>
-<li>Register</li>
-<li>0</li>
+<li>Address</li>
+<li>msg_type</li>
+<li>msg_size*</li>
+<li>msg[0]*</li>
+<li>...*</li>
+<li>msg[msg_size-1]*</li>
+<li>CRC*</li>
 </ul>
-<p>Your registers definition for your application should be an enum who start at "last_reg_val" value.</p>
-<h2>The poppy level messages </h2>
-<p>This level is directly integrated into the library, he manage all messages needed to your module declaration and synchronization with others modules on a Poppy robot. </p>
+<p>this part of the message can be missing on somes network level messages, but you will probably don't have to seal with it!</p>
+<h2>Protocol levels </h2>
+<p>The Poppy communication stack have different levels of messages :</p>
+<ul>
+<li><b>user messages</b> (accessible by the end user)</li>
+<li><b>module messages</b> (specific to a module type)</li>
+<li><b>network messages</b> (network management messages)</li>
+</ul>
+<p>Each of these level have his hown <b>msg_type field</b>. <b>Network messages</b> are prioritary on <b>module messages</b> and <b>module messages</b> are prioritaty on <b>user messages</b>.</p>
+<p>If you need to use some modules and write your hown code for your own robot you only have to deal with <b>user messages</b>. If you are a module creator you will need to deal with module level messages. You probably don't have to deal with <b>network messages</b>, but if you have any question please describe it in the <a href="https://forum.poppy-project.org">Poppy project forum</a>.</p>
+<h2>Messages definition </h2>
+<p>If you write a code on a module you will need to create your own msg_type. There is the same methode to define it if you are at <b>user messages</b> level or <b>module messages</b></p>
+<p>You simply have to ceate your msg_type list</p>
+<p>/**</p>
+<ul>
+<li></li>
+</ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jan 21 2016 18:15:13 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 24 2016 13:46:52 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

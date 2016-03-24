@@ -1,30 +1,53 @@
-The Poppy communication stack have two levels of messages.
+\subsection*{Hardware and data flow }
 
-\subsection*{The module level messages }
+Poppy communication protocol use 3 data wire \-:
 
-You only have to deal with this kind of message in your module application. These messages are dedicated to your module application, and you have to define it.
 
-The single limitation is to match with the \hyperlink{structmsg__t}{msg\-\_\-t} struct.
-
-All messages send or received should have a register and a size. A typical message on the bus will be \-:
 \begin{DoxyItemize}
-\item Slave addr
-\item Register
-\item Size
-\item Data\mbox{[}0\mbox{]}
-\item ...
-\item Data\mbox{[}size -\/ 1\mbox{]}
+\item S\-C\-L
+\item S\-D\-A
+\item P\-T\-P
 \end{DoxyItemize}
 
-If you have a message with only a register needed you have to set size to 0. The message transmitted will be \-:
+Wire S\-C\-L and S\-D\-A are used to manage high-\/speed {\bfseries I2\-C} (3.\-6\-Mhz). This bus is the {\bfseries main communication way}. The {\bfseries P\-T\-P} wire means \char`\"{}point to point\char`\"{}, he manage hardware detection by passing tokens and allow to comminucate directly with the next or previous module with high speed serial communication.
+
+All messages I2\-C or P\-T\-P have the same structure \-:
+
+
 \begin{DoxyItemize}
-\item Slave addr
-\item Register
-\item 0
+\item Address
+\item msg\-\_\-type
+\item msg\-\_\-size$\ast$
+\item msg\mbox{[}0\mbox{]}$\ast$
+\item ...$\ast$
+\item msg\mbox{[}msg\-\_\-size-\/1\mbox{]}$\ast$
+\item C\-R\-C$\ast$
 \end{DoxyItemize}
 
-Your registers definition for your application should be an enum who start at \char`\"{}last\-\_\-reg\-\_\-val\char`\"{} value.
+this part of the message can be missing on somes network level messages, but you will probably don't have to seal with it!
 
-\subsection*{The poppy level messages }
+\subsection*{Protocol levels }
 
-This level is directly integrated into the library, he manage all messages needed to your module declaration and synchronization with others modules on a Poppy robot. 
+The Poppy communication stack have different levels of messages \-:
+
+
+\begin{DoxyItemize}
+\item {\bfseries user messages} (accessible by the end user)
+\item {\bfseries module messages} (specific to a module type)
+\item {\bfseries network messages} (network management messages)
+\end{DoxyItemize}
+
+Each of these level have his hown {\bfseries msg\-\_\-type field}. {\bfseries Network messages} are prioritary on {\bfseries module messages} and {\bfseries module messages} are prioritaty on {\bfseries user messages}.
+
+If you need to use some modules and write your hown code for your own robot you only have to deal with {\bfseries user messages}. If you are a module creator you will need to deal with module level messages. You probably don't have to deal with {\bfseries network messages}, but if you have any question please describe it in the \href{https://forum.poppy-project.org}{\tt Poppy project forum}.
+
+\subsection*{Messages definition }
+
+If you write a code on a module you will need to create your own msg\-\_\-type. There is the same methode to define it if you are at {\bfseries user messages} level or {\bfseries module messages}
+
+You simply have to ceate your msg\-\_\-type list
+
+/$\ast$$\ast$
+\begin{DoxyItemize}
+\item 
+\end{DoxyItemize}
