@@ -110,7 +110,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; - msg[msg_size-1]*</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; - CRC*</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;* <span class="keyword">this</span> part of the message can be missing on somes network level messages, but you will probably don<span class="stringliteral">&#39;t have to seal with it!</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;\* <span class="keyword">this</span> part of the message can be missing on somes network level messages, but you will probably don<span class="stringliteral">&#39;t have to seal with it!</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="stringliteral"></span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="stringliteral">Protocol levels</span></div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="stringliteral">---------------</span></div>
@@ -134,15 +134,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;You simply have to ceate your msg_type list</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    REGISTER_1,</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    REGISTER_2</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;}msg_type_t;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;```c</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    REGISTER_1,</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    REGISTER_2</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;}msg_type_t;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;```</div>
 <div class="ttc" id="template_8c_html_a840291bc02cba5474a4cb46a9b9566fe"><div class="ttname"><a href="template_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a></div><div class="ttdeci">int main(void)</div><div class="ttdoc">Your main module application process. </div><div class="ttdef"><b>Definition:</b> <a href="template_8c_source.html#l00086">template.c:86</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 24 2016 13:46:52 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 30 2016 08:55:32 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
