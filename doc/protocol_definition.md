@@ -22,7 +22,7 @@ All messages I2C or PTP have the same structure :
  - msg[msg_size-1]*
  - CRC*
 
-* this part of the message can be missing on somes network level messages, but you will probably don't have to seal with it!
+\* this part of the message can be missing on somes network level messages, but you will probably don't have to seal with it!
 
 Protocol levels
 ---------------
@@ -46,6 +46,7 @@ If you write a code on a module you will need to create your own msg_type. There
 
 You simply have to ceate your msg_type list
 
+```c
 /**
  * \enum msg_type_t
  * \brief Module type enumerator.
@@ -56,3 +57,4 @@ typedef enum {
     REGISTER_1,
     REGISTER_2
 }msg_type_t;
+```
