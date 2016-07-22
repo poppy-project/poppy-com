@@ -22,13 +22,13 @@ matrix:
       env: SUITE=build
 
 install:
-  - . ./ci/install.sh
+  - . ./extra/ci/install.sh
 
 script:
- - . ./ci/script.sh
+ - . ./extra/ci/script.sh
 
 after_success:
- - . ./ci/after_success.sh
+ - . ./extra/ci/after_success.sh
 
 notifications:
   email:

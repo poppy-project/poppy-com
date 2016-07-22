@@ -1,4 +1,4 @@
-#include "poppy-com/inc/i2c_slave.h"
+#include "inc/i2c_slave.h"
 #include HAL
 
 // Global variables

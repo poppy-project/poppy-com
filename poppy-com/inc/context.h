@@ -1,8 +1,8 @@
 #ifndef CONTEXT_H_
 #define CONTEXT_H_
 
-#include "poppy-com/inc/config.h"
-#include "poppy-com/poppyNetwork.h"
+#include "inc/config.h"
+#include "poppyNetwork.h"
 
 #define TRUE 1
 #define FALSE 0

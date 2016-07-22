@@ -1,5 +1,7 @@
 *.lst
 *.o
+*.a
+*.bin
 *.d
 *.eep
 *.elf
@@ -11,4 +13,5 @@
 *.gc*
 .tags*
 *.info
+*_symbols.txt
 /Docs

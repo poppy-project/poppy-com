@@ -1,7 +1,7 @@
 #ifndef HAL_H_
 #define HAL_H_
 
-#include "poppy-com/inc/context.h"
+#include "inc/context.h"
 
 typedef enum {
     // Send start condition

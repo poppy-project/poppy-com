@@ -1,7 +1,7 @@
 #include <util/twi.h>
 #include <avr/interrupt.h>
-#include "poppy-com/hal/atmega64/hal.h"
-#include "poppy-com/inc/i2c_slave.h"
+#include "hal/atmega64/hal.h"
+#include "inc/i2c_slave.h"
 
 // I2C Master mode
 
@@ -13,7 +13,6 @@ void hal_init(void) {
     TWBR = ((MAINCLOCK / SCLFREQ) - 16) / 2;
     TWSR &= ~(1<<TWPS1) & ~(1<<TWPS0);  // SetPrescaler divisor to 1
     TWAR = (0x0A << 1) | (1<<TWGCE);  // I2C Address and enable general call
-    TWAMR = 0x00;  // Not used
     TWCR = ((1 << TWEA) | (1 << TWEN) | (1 << TWIE));  // Enable ACK system
 }
 

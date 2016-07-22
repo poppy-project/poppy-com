@@ -4,7 +4,7 @@ if [ "$SUITE" = "build" ]; then
     make
 
 elif [ "$SUITE" = "tests" ]; then
-    make test && ./test.elf
+    make HAL=stub && ./extra/examples/tests/tests_stub.elf
 
 else
     echo "Unknown suite variable - '$SUITE'. Terminating ..."

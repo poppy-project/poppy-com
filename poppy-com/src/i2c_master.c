@@ -1,4 +1,4 @@
-#include "poppy-com/inc/i2c_master.h"
+#include "inc/i2c_master.h"
 #include HAL
 
 // I2C Master mode

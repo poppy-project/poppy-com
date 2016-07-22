@@ -1,7 +1,7 @@
 #include <util/twi.h>
 #include <avr/interrupt.h>
-#include "poppy-com/hal/atmega328p/hal.h"
-#include "poppy-com/inc/i2c_slave.h"
+#include "hal/arduino_uno/hal.h"
+#include "inc/i2c_slave.h"
 
 // I2C Master mode
 

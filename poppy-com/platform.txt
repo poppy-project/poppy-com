@@ -1,0 +1,3 @@
+#TODO faire une entête avec licence et tout
+
+version=1.0

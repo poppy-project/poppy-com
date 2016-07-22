@@ -15,7 +15,7 @@
  * This is the minimal include you will need to use poppy_com in a module
  * application
  */
-#include "poppy-com/poppyNetwork.h"
+#include "poppyNetwork.h"
 
 /**
  * \enum msg_dir_t

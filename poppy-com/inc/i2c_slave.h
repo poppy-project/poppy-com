@@ -1,7 +1,7 @@
 #ifndef I2C_SLAVE_H_
 #define I2C_SLAVE_H_
 
-#include "poppy-com/inc/context.h"
+#include "inc/context.h"
 
 void id_update(unsigned char id);
 

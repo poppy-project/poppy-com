@@ -1,5 +1,5 @@
-#include "poppy-com/hal/stub/hal.h"
-#include "poppy-com/inc/i2c_slave.h"
+#include "hal/stub/hal.h"
+#include "inc/i2c_slave.h"
 
 typedef enum {
     DATA_TX,

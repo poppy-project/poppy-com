@@ -1,14 +1,14 @@
 /*
- * test.c
+ * tests.c
  *
  * Created: 11/02/2015 12:40:48
  *  Author: Nicolas Rabault
  */
 
 
-#include "poppy-com/poppyNetwork.h"
-#include "poppy-com/inc/i2c_master.h"
-#include "test/inc/test_mngmnt.h"
+#include "poppyNetwork.h"
+#include "inc/i2c_master.h"
+#include "inc/test_mngmnt.h"
 
 #include <stdio.h>
 
