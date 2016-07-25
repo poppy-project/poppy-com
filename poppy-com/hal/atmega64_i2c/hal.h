@@ -1,7 +1,7 @@
-#ifndef HAL_H_
-#define HAL_H_
+#ifndef _HAL_H_
+#define _HAL_H_
 
-#include "inc/context.h"
+#include "context.h"
 
 typedef enum {
     // Send start condition
@@ -17,10 +17,10 @@ typedef enum {
 void hal_init(void);
 void id_update(unsigned char id);
 
-unsigned char i2cAddr(unsigned char addr, msg_dir_t dir);
-unsigned char i2cWrite(unsigned char data);
-unsigned char i2cRead(unsigned char ack_enable, unsigned char *data);
-unsigned char i2c_transmit(com_state_t type);
+unsigned char hal_addr(unsigned char addr, msg_dir_t dir);
+unsigned char hal_write(unsigned char data);
+unsigned char hal_read(unsigned char ack_enable, unsigned char *data);
+unsigned char hal_transmit(com_state_t type);
 unsigned char crc(unsigned char* data, unsigned char size);
 
-#endif /* HAL_H_ */
+#endif /* _HAL_H_ */

@@ -16,7 +16,7 @@ EXAMPLES?=$(shell ls --hide=*.mk --hide=.* --hide=sketches.* $(EXAMPLES_PATH))
 
 
 # HAL name, can be overriden via command line or ENV
-HAL ?= arduino_uno
+HAL ?= arduino_uno_i2c
 
 CORE_VERSION := $(shell grep version= $(ROOT_PATH)/poppy-com/platform.txt | sed 's/version=//g')
 PACKAGE_NAME := $(basename $(notdir $(CURDIR)))
@@ -46,7 +46,7 @@ PACKAGE_OS_VALID   := $(PACKAGE_OS_VIRTUAL) $(PACKAGE_OS_REAL)
 ifeq ($(PACKAGE_OS),)
 # we are not requested to build the release package
 # specify default variant, if not provided
-HAL ?= arduino_uno
+HAL ?= arduino_uno_i2c
 $(warning, "Packaging won't be fully processed.")
 else
 #

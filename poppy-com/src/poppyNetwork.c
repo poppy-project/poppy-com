@@ -6,10 +6,10 @@
  *  Abstract: basics functionalities of the Poppy communication protocol
  */
 #include "poppyNetwork.h"
-#include "inc/i2c_master.h"
-#include "inc/i2c_slave.h"
-#include "inc/context.h"
-#include HAL
+#include "sys_msg.h"
+#include "reception.h"
+#include "context.h"
+#include "hal.h"
 
 extern context_t ctx;
 
@@ -47,53 +47,53 @@ unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
     unsigned char i = 0;
 
     // Write the command
-    if (i2cAddr(addr, TX)) {
-        i2c_transmit(STOP);
+    if (hal_addr(addr, TX)) {
+        hal_transmit(STOP);
         return 1;
     }
-    if (i2cWrite(msg->reg)) {
-        i2c_transmit(STOP);
+    if (hal_write(msg->reg)) {
+        hal_transmit(STOP);
         return 1;
     }
-    if (i2cWrite(msg->size)) {
-        i2c_transmit(STOP);
+    if (hal_write(msg->size)) {
+        hal_transmit(STOP);
         return 1;
     }
     for (i = 0; i < msg->size; i++) {
-        if (i2cWrite(msg->data[i])) {
-            i2c_transmit(STOP);
+        if (hal_write(msg->data[i])) {
+            hal_transmit(STOP);
             return 1;
         }
     }
 
     // Read the reply
-    if (i2cAddr(addr, RX)) {
-        i2c_transmit(STOP);
+    if (hal_addr(addr, RX)) {
+        hal_transmit(STOP);
         return 1;
     }
     msg->size = reply_size;
     for (i = 0; i < msg->size; i++) {
-        if (i2cRead(FALSE, &msg->data[i])) {
-            i2c_transmit(STOP);
+        if (hal_read(FALSE, &msg->data[i])) {
+            hal_transmit(STOP);
             return 1;
         }
     }
-    i2c_transmit(STOP);
+    hal_transmit(STOP);
     return 0;
 }
 
 unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg) {
-    if (i2cAddr(addr, TX)) {
-        i2c_transmit(STOP);
+    if (hal_addr(addr, TX)) {
+        hal_transmit(STOP);
         return 1;
     }
     // Write DATA
-    i2cWrite(msg->reg);
-    i2cWrite(msg->size);
+    hal_write(msg->reg);
+    hal_write(msg->size);
     for (unsigned char i = 0; i < msg->size; i++) {
-        i2cWrite(msg->data[i]);
+        hal_write(msg->data[i]);
     }
-    i2cWrite(crc(&msg->data[0], msg->size));
-    i2c_transmit(STOP);
+    hal_write(crc(&msg->data[0], msg->size));
+    hal_transmit(STOP);
     return 0;
 }

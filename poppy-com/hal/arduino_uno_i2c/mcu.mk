@@ -2,8 +2,8 @@
 #       Variant information
 #-------------------------------------------------------------------------------
 
-BOARD = atmega64
-MCU = atmega64
+BOARD = arduino_uno_i2c
+MCU = atmega328p
 DEVICE_CORE = AVR
 CROSS_COMPILE = avr-
 MAINCLOCK = 16000000ul

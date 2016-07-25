@@ -1,7 +1,7 @@
-#ifndef I2C_SLAVE_H_
-#define I2C_SLAVE_H_
+#ifndef _RECEPTION_H_
+#define _RECEPTION_H_
 
-#include "inc/context.h"
+#include "context.h"
 
 void id_update(unsigned char id);
 
@@ -12,4 +12,4 @@ void get_data(msg_dir_t dir, volatile unsigned char *data);
 
 void msg_complete(msg_dir_t dir);
 
-#endif /* I2C_SLAVE_H_ */
+#endif /* _RECEPTION_H_ */

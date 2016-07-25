@@ -7,7 +7,7 @@
 
 
 #include "poppyNetwork.h"
-#include "inc/i2c_master.h"
+#include "inc/sys_msg.h"
 #include "inc/test_mngmnt.h"
 
 #include <stdio.h>

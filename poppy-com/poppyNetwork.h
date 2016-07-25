@@ -9,8 +9,8 @@
  *
  */
 
-#ifndef poppy_com_H_
-#define poppy_com_H_
+#ifndef _POPPYNETWORK_H_
+#define _POPPYNETWORK_H_
 
 /**
  * \enum msg_dir_t
@@ -85,4 +85,4 @@ unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg);
  *Gérer le checksum
 */
 
-#endif /* poppy_com_H_ */
+#endif /* _POPPYNETWORK_H_ */

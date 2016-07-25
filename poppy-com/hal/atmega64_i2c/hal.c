@@ -1,7 +1,7 @@
 #include <util/twi.h>
 #include <avr/interrupt.h>
-#include "hal/arduino_uno/hal.h"
-#include "inc/i2c_slave.h"
+#include "hal.h"
+#include "reception.h"
 
 // I2C Master mode
 
@@ -13,11 +13,10 @@ void hal_init(void) {
     TWBR = ((MAINCLOCK / SCLFREQ) - 16) / 2;
     TWSR &= ~(1<<TWPS1) & ~(1<<TWPS0);  // SetPrescaler divisor to 1
     TWAR = (0x0A << 1) | (1<<TWGCE);  // I2C Address and enable general call
-    TWAMR = 0x00;  // Not used
     TWCR = ((1 << TWEA) | (1 << TWEN) | (1 << TWIE));  // Enable ACK system
 }
 
-unsigned char i2c_transmit(com_state_t type) {
+unsigned char hal_transmit(com_state_t type) {
     switch (type) {
         case START:
             TWCR = (1 << TWINT) | (1 << TWSTA) | (1 << TWEN);
@@ -40,7 +39,7 @@ unsigned char i2c_transmit(com_state_t type) {
 }
 
 
-unsigned char i2cAddr(unsigned char addr, msg_dir_t dir) {
+unsigned char hal_addr(unsigned char addr, msg_dir_t dir) {
     unsigned char status;
     unsigned char n = 0;
     if (dir)
@@ -49,14 +48,14 @@ unsigned char i2cAddr(unsigned char addr, msg_dir_t dir) {
         addr = (addr << 1) | TW_WRITE;
     i2c_retry:
     if (n++ >= MAX_TRIES) return 1;
-    status = i2c_transmit(START);
+    status = hal_transmit(START);
     if ((status != TW_START) & (status != TW_REP_START)) {
         ctx.status.master_write = TRUE;
         return 1;
     }
 
     TWDR = addr;
-    switch (i2c_transmit(DATA)) {
+    switch (hal_transmit(DATA)) {
         case TW_MT_SLA_ACK:
         case TW_MR_SLA_ACK:
             // ACK received
@@ -75,10 +74,10 @@ unsigned char i2cAddr(unsigned char addr, msg_dir_t dir) {
     }
 }
 
-unsigned char i2cWrite(unsigned char data) {
+unsigned char hal_write(unsigned char data) {
     if (TWCR & (1<<TWINT)) {
         TWDR = data;
-        if (i2c_transmit(DATA) != TW_MT_DATA_ACK) {
+        if (hal_transmit(DATA) != TW_MT_DATA_ACK) {
             ctx.status.master_write = TRUE;
             return 1;
         }
@@ -89,14 +88,14 @@ unsigned char i2cWrite(unsigned char data) {
     return 0;
 }
 
-unsigned char i2cRead(unsigned char ack_enable, unsigned char *data) {
+unsigned char hal_read(unsigned char ack_enable, unsigned char *data) {
     if (ack_enable) {
-        if (i2c_transmit(DATA) != TW_MR_DATA_ACK) {
+        if (hal_transmit(DATA) != TW_MR_DATA_ACK) {
             ctx.status.master_read = TRUE;
             return 1;
         }
     } else {
-        if (i2c_transmit(DATA_NACK) != TW_MR_DATA_NACK) {
+        if (hal_transmit(DATA_NACK) != TW_MR_DATA_NACK) {
             ctx.status.master_read = TRUE;
             return 1;
         }

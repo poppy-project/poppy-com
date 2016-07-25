@@ -5,8 +5,8 @@ SRC_DISCARDED=
 
 
 SRC_LIB += \
-$(LIB_SRC_PATH)/i2c_master.c   			\
-$(LIB_SRC_PATH)/i2c_slave.c    			\
+$(LIB_SRC_PATH)/sys_msg.c   			\
+$(LIB_SRC_PATH)/reception.c    			\
 $(LIB_SRC_PATH)/poppyNetwork.c
 INCLUDES += -I$(LIB_INC_PATH) -I$(LIB_SRC_PATH) -I$(ROOT_PATH)
 

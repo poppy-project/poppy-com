@@ -1,5 +1,5 @@
-#include "hal/stub/hal.h"
-#include "inc/i2c_slave.h"
+#include "hal.h"
+#include "reception.h"
 
 typedef enum {
     DATA_TX,
@@ -56,7 +56,7 @@ void hal_init(void) {
     // I2C configuration
 }
 
-unsigned char i2c_transmit(com_state_t type) {
+unsigned char hal_transmit(com_state_t type) {
     switch (type) {
         case START:
             status_reg = ADDR_MATCH;
@@ -87,7 +87,7 @@ unsigned char i2c_transmit(com_state_t type) {
 }
 
 
-unsigned char i2cAddr(unsigned char addr, msg_dir_t dir) {
+unsigned char hal_addr(unsigned char addr, msg_dir_t dir) {
     if (addr)
         gc = 0;
     else
@@ -99,21 +99,21 @@ unsigned char i2cAddr(unsigned char addr, msg_dir_t dir) {
         addr = (addr << 1) | 1;
     }
 
-    i2c_transmit(START);
+    hal_transmit(START);
     return 0;
 }
 
-unsigned char i2cWrite(unsigned char data) {
+unsigned char hal_write(unsigned char data) {
     data_reg = data;
-    i2c_transmit(DATA);
+    hal_transmit(DATA);
     return 0;
 }
 
-unsigned char i2cRead(unsigned char ack_enable, unsigned char *data) {
+unsigned char hal_read(unsigned char ack_enable, unsigned char *data) {
     if (ack_enable)
-        i2c_transmit(DATA);
+        hal_transmit(DATA);
     else
-        i2c_transmit(DATA_NACK);
+        hal_transmit(DATA_NACK);
     *data = data_reg;
     return 0;
 }

@@ -1,7 +1,7 @@
 #include <util/twi.h>
 #include <avr/interrupt.h>
-#include "poppy-com/hal/atmega328p/hal.h"
-#include "poppy-com/inc/i2c_slave.h"
+#include "atmega328p/hal.h"
+#include "reception.h"
 
 // I2C Master mode
 
@@ -21,14 +21,14 @@ void hal_init(void) {
 }
 
 /**
- * \fn unsigned char i2c_transmit(com_state_t type)
+ * \fn unsigned char hal_transmit(com_state_t type)
  * \brief Manage I2C transmit case
  *
  * \param type byte type to transmit (Start, Data, Data NAK, or Stop)
  *
  * \return hardware status
  */
-unsigned char i2c_transmit(com_state_t type) {
+unsigned char hal_transmit(com_state_t type) {
     switch (type) {
         case START:
             // Send start condition
@@ -50,7 +50,7 @@ unsigned char i2c_transmit(com_state_t type) {
 }
 
 /**
- * \fn unsigned char i2cAddr(unsigned char addr, msg_dir_t dir)
+ * \fn unsigned char hal_addr(unsigned char addr, msg_dir_t dir)
  * \brief send address byte
  *
  * \param addr device address
@@ -58,20 +58,20 @@ unsigned char i2c_transmit(com_state_t type) {
  *
  * \return error
  */
-unsigned char i2cAddr(unsigned char addr, msg_dir_t dir) {
+unsigned char hal_addr(unsigned char addr, msg_dir_t dir) {
     unsigned char status;
     unsigned char n = 0;
     addr = (addr << 1) | dir;
     i2c_retry:
     if (n++ >= MAX_TRIES) return 1;
-    status = i2c_transmit(START);
+    status = hal_transmit(START);
     if ((status != TW_START) & (status != TW_REP_START)) {
         ctx.status.master_write = TRUE;
         return 1;
     }
 
     // Send addr
-    switch (i2c_transmit(DATA)) {
+    switch (hal_transmit(DATA)) {
         case // ACK received
             return 0;
         break;
@@ -86,17 +86,17 @@ unsigned char i2cAddr(unsigned char addr, msg_dir_t dir) {
 }
 
 /**
- * \fn unsigned char i2cWrite(unsigned char data)
+ * \fn unsigned char hal_write(unsigned char data)
  * \brief write a data byte
  *
  * \param data data byte to send
  *
  * \return error
  */
-unsigned char i2cWrite(unsigned char data) {
+unsigned char hal_write(unsigned char data) {
     if /*hardware ready*/ {
         // Put data into the dedicated register
-        if (i2c_transmit(DATA) /*== NO_ACK*/) {
+        if (hal_transmit(DATA) /*== NO_ACK*/) {
             ctx.status.master_write = TRUE;
             return 1;
         }
@@ -108,7 +108,7 @@ unsigned char i2cWrite(unsigned char data) {
 }
 
 /**
- * \fn unsigned char i2cRead(unsigned char ack_enable, unsigned char *data)
+ * \fn unsigned char hal_read(unsigned char ack_enable, unsigned char *data)
  * \brief read a data byte
  *
  * \param ack_enable ACK or not?
@@ -116,14 +116,14 @@ unsigned char i2cWrite(unsigned char data) {
  *
  * \return error
  */
-unsigned char i2cRead(unsigned char ack_enable, unsigned char *data) {
+unsigned char hal_read(unsigned char ack_enable, unsigned char *data) {
     if (ack_enable) {
-        if (i2c_transmit(DATA) /*== NO_ACK*/) {
+        if (hal_transmit(DATA) /*== NO_ACK*/) {
             ctx.status.master_read = TRUE;
             return 1;
         }
     } else {
-        if (i2c_transmit(DATA_NACK) /*== ACK*/) {
+        if (hal_transmit(DATA_NACK) /*== ACK*/) {
             ctx.status.master_read = TRUE;
             return 1;
         }

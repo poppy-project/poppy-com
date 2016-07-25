@@ -1,7 +1,7 @@
-#ifndef CONTEXT_H_
-#define CONTEXT_H_
+#ifndef _CONTEXT_H_
+#define _CONTEXT_H_
 
-#include "inc/config.h"
+#include "config.h"
 #include "poppyNetwork.h"
 
 #define TRUE 1
@@ -49,4 +49,4 @@ typedef struct {
 
 context_t ctx;
 
-#endif /* CONTEXT_H_ */
+#endif /* _CONTEXT_H_ */
