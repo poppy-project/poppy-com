@@ -11,89 +11,55 @@
 #include "context.h"
 #include "hal.h"
 
-extern context_t ctx;
+context_t ctx;
 
 // Startup and network configuration
-void poppyNetwork_init(TX_CB tx_cb,
-                       RX_CB rx_cb,
-                       RX_CB rxgc_cb) {
+void poppyNetwork_init(RX_CB rx_cb) {
     hal_init();
 
     // Save context
-    // User side slave TX callback
-    ctx.tx_cb = tx_cb;
     // User side slave RX callback
     ctx.rx_cb = rx_cb;
-    // User side slave RX general call callback
-    ctx.rxgc_cb = rxgc_cb;
 
     // Data callback
-    ctx.data_cb = idle;
+    ctx.data_cb = get_header;
 
     // Module id
     ctx.id = DEFAULTID;
     // Module type
     ctx.type = MODULETYPE;
+    // TODO manage Alias
+    ctx.max_extra_target = 0;
 
     // Status
     ctx.status = (status_t) {.rx_error = FALSE,
-                             .master_write = FALSE,
                              .unexpected_state = FALSE,
                              .warning = FALSE};
 }
 
-unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
-                                unsigned char reply_size) {
-    unsigned char i = 0;
+unsigned char poppyNetwork_send(msg_t *msg) {
 
-    // Write the command
-    if (hal_addr(addr, TX)) {
-        hal_transmit(STOP);
-        return 1;
-    }
-    if (hal_write(msg->reg)) {
-        hal_transmit(STOP);
-        return 1;
-    }
-    if (hal_write(msg->size)) {
-        hal_transmit(STOP);
-        return 1;
-    }
-    for (i = 0; i < msg->size; i++) {
-        if (hal_write(msg->data[i])) {
-            hal_transmit(STOP);
-            return 1;
-        }
-    }
+    // unsigned char* data = (unsigned char*)msg;
+    unsigned short full_size = sizeof(header_t) + msg->header.size;
+    unsigned short crc_val = 0;
 
-    // Read the reply
-    if (hal_addr(addr, RX)) {
-        hal_transmit(STOP);
-        return 1;
-    }
-    msg->size = reply_size;
-    for (i = 0; i < msg->size; i++) {
-        if (hal_read(FALSE, &msg->data[i])) {
-            hal_transmit(STOP);
-            return 1;
-        }
-    }
-    hal_transmit(STOP);
-    return 0;
-}
+    msg->header.protocol = PROTOCOL_REVISION;
+    msg->header.source = ctx.id;
+    crc_val = crc(msg->stream, full_size);
+    full_size+=2;
+    msg->data[msg->header.size] = (unsigned char)crc_val;
+    msg->data[msg->header.size + 1] = (unsigned char)(crc_val >> 8);
 
-unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg) {
-    if (hal_addr(addr, TX)) {
-        hal_transmit(STOP);
+    // Start and send Target field
+    if (hal_transmit(msg->stream, full_size))
         return 1;
+    if (msg->header.target_mode == IDACK) {
+        ctx.data_cb = catch_ack;
+        ctx.msg.ack = 0;
+        // TODO
+        // We could use the waituntil from the Xevel lib
+        // In the same time if we don't have to do anything else we just can wait here...
+        while (!ctx.msg.ack);
     }
-    // Write DATA
-    hal_write(msg->reg);
-    hal_write(msg->size);
-    for (unsigned char i = 0; i < msg->size; i++) {
-        hal_write(msg->data[i]);
-    }
-    hal_write(crc(&msg->data[0], msg->size));
-    hal_transmit(STOP);
     return 0;
 }

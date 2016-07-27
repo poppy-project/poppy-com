@@ -1,105 +1,29 @@
-#include <util/twi.h>
-#include <avr/interrupt.h>
-#include "atmega328p/hal.h"
-#include "reception.h"
+#include "hal.h"
 
-// I2C Master mode
 
 // Global variables
-extern context_t ctx;
+context_t ctx;
 
 /**
  * \fn void hal_init(void)
- * \brief I2C hardware configuration (clock, address, ACK system...)
+ * \brief hardware configuration (clock, communication, DMA...)
  */
 void hal_init(void) {
-    // I2C settings
-    // SetPrescaler divisor
-    // Set I2C Address
-    // Enable general call
-    // Enable ACK system
+    // init all things
 }
 
 /**
- * \fn unsigned char hal_transmit(com_state_t type)
- * \brief Manage I2C transmit case
- *
- * \param type byte type to transmit (Start, Data, Data NAK, or Stop)
- *
- * \return hardware status
- */
-unsigned char hal_transmit(com_state_t type) {
-    switch (type) {
-        case START:
-            // Send start condition
-        break;
-        case DATA:
-            // Send data ACK required
-        break;
-        case DATA_NACK:
-            // Send data no ACK required
-        break;
-        case STOP:
-            // Send stop condition
-            return 0;
-    }
-    // Wait the end of the transmition (here you can manage a timeout)
-    // Manage the end of IRQ
-    // Return the status
-    return (/*status*/);
-}
-
-/**
- * \fn unsigned char hal_addr(unsigned char addr, msg_dir_t dir)
- * \brief send address byte
- *
- * \param addr device address
- * \param dir set message direction (read or write)
- *
- * \return error
- */
-unsigned char hal_addr(unsigned char addr, msg_dir_t dir) {
-    unsigned char status;
-    unsigned char n = 0;
-    addr = (addr << 1) | dir;
-    i2c_retry:
-    if (n++ >= MAX_TRIES) return 1;
-    status = hal_transmit(START);
-    if ((status != TW_START) & (status != TW_REP_START)) {
-        ctx.status.master_write = TRUE;
-        return 1;
-    }
-
-    // Send addr
-    switch (hal_transmit(DATA)) {
-        case // ACK received
-            return 0;
-        break;
-        case // NACK received
-        case // Arbitration lost
-            goto i2c_retry;
-        break;
-        default:
-            return 1;
-        break;
-    }
-}
-
-/**
- * \fn unsigned char hal_write(unsigned char data)
+ * \fn unsigned char hal_transmit(unsigned char* data)
  * \brief write a data byte
  *
- * \param data data byte to send
+ * \param data *data bytes to send
+ * \param size size of data to send in byte
  *
  * \return error
  */
-unsigned char hal_write(unsigned char data) {
+unsigned char hal_transmit(unsigned char* data, unsigned short size) {
     if /*hardware ready*/ {
-        // Put data into the dedicated register
-        if (hal_transmit(DATA) /*== NO_ACK*/) {
-            ctx.status.master_write = TRUE;
-            return 1;
-        }
+        // Put data into a DMA => serial interface or do it with a for
     } else {
         ctx.status.master_write = TRUE;
         return 1;
@@ -108,77 +32,13 @@ unsigned char hal_write(unsigned char data) {
 }
 
 /**
- * \fn unsigned char hal_read(unsigned char ack_enable, unsigned char *data)
- * \brief read a data byte
- *
- * \param ack_enable ACK or not?
- * \param *data data byte catched
- *
- * \return error
- */
-unsigned char hal_read(unsigned char ack_enable, unsigned char *data) {
-    if (ack_enable) {
-        if (hal_transmit(DATA) /*== NO_ACK*/) {
-            ctx.status.master_read = TRUE;
-            return 1;
-        }
-    } else {
-        if (hal_transmit(DATA_NACK) /*== ACK*/) {
-            ctx.status.master_read = TRUE;
-            return 1;
-        }
-    }
-    *data = /*data register*/;
-    return 0;
-}
-
-// I2C interrupt management
-ISR(/*vector*/) {
-    //  Test if there is really an interrupt
-    if (/*everything's good*/)
-        switch (/*status*/) {
-        // SLAVE TRANSMITTER MODE
-            case //Slave TX
-                ctx.data_cb(TX, &/*data register*/);
-                break;
-
-        // SLAVE RECEIVER MODE
-            case /*address match*/:
-            case /*general call*/:
-                /*do your needed things*/
-            break;
-
-            // Data has been received on SLA+W; ACK has been returned.
-            case /*data ACKed*/:
-                ctx.data_cb(RX, &/*data register*/);
-            break;
-
-            // Data has been received on general call;ACK has been returned.
-            case /*general call data ACKed*/:
-                ctx.data_cb(RXGC, &/*data register*/);
-            break;
-
-        // OTHER
-            case /*Error*/:
-                ctx.status.unexpected_state = TRUE;
-                ctx.data_cb = idle;
-            break;
-            case /*Stop*/:
-                ctx.data_cb = idle;
-                ctx.data_cb(END, &/*data register*/);
-            default:
-            break;
-        }
-}
-
-/**
- * \fn void id_update(unsigned char id)
+ * \fn void id_update(unsigned short id)
  * \brief update the slave address
  *
  * \param id new address
  *
  */
-void id_update(unsigned char id) {
+void id_update(unsigned short id) {
     ctx.id = id;
     /*address register*/ = (ctx.id << 1);
     // Write your ID on EEprom
@@ -186,24 +46,14 @@ void id_update(unsigned char id) {
 
 
 /**
- * \fn unsigned char crc(unsigned char* data, unsigned char size)
- * \brief generate a CRC
+ * \fn void alias_update(unsigned char id[16])
+ * \brief update the slave address
  *
- * \param *data data table
- * \param size data size
+ * \param alias new address
  *
- * \return CRC value
  */
-unsigned char crc(unsigned char* data, unsigned char size) {
-    unsigned char x;
-    unsigned int crc = 0xFFFF;
-
-    while (size--) {
-        x = crc >> 8 ^ *data++;
-        x ^= x>>4;
-        crc = (crc << 8) ^ ((unsigned int)(x << 12))
-                         ^ ((unsigned int)(x <<5))
-                         ^ ((unsigned int)x);
-    }
-    return (unsigned char)crc;
+void alias_update(unsigned char alias[16]) {
+    for (unsigned char i=0; i < 16; i++)
+        ctx.alias[i] = alias[i];
+    // Write your alias on EEprom
 }

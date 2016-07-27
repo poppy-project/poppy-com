@@ -5,7 +5,7 @@
  *  Author: Nicolas Rabault
  */
 
-#include "inc/test_mngmnt.h"
+#include "test_mngmnt.h"
 #include <stdio.h>
 
 int test_nb = 0;

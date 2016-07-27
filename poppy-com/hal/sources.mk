@@ -7,6 +7,7 @@ SRC_DISCARDED=
 SRC_LIB += \
 $(LIB_SRC_PATH)/sys_msg.c   			\
 $(LIB_SRC_PATH)/reception.c    			\
+$(LIB_SRC_PATH)/target.c    			\
 $(LIB_SRC_PATH)/poppyNetwork.c
 INCLUDES += -I$(LIB_INC_PATH) -I$(LIB_SRC_PATH) -I$(ROOT_PATH)
 

@@ -13,19 +13,18 @@
 #define _POPPYNETWORK_H_
 
 /**
- * \enum msg_dir_t
- * \brief Message direction enum.
+ * \enum addr_mode_t
+ * \brief Message addressing mode enum.
  *
- * This structure is used to get the message direction but it seems to be useles
- * because we have defferent interrupt for each msg_dir case.
+ * This structure is used to get the message addressing mode list.
  */
 typedef enum {
-    TX,   /*!< Slave transmiter mode. */
-    RX,   /*!< Slave receiver mode. */
-    RXGC, /*!< Slave receiver général call mode. */
-    END   /*!< Slave receiver stop. */
-}msg_dir_t;
-
+    ID,        /*!< Unique or virtual ID, used to send something to only one module. */
+    IDACK,     /*!< Unique or virtual ID with reception Acknoledgment (ACK). */
+    TYPE,      /*!< Type mode, used to send something to all module of the same type. */
+    BROADCAST, /*!< Broadcast mode, used to send something to everybody. */
+    MULTICAST  /*!< Multicast mode, used to send something to multiple modules. */
+}target_mode_t;
 
 /**
  * \struct msg_t
@@ -33,56 +32,61 @@ typedef enum {
  *
  * This structure is used to receive or send messages between modules in slave
  * and master mode.
- * please refer to ?? documentation
+ * please refer to the documentation
  */
 typedef struct {
-    unsigned char reg;        /*!< Message register. */
-    unsigned char size;       /*!< Message size. */
-    unsigned char data[512];  /*!< Data (512 bytes max). */
+    union {
+        struct {
+            unsigned short protocol : 4;       /*!< Protocol version. */
+            unsigned short target : 12;        /*!< Target address, it can be (ID, Multicast/Broadcast, Type). */
+            unsigned short target_mode : 4;    /*!< Select targeting mode (ID, ID+ACK, Multicast/Broadcast, Type). */
+            unsigned short source : 12;        /*!< Source address, it can be (ID, Multicast/Broadcast, Type). */
+            unsigned char cmd;                 /*!< msg definition. */
+            unsigned char size;                /*!< Size of the data field. */
+        };
+        unsigned char unmap[6];                /*!< Uncmaped form. */
+    };
+}header_t;
+
+/**
+ * \struct msg_t
+ * \brief Message structure.
+ *
+ * This structure is used to receive or send messages between modules in slave
+ * and master mode.
+ * please refer to the documentation
+ */
+typedef struct {
+    union {
+        struct {
+            header_t header;              /*!< Header filed. */
+            unsigned char data[512];      /*!< Data with size known. */
+        };
+        unsigned char stream[512 + sizeof(header_t)]; /*!< unmaped option. */
+    };
+    union {
+        unsigned short crc;
+        volatile unsigned char ack;
+    };
 }msg_t;
 
-typedef void (*RX_CB) (msg_dir_t dir, msg_t *msg);
-typedef void (*TX_CB) (msg_t *msg);
+typedef void (*RX_CB) (msg_t *msg);
 
 /**
  * \fn void poppyNetwork_init(TX_CB tx_cb, RX_CB rx_cb, RX_CB rxgc_cb)
  * \brief Initialisation of the Poppy communication lib.
  *
- * \param tx_cb function pointer into the tx callback.
  * \param rx_cb function pointer into the rx callback.
- * \param rxgc_cb function pointer into the rx general call callback.
  *
  */
-void poppyNetwork_init(TX_CB tx_cb,
-                       RX_CB rx_cb,
-                       RX_CB rxgc_cb);
+void poppyNetwork_init(RX_CB rxgc_cb);
 
 /**
- * \fn unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg)
- * \brief Master mode read function.
+ * \fn unsigned char poppyNetwork_write(msg_t *msg)
+ * \brief  Send message function.
  *
- * \param addr Address of the slave.
- * \param msg Message to send to the slave, he come back with the reply of the slave.
- *
- */
-unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
-                                unsigned char reply_size);
-
-/**
- * \fn unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg)
- * \brief Master mode write function.
- *
- * \param addr Address of the slave.
  * \param msg Message to send to the slave.
  */
-unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg);
-
-/**
- **TODO**
- *
- *Faire la doc en commentaire
- *
- *Gérer le checksum
-*/
+unsigned char poppyNetwork_send(msg_t *msg);
 
 #endif /* _POPPYNETWORK_H_ */

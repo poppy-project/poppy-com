@@ -27,8 +27,8 @@ COMMON_FLAGS += -Wsign-compare -Waggregate-return
 COMMON_FLAGS += -Wmissing-format-attribute -Wno-deprecated-declarations
 COMMON_FLAGS += -Wpacked -Wredundant-decls -Wlong-long
 COMMON_FLAGS += -Wunreachable-code -Wcast-align
-COMMON_FLAGS += --param max-inline-insns-single=500 -ffunction-sections -fdata-sections
-COMMON_FLAGS += -D$(MCU) -DDONT_USE_CMSIS_INIT
+COMMON_FLAGS += -ffunction-sections -fdata-sections
+COMMON_FLAGS += -D$(MCU)
 COMMON_FLAGS += -Wa,-adhlns="$(subst .o,.lst,$@)"
 COMMON_FLAGS += -nostdlib --param max-inline-insns-single=500 $(INC_PATH)
 
@@ -55,7 +55,7 @@ CPPFLAGS = $(COMMON_FLAGS) -std=gnu++11 -fno-rtti -fno-exceptions
 ASFLAGS += -Wa,-adhlns=$(<:.S=.lst),-gstabs -I. -x assembler-with-cpp
 
 LDFLAGS = $(LIB_PATH)
-LDFLAGS += -Wl,--cref -Wl,--check-sections -Wl,--gc-sections -Wl,--unresolved-symbols=report-all -Wl,--warn-common -Wl,--warn-section-align
+LDFLAGS += -Wl,--cref -Wl,-v,--check-sections -Wl,--gc-sections -Wl,--unresolved-symbols=report-all -Wl,--warn-common -Wl,--warn-section-align
 
 
 
@@ -108,7 +108,7 @@ $(HAL_LIB_PATH):
 	make --no-builtin-rules -C $(dir $(HAL_LIB_PATH)) DEBUG=$(DEBUG)
 
 #|---------------------------------------------------------------------------------------|
-#| Compile or assemble                                                                  |
+#| Compile or assemble                                                                   |
 #|---------------------------------------------------------------------------------------|
 $(AOBJS): $(OBJ_PATH)/%.o: %.s $(OBJ_PATH)
 	@echo +++ Assembling [$(notdir $<)]

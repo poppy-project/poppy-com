@@ -3,8 +3,10 @@
 
 #include "context.h"
 
-unsigned char set_extern_id(unsigned char addr, unsigned char newid);
-unsigned char get_extern_module_type(unsigned char addr, unsigned char *module_type);
+unsigned char set_extern_id(target_mode_t target_mode, unsigned short target,
+                            unsigned short newid);
+void send_ack(void);
+// unsigned char get_extern_module_type(unsigned short addr, unsigned short *module_type);
 
 
 

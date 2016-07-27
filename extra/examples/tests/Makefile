@@ -5,6 +5,7 @@ SHELL := /bin/sh
 .SUFFIXES: .d .o .c .h .cpp .hpp .s .S
 
 PROJECT_NAME := tests
+HAL = stub
 
 include ../preambule.mk
 
