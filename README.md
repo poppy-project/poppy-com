@@ -6,7 +6,7 @@ Please read [the code documentation](http://poppy-project.github.io/poppy_com/)
 Poppy 2.0 communication lib
 ===========================
 
-The role of this code is to manage the Poppy 2.0 communication stack between all modules.
+The role of this code is to manage the Poppy 2.0 communication stack between all [modules](extra/doc/modules_types.md).
 
 It is the basic library used to create new modules, you can use it to develop you own !
 

@@ -6,55 +6,84 @@ Hardware and data flow
 
 Poppy communication protocol use 3 data wire :
 
- - SCL
- - SDA
+ - RS485+
+ - RS485-
  - PTP
 
-Wire SCL and SDA are used to manage high-speed **I2C** (3.6Mhz). This bus is the **main communication way**. The **PTP** wire means "point to point", he manage hardware detection by passing tokens and allow to comminucate directly with the next or previous module with high speed serial communication.
+Wire RS485+ and RS485- are used to manage **RS485**. This bus is the main communication way. The **PTP** wire means "point to point", he manage hardware detection by passing tokens and allow to comminucate directly with the next or previous module.
 
-All messages I2C or PTP have the same structure :
+Each of thease link (PTP or RS485) can be used to communicate.
 
- - Address
- - msg_type
- - msg_size*
- - msg[0]*
- - ...*
- - msg[msg_size-1]*
- - CRC*
+Each module have a standard **Poppy-core** board at hearth, this board manage all the poppy-com things and can communicate, control and flash a companion MCU specific to each module hardware
 
-\* this part of the message can be missing on somes network level messages, but you will probably don't have to seal with it!
+All messages RS485 or PTP have the same structure :
 
-Protocol levels
+ - **Preamble** (N bytes duration + random time) 
+ - **Target**  (16 bits)
+ - **Source**  (16 bits)
+ - **Msg_type**  (13 bits)
+ - **Ack_enable** (1 bit)
+ - **Msg_size** (10 bits) 
+ - **Msg [0]** (N x 8 bits)
+ - **...** 
+ - **Msg** [msg_size-1]
+ - **CRC** (16 bits)
+ - **Ack**  (8 bits)
+
+Preamble
+--------
+
+The **Preamble** is an event that preceed any message. Each transmitter need to respect this **Preamble** before any transmission.
+The poppy-com **Preamble** is a complete innactivity on the bus during aperiod of time.
+
+(**Tpreamble** =  N x byte + random)
+
+A transmitter can only send something after this step.
+The timeout time (**Ttimeout**) of a poppy-com message is lower than the **Preamble** time to avoid any message read overlaping.
+
+**Ttimeout** < **Tpreamble**
+
+Target / source
 ---------------
 
-The Poppy communication stack have different levels of messages :
+**Target** and **Source** indicate who talk to who. Each module can be dynamically addressed on a network.
+Each module have an unic identifier (**UniqueID**) that allow any other module to speek with him. Some modules can have unic identifier (**UniqueID**) and multiples virtual identifier (**VirtualID**) to seperate multiple device through the same module (for example a poppy-com2AX with many dinamixel motor can give an unic identifier for each motor, or a dev board with multiple sensors...).
 
- - **user messages** (accessible by the end user)
- - **module messages** (specific to a module type)
- - **network messages** (network management messages)
+The **Target** field could also be used as multicast identifier. The multicast identifier can be listened/managed by multiple modules or virtuals modules.
 
-Each of these level have his hown **msg_type field**. **Network messages** are prioritary on **module messages** and **module messages** are prioritaty on **user messages**.
+Msg type
+--------
 
-If you need to use some modules and write your hown code for your own robot you only have to deal with **user messages**.
-If you are a module creator you will need to deal with module level messages.
-You probably don't have to deal with **network messages**, but if you have any question please describe it in the [Poppy project forum](https://forum.poppy-project.org).
+The **Msg_type** field is used to say the topic of the message. For a motor for example you can have the speed **Msg_type**, the position **Msg_type**, ...
 
-Messages definition
--------------------
+Msg size
+--------
 
-If you write a code on a module you will need to create your own msg_type. There is the same methode to define it if you are at **user messages** level or **module messages**
+This field give the size (in bytes) of the following datas. A data can have 1023 bytes max.
 
-You simply have to ceate your msg_type list
+Msg[X]
+-----
 
-```c
-/**
- * \enum msg_type_t
- * \brief Module type enumerator.
- *
- * This structure is used to list all your message type.
- */
-typedef enum {
-    REGISTER_1,
-    REGISTER_2
-}msg_type_t;
-```
+This field contain datas.
+
+CRC
+---
+
+This field is generated using the content of all the message and allow to verify the integrity of the entire datas.
+
+Ack and Ack enable
+------------------
+
+**Ack** is a small byte sent by the receiver after a message to say "ok Roger, received 5/5". This feature can be enabled or disabled for each message using the **Ack_enable** flag.
+After the end of the message (after the **CRC** bytes) the receiver have a **Ttimeout** to send back his **Ack**. From the other side the transmitter wait a **Ack** during **Ttimeout**, if **Ack_enabled** is anabled and no **Ack** has been receive during the **Ttimeout** period the message will be considered as failed.
+
+/!\ This features can't be used for multicast or broadcast messages.
+
+Discoverring sequence
+---------------------
+
+The **discovering sequence** is used to detect the topology of the network and distribute IDs to each modules. This sequence is started by a [**gate module**](modules_types.md).
+The **gate module** who start this sequence try to discover a neigbour using the **PTP** line, if a module receive the signal he lock the **PTP* as reply and wait it's **UniqueID** and eventualy it's **VirtualID** from the gate.
+The gate detect the lock sent by the module and start to distribute Ids. When the first module have all it's ID he try to detect a downstream neighbour using the **PTP** line.
+This routine continue until a slave don't detect any neighbour on the downstream side. When a "end of a line" is discovered by the last module he unlock the upstream **PTP** line, then the previous module do the same things and so on.
+When everything is detected the gate receive the unlock of his **PTP** line.
