@@ -40,7 +40,7 @@ unsigned char hal_transmit(com_state_t type) {
 }
 
 
-unsigned char hal_addr(unsigned char addr, msg_dir_t dir) {
+unsigned char hal_addr(unsigned short addr, msg_dir_t dir) {
     unsigned char status;
     unsigned char n = 0;
     if (dir)

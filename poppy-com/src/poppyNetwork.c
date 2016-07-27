@@ -42,12 +42,12 @@ void poppyNetwork_init(TX_CB tx_cb,
                              .warning = FALSE};
 }
 
-unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
-                                unsigned char reply_size) {
+unsigned char poppyNetwork_read(unsigned short target, msg_t *msg,
+                                unsigned short reply_size) {
     unsigned char i = 0;
 
     // Write the command
-    if (hal_addr(addr, TX)) {
+    if (hal_addr(target, TX)) {
         hal_transmit(STOP);
         return 1;
     }
@@ -67,7 +67,7 @@ unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
     }
 
     // Read the reply
-    if (hal_addr(addr, RX)) {
+    if (hal_addr(target, RX)) {
         hal_transmit(STOP);
         return 1;
     }
@@ -82,14 +82,17 @@ unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
     return 0;
 }
 
-unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg) {
-    if (hal_addr(addr, TX)) {
+unsigned char poppyNetwork_write(unsigned short target, msg_t *msg) {
+    if (hal_addr(target, TX)) {
         hal_transmit(STOP);
         return 1;
     }
     // Write DATA
-    hal_write(msg->reg);
-    hal_write(msg->size);
+    hal_write(ctx.id);
+
+    // Send Msg_type, ACK_enable, and Msg_size.
+    for (unsigned char i = 0; i < 3; i++) 
+        hal_write(msg[i]);
     for (unsigned char i = 0; i < msg->size; i++) {
         hal_write(msg->data[i]);
     }

@@ -17,7 +17,7 @@ typedef enum {
 void hal_init(void);
 void id_update(unsigned char id);
 
-unsigned char hal_addr(unsigned char addr, msg_dir_t dir);
+unsigned char hal_addr(unsigned short addr, msg_dir_t dir);
 unsigned char hal_write(unsigned char data);
 unsigned char hal_read(unsigned char ack_enable, unsigned char *data);
 unsigned char hal_transmit(com_state_t type);

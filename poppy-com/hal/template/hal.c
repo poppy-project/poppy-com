@@ -50,7 +50,7 @@ unsigned char hal_transmit(com_state_t type) {
 }
 
 /**
- * \fn unsigned char hal_addr(unsigned char addr, msg_dir_t dir)
+ * \fn unsigned char hal_addr(unsigned short addr, msg_dir_t dir)
  * \brief send address byte
  *
  * \param addr device address
@@ -58,7 +58,7 @@ unsigned char hal_transmit(com_state_t type) {
  *
  * \return error
  */
-unsigned char hal_addr(unsigned char addr, msg_dir_t dir) {
+unsigned char hal_addr(unsigned short addr, msg_dir_t dir) {
     unsigned char status;
     unsigned char n = 0;
     addr = (addr << 1) | dir;
@@ -182,28 +182,4 @@ void id_update(unsigned char id) {
     ctx.id = id;
     /*address register*/ = (ctx.id << 1);
     // Write your ID on EEprom
-}
-
-
-/**
- * \fn unsigned char crc(unsigned char* data, unsigned char size)
- * \brief generate a CRC
- *
- * \param *data data table
- * \param size data size
- *
- * \return CRC value
- */
-unsigned char crc(unsigned char* data, unsigned char size) {
-    unsigned char x;
-    unsigned int crc = 0xFFFF;
-
-    while (size--) {
-        x = crc >> 8 ^ *data++;
-        x ^= x>>4;
-        crc = (crc << 8) ^ ((unsigned int)(x << 12))
-                         ^ ((unsigned int)(x <<5))
-                         ^ ((unsigned int)x);
-    }
-    return (unsigned char)crc;
 }

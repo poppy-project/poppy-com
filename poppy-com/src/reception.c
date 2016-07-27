@@ -3,12 +3,36 @@
 
 // Global variables
 extern context_t ctx;
+
+/**
+ * \fn unsigned char crc(unsigned char* data, unsigned char size)
+ * \brief generate a CRC
+ *
+ * \param *data data table
+ * \param size data size
+ *
+ * \return CRC value
+ */
+unsigned short crc(unsigned char* data, unsigned short size) {
+    unsigned char x;
+    unsigned short crc = 0xFFFF;
+
+    while (size--) {
+        x = crc >> 8 ^ *data++;
+        x ^= x>>4;
+        crc = (crc << 8) ^ ((unsigned int)(x << 12))
+                         ^ ((unsigned int)(x <<5))
+                         ^ ((unsigned int)x);
+    }
+    return (unsigned short)crc;
+}
+
 /*
  * idle function is called when we are ready to receive or send a new message.
  */
 void idle(msg_dir_t dir, volatile unsigned char *data) {
     static unsigned char *data_to_send;
-    static unsigned char msg_size = 0;
+    static unsigned short msg_size = 0;
     switch (dir) {
         case TX:
             /*
@@ -75,7 +99,7 @@ void get_size(msg_dir_t dir, volatile unsigned char *data) {
 }
 
 void get_data(msg_dir_t dir, volatile unsigned char *data) {
-    static unsigned char data_count = 0;
+    static unsigned short data_count = 0;
     if (data_count < ctx.msg.size) {
         ctx.msg.data[data_count++] = *data;
     } else {

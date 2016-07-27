@@ -4,6 +4,7 @@
 #include "context.h"
 
 void id_update(unsigned char id);
+unsigned short crc(unsigned char* data, unsigned short size);
 
 // Callbacks
 void idle(msg_dir_t dir, volatile unsigned char *data);

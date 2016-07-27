@@ -87,7 +87,7 @@ unsigned char hal_transmit(com_state_t type) {
 }
 
 
-unsigned char hal_addr(unsigned char addr, msg_dir_t dir) {
+unsigned char hal_addr(unsigned short addr, msg_dir_t dir) {
     if (addr)
         gc = 0;
     else
@@ -124,18 +124,4 @@ void id_update(unsigned char id) {
      * TORO(NR) : Write this ID on EEPROM and use it as default at
      *            reboot (do this after debug)
     */
-}
-
-unsigned char crc(unsigned char* data, unsigned char size) {
-    unsigned char x;
-    unsigned int crc = 0xFFFF;
-
-    while (size--) {
-        x = crc >> 8 ^ *data++;
-        x ^= x>>4;
-        crc = (crc << 8) ^ ((unsigned int)(x << 12))
-                         ^ ((unsigned int)(x <<5))
-                         ^ ((unsigned int)x);
-    }
-    return (unsigned char)crc;
 }

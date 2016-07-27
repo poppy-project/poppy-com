@@ -10,7 +10,7 @@
 // Global variables
 extern context_t ctx;
 
-unsigned char set_extern_id(unsigned char addr, unsigned char newid) {
+unsigned char set_extern_id(unsigned short addr, unsigned short newid) {
     if (hal_addr(addr, TX)) {
         hal_transmit(STOP);
         return 1;
@@ -28,8 +28,8 @@ unsigned char set_extern_id(unsigned char addr, unsigned char newid) {
     return 0;
 }
 
-unsigned char get_extern_module_type(unsigned char addr,
-                                     unsigned char *module_type) {
+unsigned char get_extern_module_type(unsigned short addr,
+                                     unsigned short *module_type) {
     if (hal_addr(addr, TX)) {
         hal_transmit(STOP);
         return 1;
@@ -53,7 +53,7 @@ unsigned char get_extern_module_type(unsigned char addr,
 
  // // Reply with ID
  //    SET_ID,
- //    ping(unsigned char addr);
+ //    ping(unsigned short addr);
  //    // Reply with module_type number
  //    GET_MODULE_TYPE,
  //    // Reply with a status register

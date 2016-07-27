@@ -33,12 +33,13 @@ typedef enum {
  *
  * This structure is used to receive or send messages between modules in slave
  * and master mode.
- * please refer to ?? documentation
+ * please refer to the documentation
  */
 typedef struct {
-    unsigned char reg;        /*!< Message register. */
-    unsigned char size;       /*!< Message size. */
-    unsigned char data[512];  /*!< Data (512 bytes max). */
+    unsigned int msg_type : 13;   /*!< Message type. */
+    unsigned int ack_enable : 1;  /*!< TRUE = Enable ACK; FALSE = Disable ACK. */
+    unsigned int size : 10;       /*!< Message size. */
+    unsigned char data[512];      /*!< Data (512 bytes max). */
 }msg_t;
 
 typedef void (*RX_CB) (msg_dir_t dir, msg_t *msg);
@@ -58,24 +59,24 @@ void poppyNetwork_init(TX_CB tx_cb,
                        RX_CB rxgc_cb);
 
 /**
- * \fn unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg)
+ * \fn unsigned char poppyNetwork_read(unsigned short addr, msg_t *msg)
  * \brief Master mode read function.
  *
  * \param addr Address of the slave.
  * \param msg Message to send to the slave, he come back with the reply of the slave.
  *
  */
-unsigned char poppyNetwork_read(unsigned char addr, msg_t *msg,
-                                unsigned char reply_size);
+unsigned char poppyNetwork_read(unsigned short addr, msg_t *msg,
+                                unsigned short reply_size);
 
 /**
- * \fn unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg)
+ * \fn unsigned char poppyNetwork_write(unsigned short addr, msg_t *msg)
  * \brief Master mode write function.
  *
  * \param addr Address of the slave.
  * \param msg Message to send to the slave.
  */
-unsigned char poppyNetwork_write(unsigned char addr, msg_t *msg);
+unsigned char poppyNetwork_write(unsigned short addr, msg_t *msg);
 
 /**
  **TODO**
