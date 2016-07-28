@@ -1,3 +1,4 @@
+#include "poppyNetwork.h"
 #include "sys_msg.h"
 #include "hal.h"
 

@@ -39,7 +39,7 @@ typedef struct {
     unsigned int msg_type : 13;   /*!< Message type. */
     unsigned int ack_enable : 1;  /*!< TRUE = Enable ACK; FALSE = Disable ACK. */
     unsigned int size : 10;       /*!< Message size. */
-    unsigned char data[512];      /*!< Data (512 bytes max). */
+    unsigned char data[1024];      /*!< Data (1024 bytes max). */
 }msg_t;
 
 typedef void (*RX_CB) (msg_dir_t dir, msg_t *msg);

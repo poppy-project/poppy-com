@@ -51,7 +51,7 @@ unsigned char poppyNetwork_read(unsigned short target, msg_t *msg,
         hal_transmit(STOP);
         return 1;
     }
-    if (hal_write(msg->reg)) {
+    if (hal_write(msg->msg_type)) {
         hal_transmit(STOP);
         return 1;
     }
@@ -83,20 +83,26 @@ unsigned char poppyNetwork_read(unsigned short target, msg_t *msg,
 }
 
 unsigned char poppyNetwork_write(unsigned short target, msg_t *msg) {
+    // Start and send Target field
     if (hal_addr(target, TX)) {
         hal_transmit(STOP);
         return 1;
     }
-    // Write DATA
+    // Write Source field
     hal_write(ctx.id);
 
+    // Transform the message into a table
+    unsigned char* stream = (unsigned char*) msg;
     // Send Msg_type, ACK_enable, and Msg_size.
     for (unsigned char i = 0; i < 3; i++) 
-        hal_write(msg[i]);
+        hal_write(stream[i]);
+    // Send data
     for (unsigned char i = 0; i < msg->size; i++) {
         hal_write(msg->data[i]);
     }
-    hal_write(crc(&msg->data[0], msg->size));
+    unsigned short crc_val = crc(&msg->data[0], msg->size);
+    hal_write((unsigned char)crc_val);
+    hal_write((unsigned char)(crc_val << 8));
     hal_transmit(STOP);
     return 0;
 }

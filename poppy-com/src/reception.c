@@ -27,6 +27,13 @@ unsigned short crc(unsigned char* data, unsigned short size) {
     return (unsigned short)crc;
 }
 
+void catch_begin((msg_dir_t dir, volatile unsigned char *data)) {
+    static unsigned short byte_catched = 0;
+    if byte_catched < 3 {
+        
+    }
+    }
+
 /*
  * idle function is called when we are ready to receive or send a new message.
  */
@@ -53,8 +60,8 @@ void idle(msg_dir_t dir, volatile unsigned char *data) {
             /*
              * That should be a new message to receive.
              */
-             ctx.msg.reg = *data;
-            switch (ctx.msg.reg) {
+             ctx.msg[0] = *data;
+            switch (ctx.msg.msg_type) {
                 case GET_ID:
                     // Reply with ID
                     msg_size = 1;
@@ -81,7 +88,7 @@ void idle(msg_dir_t dir, volatile unsigned char *data) {
                     // TODO(NR)
                 break;
                 default:
-                    ctx.data_cb = get_size;
+                    ctx.data_cb = get_overhead;
                 break;
             }
         break;
@@ -93,7 +100,8 @@ void idle(msg_dir_t dir, volatile unsigned char *data) {
     }
 }
 
-void get_size(msg_dir_t dir, volatile unsigned char *data) {
+void get_overhead(msg_dir_t dir, volatile unsigned char *data) {
+    static unsigned char i
     ctx.msg.size = *data;
     ctx.data_cb = get_data;
 }
@@ -113,7 +121,7 @@ void get_data(msg_dir_t dir, volatile unsigned char *data) {
 }
 
 void msg_complete(msg_dir_t dir) {
-    switch (ctx.msg.reg) {
+    switch (ctx.msg.msg_type) {
         case WRITE_ID:
             // Get and save a new given ID
             id_update(ctx.msg.data[0]);
