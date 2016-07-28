@@ -31,6 +31,7 @@ All messages RS485 or PTP have the same structure:
  - **...** 
  - **Msg [Msg_size-1]** (8 bits) 
  - **CRC** (16 bits)
+
 Then, if ack_enable is set, the target should respond, less than N bytes duration after the CRC: 
  - **Ack** or **Nack**  (8 bits)
 
