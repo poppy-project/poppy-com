@@ -12,7 +12,7 @@ The Poppy communication interface uses 3 data wires:
  - RS485-
  - PTP
 
-Wire RS485+ and RS485- form a half-duplex serial link using **RS485**. This bus is the main communication way. The **PTP** wire means "point to point", it is used for hardware detection and allows direct communicatation with the next or previous module.
+Wire RS485+ and RS485- form a half-duplex serial bus using **RS485** that is shared by all the connected devices. This bus is the main communication way. The **PTP** wire means "point to point", it is used for hardware detection and allows direct communicatation with the next or previous module.
 
 Each of these links (PTP or RS485) can be used to communicate.
 
@@ -20,17 +20,21 @@ Each module has a standard **Poppy-core** board at heart, which manages all the 
 
 All messages RS485 or PTP have the same structure:
 
- - **Preamble** (N bytes duration + random time) 
+ - **Preamble** (N bytes duration) 
  - **Target**  (16 bits)
  - **Source**  (16 bits)
  - **Msg_type**  (13 bits)
  - **Ack_enable** (1 bit)
  - **Msg_size** (10 bits) 
- - **Msg [0]** (N x 8 bits)
+ - **Msg [0]** (8 bits)
+ - **Msg [1]** (8 bits)
  - **...** 
- - **Msg** [msg_size-1]
+ - **Msg [Msg_size-1]** (8 bits) 
  - **CRC** (16 bits)
- - **Ack**  (8 bits)
+Then, if ack_enable is set, the target should respond, less than N bytes duration after the CRC: 
+ - **Ack** or **Nack**  (8 bits)
+
+
 
 Preamble
 --------
