@@ -4,19 +4,21 @@ Protocole definition
 Hardware and data flow
 ----------------------
 
-Poppy communication protocol use 3 data wire :
+Most Poppy modules have two communication ports that can be daisy-chained.
+
+The Poppy communication interface uses 3 data wires:
 
  - RS485+
  - RS485-
  - PTP
 
-Wire RS485+ and RS485- are used to manage **RS485**. This bus is the main communication way. The **PTP** wire means "point to point", he manage hardware detection by passing tokens and allow to comminucate directly with the next or previous module.
+Wire RS485+ and RS485- form a half-duplex serial link using **RS485**. This bus is the main communication way. The **PTP** wire means "point to point", it is used for hardware detection and allows direct communicatation with the next or previous module.
 
-Each of thease link (PTP or RS485) can be used to communicate.
+Each of these links (PTP or RS485) can be used to communicate.
 
-Each module have a standard **Poppy-core** board at hearth, this board manage all the poppy-com things and can communicate, control and flash a companion MCU specific to each module hardware
+Each module has a standard **Poppy-core** board at heart, which manages all the poppy-com things and can communicate with, control and flash a companion MCU specific to each module hardware.
 
-All messages RS485 or PTP have the same structure :
+All messages RS485 or PTP have the same structure:
 
  - **Preamble** (N bytes duration + random time) 
  - **Target**  (16 bits)
