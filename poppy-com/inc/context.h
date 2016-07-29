@@ -3,48 +3,36 @@
 
 #include "config.h"
 #include "poppyNetwork.h"
+#include "cmd.h"
 
 #define TRUE 1
 #define FALSE 0
 
-typedef void (*DATA_CB) (msg_dir_t dir, volatile unsigned char *data);
+typedef void (*DATA_CB) (volatile unsigned char *data);
 
 typedef struct {
-  unsigned char rx_error : 1;
-  unsigned char master_write : 1;
-  unsigned char master_read : 1;
-  unsigned char unexpected_state : 1;
-  unsigned char warning : 1;
+    unsigned char rx_error : 1;
+    unsigned char unexpected_state : 1;
+    unsigned char warning : 1;
 } status_t;
 
-/*
- * All applicativ side message should have a structure like :
- * ADDR - REGISTER - SIZE - DATA[512] - CHECKSUM
- */
-typedef enum {
-    GET_ID,              /*!< Reply with ID. */
-    WRITE_ID,            /*!< Get and save a new given ID. */
-    GET_MODULE_TYPE,     /*!< Reply with module_type number. */
-    GET_STATUS,          /*!< Reply with a status register. */
-    GET_FIRM_REVISION,   /*!< Reply with the actual firmware revision number. */
-    GET_COM_REVISION,    /*!< Reply with the actual communication protocole version (1 default). */
-    PROTOCOL_REGISTER_NB /*!< This is the minim  l register value available for applicative side. */
-}register_t;
 
 typedef struct {
     // Callback pointers
         DATA_CB data_cb;    /*!< Data management callback. */
-        TX_CB tx_cb;        /*!< User side slave TX callback. */
         RX_CB rx_cb;        /*!< User side slave RX callback. */
-        RX_CB rxgc_cb;      /*!< User side slave RX general call callback. */
 
     // Module infomations
-        unsigned char id;   /*!< Module ID. */
-        unsigned char type; /*!< Module type. */
+        unsigned char id;       /*!< Module ID. */
+        unsigned char type;     /*!< Module type. */
+        unsigned char alias[16];/*!< Module alias. */
 
     // Variables
         status_t status;    /*!< Status. */
         msg_t msg;          /*!< Message. */
+        unsigned char max_extra_target; /*!< Position pointer of the last extra target. */
+
+        unsigned char extra_target_bank[256]; /*!< extra target bank. */
     }context_t;
 
 context_t ctx;

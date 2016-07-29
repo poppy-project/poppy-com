@@ -69,7 +69,7 @@ LIB_PATH = -L$(dir $(RESOURCES_LINKER))
 
 COMMON_FLAGS = \
 -g -O$(OPT)                                                      \
--funsigned-char -funsigned-bitfields -fpack-struct -fshort-enums \
+-funsigned-char -fpack-struct -fshort-enums                      \
 -Wall -Wstrict-prototypes                                        \
 -Wa,-adhlns=$(<:.c=.lst)                                         \
 -DMCU=$(MCU)                                                     \

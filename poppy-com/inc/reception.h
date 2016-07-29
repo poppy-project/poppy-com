@@ -7,10 +7,10 @@ void id_update(unsigned char id);
 unsigned short crc(unsigned char* data, unsigned short size);
 
 // Callbacks
-void idle(msg_dir_t dir, volatile unsigned char *data);
-void get_size(msg_dir_t dir, volatile unsigned char *data);
-void get_data(msg_dir_t dir, volatile unsigned char *data);
+void get_header(volatile unsigned char *data);
+void get_data(volatile unsigned char *data);
+void catch_ack(volatile unsigned char *data);
 
-void msg_complete(msg_dir_t dir);
+void msg_complete(void);
 
 #endif /* _RECEPTION_H_ */

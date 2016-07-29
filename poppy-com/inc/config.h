@@ -8,13 +8,11 @@
 #include "mod_list.h"
 
 #define DEFAULTID 0x01
+#define PROTOCOL_REVISION 1
+#define BROADCAST_VAL 0x0FFF
 
 #ifndef MODULETYPE
     #define MODULETYPE DEV_BOARD
-#endif
-
-#ifndef MCU
-    #define MCU atmega328p
 #endif
 
 #ifndef MAINCLOCK
