@@ -74,9 +74,9 @@
  * -# The LED(s) should start blinking on the board. In the terminal window, the
  *    following text should appear (values depend on the board and chip used):
  *    \code
-	-- Getting Started Example xxx --
-	-- xxxxxx-xx
-	-- Compiled: xxx xx xxxx xx:xx:xx --
+    -- Getting Started Example xxx --
+    -- xxxxxx-xx
+    -- Compiled: xxx xx xxxx xx:xx:xx --
 \endcode
  * -# Pressing and release button 1 should make one LED stop & restart
  *    blinking.
@@ -97,12 +97,9 @@
 #include "button.h"
 #include "rs485.h"
 
-
-
-#define STRING_EOL    "\r"
-#define STRING_HEADER "-- Getting Started Example --\r\n" \
-		"-- "BOARD_NAME" --\r\n" \
-		"-- Compiled: "__DATE__" "__TIME__" --"STRING_EOL
+#include "log.h"
+#define LOG_TAG        "Main"
+#define LOG_LEVEL     LOG_LEVEL_INFO
 
 
 
@@ -114,31 +111,31 @@ extern "C" {
 
 int main(void)
 {
-	sysclk_init();
-	board_init();
+    sysclk_init();
+    board_init();
 
-	uart_init(CONSOLE_UART, 115200);
+    uart_init(CONSOLE_UART, 115200);
 
-	puts(STRING_HEADER);
+    TEST_LOG_INFO(){
+        printf("\n\r\tFirmware Poppy-com built on %s at %s\n\r", __DATE__, __TIME__ );
+    }
 
-	puts("Configure system tick to get 1ms tick period.\r");
-	if (SysTick_Config(sysclk_get_cpu_hz() / 1000)) {
-		puts("-F- Systick configuration error\r");
-		while (1);
-	}
-
-	puts("Configure buttons with debouncing.\r");
-	configure_buttons();
+    if (SysTick_Config(sysclk_get_cpu_hz() / 1000)) {
+        LOG_ERROR("systic config failed");
+        while (1);
+    }
 
     rs485_init();
 
-	while (1) {
-		
-    	ioport_toggle_pin_level(LED0_GPIO);
-    	printf("1 ");
-		
-		delay_ms(500);
-	}
+    while (1) {
+        rs485_set_dir(RS485_TX);
+        delay_ms(1); // TODO wait for event when it's done writing
+        rs485_write('x');
+        delay_ms(1); // TODO wait for event when it's done writing
+        rs485_set_dir(RS485_RX);
+        
+        delay_ms(500);
+    }
 }
 
 #ifdef __cplusplus

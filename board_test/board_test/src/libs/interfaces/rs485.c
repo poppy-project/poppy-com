@@ -15,8 +15,29 @@
 #define LOG_LEVEL     LOG_LEVEL_DEBUG
 
 
-#define RS485_BAUDRATE 1000000 // TODO get it dynamically
+#define RS485_BAUDRATE 115200 // TODO get it dynamically
 
+
+void rs485_set_dir(rs485_dir_e dir){
+    switch(dir){
+        case RS485_NONE:
+            rs485_set_tx(false);
+            rs485_set_rx(false);
+        break;
+        case RS485_RX:
+            rs485_set_tx(false);
+            rs485_set_rx(true);
+        break;
+        case RS485_TX:
+            rs485_set_rx(false);
+            rs485_set_tx(true);
+        break;
+        case RS485_BOTH:
+            rs485_set_tx(true);
+            rs485_set_rx(true);
+        break;
+    }
+}
 
 void rs485_set_tx(bool enable){
     if (enable){
@@ -35,10 +56,11 @@ void rs485_set_rx(bool enable){
 
 bool rs485_hal_init(void){
     ioport_set_pin_dir(RS485_RE_PIN, IOPORT_DIR_OUTPUT);
+    rs485_set_rx(false);
 
     ioport_set_pin_dir(RS485_DE_PIN, IOPORT_DIR_OUTPUT);
+    rs485_set_tx(false);
     
-
     ioport_set_port_mode(RS485_UART_PORT, RS485_UART_PINS, RS485_UART_PINS_FLAGS);
     ioport_disable_port(RS485_UART_PORT, RS485_UART_PINS);
     
@@ -48,11 +70,20 @@ bool rs485_hal_init(void){
     return true;
 }
   
-  
+
+uint32_t rs485_write(uint8_t c){
+    while (!usart_is_tx_ready(RS485_UART));
+    return usart_write(RS485_UART, c);
+}
+
+uint32_t rs485_read(uint8_t c){
+    // TODO
+    return 0;
+}
+
   
 bool rs485_init(void){
-    LOG_DEBUG("Init RS485...");
     rs485_hal_init();
-    return false; // TODO
+    return true; // TODO
 }
 
