@@ -1,0 +1,40 @@
+/*
+ * board.h
+ *
+ * Created: 31/07/2016 16:53:20
+ *  Author: Xevel
+ */ 
+
+
+#ifndef BOARD_H_
+#define BOARD_H_
+
+
+//RS485
+#define RS485_RX_PIN    IOPORT_CREATE_PIN(PIOB, 11)
+#define RS485_TX_PIN    IOPORT_CREATE_PIN(PIOB, 10)
+#define RS485_RE_PIN    IOPORT_CREATE_PIN(PIOA, 29)
+#define RS485_DE_PIN    IOPORT_CREATE_PIN(PIOA, 24)
+
+#define RS485_UART              USART4
+#define RS485_UART_ID           ID_FLEXCOM4
+
+#define RS485_UART_PORT        IOPORT_PIOB
+#define RS485_UART_PINS        (PIO_PB11A_RXD4| PIO_PB10A_TXD4)
+#define RS485_UART_PINS_FLAGS  (IOPORT_MODE_MUX_A)
+
+
+// 
+// // PTP_A
+// #define PTP_A_TX_PIN    IOPORT_CREATE_PIN(PIOA, 13) // UART5
+// #define PTP_A_RX_PIN    IOPORT_CREATE_PIN(PIOA, 12)
+// #define PTP_A_ADC_PIN   IOPORT_CREATE_PIN(PIOA, 18)
+// 
+// 
+// // PTP_B
+// #define PTP_A_TX_PIN    IOPORT_CREATE_PIN(PIOA, 10) // UART0
+// #define PTP_A_RX_PIN    IOPORT_CREATE_PIN(PIOA, 9)
+// #define PTP_A_ADC_PIN   IOPORT_CREATE_PIN(PIOA, 17)
+
+
+#endif /* BOARD_H_ */
