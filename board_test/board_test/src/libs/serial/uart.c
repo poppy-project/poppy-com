@@ -15,7 +15,12 @@ static usart_serial_options_t uart_serial_options = {
     .stopbits = US_MR_NBSTOP_1_BIT,
 };
 
-void uart_init(usart_if uart, uint32_t baudrate){
+void uart_stdio_init(usart_if uart, uint32_t baudrate){
     uart_serial_options.baudrate = baudrate;
     stdio_serial_init(uart, &uart_serial_options);
+}
+
+void uart_init(usart_if uart, uint32_t baudrate){
+    uart_serial_options.baudrate = baudrate;
+    usart_serial_init(uart, &uart_serial_options);
 }

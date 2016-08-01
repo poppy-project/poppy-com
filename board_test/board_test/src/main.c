@@ -114,7 +114,7 @@ int main(void)
     sysclk_init();
     board_init();
 
-    uart_init(CONSOLE_UART, 115200);
+    uart_stdio_init(CONSOLE_UART, 115200);
 
     TEST_LOG_INFO(){
         printf("\n\r\tFirmware Poppy-com built on %s at %s\n\r", __DATE__, __TIME__ );
@@ -128,11 +128,17 @@ int main(void)
     rs485_init();
 
     while (1) {
-        rs485_set_dir(RS485_TX);
+        rs485_set_dir(RS485_BOTH);
         delay_ms(1); // TODO wait for event when it's done writing
         rs485_write('x');
         delay_ms(1); // TODO wait for event when it's done writing
-        rs485_set_dir(RS485_RX);
+        uint32_t c;
+        if (rs485_read(&c) == 0){
+            LOG_INFO("Received %c", (uint8_t)c);
+        } else {
+            LOG_ERROR("did not receive shit");
+        }
+        rs485_set_dir(RS485_NONE);
         
         delay_ms(500);
     }

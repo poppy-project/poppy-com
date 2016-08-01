@@ -9,8 +9,8 @@
 #ifndef UART_H_
 #define UART_H_
 
-
 void uart_init(usart_if uart, uint32_t baudrate);
+void uart_stdio_init(usart_if uart, uint32_t baudrate);
 
 
 #endif /* UART_H_ */
