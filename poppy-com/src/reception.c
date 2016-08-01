@@ -119,23 +119,30 @@ void catch_ack(volatile unsigned char *data) {
  * \param *data byte received from serial
  */
 void msg_complete() {
-    switch (ctx.msg.header.cmd) {
-        case WRITE_ID:
-            // Get and save a new given ID
-            id_update(((unsigned short)ctx.msg.data[0]) |
-                      ((unsigned short)ctx.msg.data[1] << 8));
-        break;
-        case GET_ID:
-        // call something...
-        case GET_MODULE_TYPE:
-        // call something...
-        case GET_STATUS:
-        // call something...
-        case GET_FIRM_REVISION:
-        // call something...
-        break;
-        default:
-                ctx.rx_cb(&ctx.msg);
-        break;
+    if (ctx.msg.header.target_mode == ID ||
+        ctx.msg.header.target_mode == IDACK ||
+        ctx.msg.header.target_mode == TYPE ||
+        ctx.msg.header.target_mode == BROADCAST) {
+        switch (ctx.msg.header.cmd) {
+            case WRITE_ID:
+                // Get and save a new given ID
+                id_update(((unsigned short)ctx.msg.data[0]) |
+                          ((unsigned short)ctx.msg.data[1] << 8));
+            break;
+            case GET_ID:
+            // call something...
+            case GET_MODULE_TYPE:
+            // call something...
+            case GET_STATUS:
+            // call something...
+            case GET_FIRM_REVISION:
+            // call something...
+            break;
+            default:
+                    ctx.rx_cb(&ctx.msg);
+            break;
+        }
+    } else {
+        ctx.rx_cb(&ctx.msg);
     }
 }

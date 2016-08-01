@@ -3,8 +3,8 @@
 
 #include "context.h"
 
-unsigned char extra_target_bank(unsigned char val);
-void add_extra_target(unsigned char target);
+unsigned char extra_target_bank(unsigned short val);
+void add_extra_target(unsigned short target);
 
 
 #endif /* _TARGET_H_ */

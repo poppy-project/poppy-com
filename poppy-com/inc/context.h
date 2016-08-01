@@ -32,7 +32,7 @@ typedef struct {
         msg_t msg;          /*!< Message. */
         unsigned char max_extra_target; /*!< Position pointer of the last extra target. */
 
-        unsigned char extra_target_bank[256]; /*!< extra target bank. */
+        unsigned short extra_target_bank[256]; /*!< extra target bank. */
     }context_t;
 
 extern context_t ctx;
