@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>poppy_com: &lt;span&gt;&lt;/span&gt;</title>
+<title>poppy_com: test -&gt; poppy-com Relation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,7 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
@@ -60,7 +60,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -75,38 +74,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-<div class="header">
-  <div class="headertitle">
-<div class="title"><span></span> </div>  </div>
-</div><!--header-->
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_13e138d54eb8818da29c3992edef070a.html">test</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="contents">
-<div class="textblock"><h1>Poppy 2.0 communication lib </h1>
-<p>The role of this code is to manage the Poppy 2.0 communication stack between all modules.</p>
-<p>It is the basic library used to create new modules, you can use it to develop you own !</p>
-<p>To understand how this protocole work, please read the <a class="el" href="md_doc_protocol_definition.html">protocol definition</a>.</p>
-<h2>How to start a new Poppy 2.0 module code project </h2>
-<p>First of all you have to fork this repository to create your hown module on your github account. scr folder contain the lib source code you sould not modifying it to keep compliance with other modules. To avoid any trouble during future updates of the poppy-pross lib, take care to not modifying any files in the src folder or create a specific branch for all your developpements. </p>
-<hr/>
-<p>In this repo travis is used to create documentation, update readme, and pass some tests. To activate all this things you have to follow some steps :</p>
-<ul>
-<li>enable your repo on <a href="https://travis-ci.org/">travis</a> and on <a href="https://coveralls.io">coveralls</a>.</li>
-<li><a class="el" href="md_doc_travis_encrypt.html">Create an encrypted token for travis.</a></li>
-<li>replace your encrypted token to the .travis.yml file of this repo.</li>
-</ul>
-<hr/>
-<p>To have a perfect integration and declaration of your module into a poppy 2.0 network you have to:</p>
-<ul>
-<li>specify your module in the <a class="el" href="mod__list_8h_source.html">mod_list.h</a> list.</li>
-<li>specify your MCU on the Makefile.</li>
-<li>specify your MAINCLOCK frequency on the Makefile.</li>
-<li>specify your SCLFREQ to specify the I2C max speed on the Makefile.</li>
-<li>create your specific hal folder if you need. To do that please read the <a class="el" href="md_doc_hal_creation.html">new hal creation documentation</a>.</li>
-</ul>
-<p>You can use the <a href="template.c">template.c</a> file to format your main file and use it as base.</p>
-<hr/>
-<h2>Please feel free to use and contribute to this project. </h2>
-<p>If you have any question please describe it in the <a href="https://forum.poppy-project.org">Poppy project forum</a>. </p>
-</div></div><!-- contents -->
+<h3>test &rarr; poppy-com Relation</h3><table class="dirtab"><tr class="dirtab"><th class="dirtab">File in test</th><th class="dirtab">Includes file in poppy-com</th></tr><tr class="dirtab"><td class="dirtab"><b>test.c</b></td><td class="dirtab"><a class="el" href="poppy_network_8h.html">poppyNetwork.h</a></td></tr></table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated on Tue Aug 2 2016 18:32:33 for poppy_com by &#160;<a href="http://www.doxygen.org/index.html">
