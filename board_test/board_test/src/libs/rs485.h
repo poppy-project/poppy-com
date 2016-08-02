@@ -9,14 +9,9 @@
 #ifndef RS485_H_
 #define RS485_H_
 
-typedef enum {
-    RS485_NONE,
-    RS485_RX,
-    RS485_TX,
-    RS485_BOTH
-} rs485_dir_e;
+#include "half_duplex.h"
 
-void rs485_set_dir(rs485_dir_e dir);
+void rs485_set_dir(half_duplex_dir_e dir);
 void rs485_set_tx(bool enable);
 void rs485_set_rx(bool enable);
 bool rs485_init(void);

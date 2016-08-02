@@ -18,21 +18,21 @@
 #define RS485_BAUDRATE 115200 // TODO get it dynamically
 
 
-void rs485_set_dir(rs485_dir_e dir){
+void rs485_set_dir(half_duplex_dir_e dir){
     switch(dir){
-        case RS485_NONE:
+        case HALF_DUPLEX_NONE:
         rs485_set_tx(false);
         rs485_set_rx(false);
         break;
-        case RS485_RX:
+        case HALF_DUPLEX_RX:
         rs485_set_tx(false);
         rs485_set_rx(true);
         break;
-        case RS485_TX:
+        case HALF_DUPLEX_TX:
         rs485_set_rx(false);
         rs485_set_tx(true);
         break;
-        case RS485_BOTH:
+        case HALF_DUPLEX_BOTH:
         rs485_set_tx(true);
         rs485_set_rx(true);
         break;

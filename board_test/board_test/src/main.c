@@ -96,6 +96,8 @@
 #include "time.h"
 #include "button.h"
 #include "rs485.h"
+#include "ptp.h"
+#include "test_board.h"
 
 #include "log.h"
 #define LOG_TAG        "Main"
@@ -126,25 +128,64 @@ int main(void)
     }
 
     rs485_init();
+    ptp_init();
     
     
-    
-    char my_char = 'a';
+    char my_char = 'r';
+    char ptp_char_a = 'a';  
+    char ptp_char_b = 'b';
 
     while (1) {
-        rs485_set_dir(RS485_BOTH);
+        rs485_set_dir(HALF_DUPLEX_BOTH);
+         
         delay_ms(1); // TODO wait for event when it's done writing
+        
         rs485_write(my_char);
+        
         delay_ms(1); // TODO wait for event when it's done writing
-        rs485_set_dir(RS485_RX);
+        rs485_set_dir(HALF_DUPLEX_RX);
         
         uint32_t now = get_tick();
         while ( get_tick() - now < 500 ){
             uint32_t c;
-            if (rs485_read(&c) == 0){
-                if (c != my_char){
-                    LOG_INFO("Received %c", (uint8_t)c);
+            for(uint8_t i = 0; i< 5; i++){
+                if (rs485_read(&c) == 0){
+                    if (c != my_char){
+                        LOG_INFO("RS485: %c", (uint8_t)c);
+                    }
                 }
+                delay_ms(1);
+            }            
+            
+            ptp_set_dir( PTP_B_UART, HALF_DUPLEX_TX);
+            delay_ms(1);
+            ptp_write(PTP_B_UART, ptp_char_b);
+            delay_ms(1);
+            ptp_set_dir( PTP_B_UART, HALF_DUPLEX_RX);
+
+            for(uint8_t i = 0; i< 5; i++){
+                if (ptp_read(PTP_A_UART, &c) == 0){
+                    //if (c != ptp_char_a){
+                    LOG_INFO("PTP_A: %c", (uint8_t)c);
+                    //}
+                }
+            delay_ms(1);
+            }
+            
+            
+            ptp_set_dir( PTP_A_UART, HALF_DUPLEX_TX);
+            delay_ms(1);
+            ptp_write(PTP_A_UART, ptp_char_a);
+            delay_ms(1);
+            ptp_set_dir( PTP_A_UART, HALF_DUPLEX_RX);
+        
+            for(uint8_t i = 0; i< 5; i++){
+                if (ptp_read(PTP_B_UART, &c) == 0){
+                    //if (c != ptp_char_b){
+                    LOG_INFO("PTP_B: %c", (uint8_t)c);
+                    //}
+                }
+                delay_ms(1);
             }
         }
     }
