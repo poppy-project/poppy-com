@@ -3,8 +3,11 @@
 
 #include "context.h"
 
-unsigned char extra_target_bank(unsigned short val);
-void add_extra_target(unsigned short target);
+unsigned char multicast_target_bank(unsigned short val);
+void add_multicast_target(unsigned short target);
+
+unsigned char virtual_target_bank(unsigned short val);
+void add_virtual_target(unsigned short target);
 
 
 #endif /* _TARGET_H_ */

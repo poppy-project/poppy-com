@@ -30,9 +30,12 @@ typedef struct {
     // Variables
         status_t status;    /*!< Status. */
         msg_t msg;          /*!< Message. */
-        unsigned char max_extra_target; /*!< Position pointer of the last extra target. */
 
-        unsigned short extra_target_bank[256]; /*!< extra target bank. */
+        unsigned char max_multicast_target; /*!< Position pointer of the last multicast target. */
+        unsigned short multicast_target_bank[256]; /*!< multicast target bank. */
+
+        unsigned char max_virtual_target; /*!< Position pointer of the last virtual target. */
+        unsigned short virtual_target_bank[256]; /*!< virtual target bank. */
     }context_t;
 
 extern context_t ctx;

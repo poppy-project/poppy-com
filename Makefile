@@ -9,10 +9,10 @@ EXAMPLES_PATH := $(ROOT_PATH)/extra/examples
 HAL_PATH := $(ROOT_PATH)/poppy-com/hal
 
 # HAL list, can be overriden via command line or ENV
-HAL_LIST?=$(shell ls --hide=*.mk --hide=template $(HAL_PATH))
+HAL_LIST?=$(shell ls --hide=*.mk $(HAL_PATH))
 
 # Examples list, can be overriden via command line or ENV
-EXAMPLES?=$(shell ls --hide=*.mk --hide=.* --hide=sketches.* $(EXAMPLES_PATH))
+EXAMPLES?=$(shell ls --hide=*.mk --hide=template --hide=.* --hide=sketches.* $(EXAMPLES_PATH))
 
 
 # HAL name, can be overriden via command line or ENV

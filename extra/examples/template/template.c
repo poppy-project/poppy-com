@@ -45,34 +45,9 @@ typedef enum {
  * \param dir Message direction. (That will be remove!)
  * \param msg Received message.
  */
-void rx_cb(msg_dir_t dir, msg_t *msg) {
+void rx_cb(msg_t *msg) {
     /*
      * Add your RX code here.
-     */
-}
-
-/**
- * \fn void rxgc_cb(msg_dir_t dir, msg_t *msg)
- * \brief Callback function for Slave mode messages reception with general call.
- *
- * \param dir Message direction. (That will be remove!)
- * \param msg Received message.
- */
-void rxgc_cb(msg_dir_t dir, msg_t *msg) {
-    /*
-     * Add your RX general call code here.
-     */
-}
-
-/**
- * \fn void tx_cb(msg_t *msg)
- * \brief Callback function for Slave mode messages transmission.
- *
- * \param msg Transmitted message. You have to put something in this msg_t.
- */
-void tx_cb(msg_t *msg) {
-    /*
-     * Add your TX code here.
      */
 }
 
@@ -84,7 +59,7 @@ void tx_cb(msg_t *msg) {
  * \return integer
  */
 int main(void) {
-    poppyNetwork_init(tx_cb, rx_cb, rxgc_cb);
+    poppyNetwork_init(rx_cb);
 
     /*
      * Add your main code here.

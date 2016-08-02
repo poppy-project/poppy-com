@@ -53,13 +53,14 @@ void get_header(volatile unsigned char *data) {
             case BROADCAST:
                 if (ctx.msg.header.target == ctx.id ||
                     ctx.msg.header.target == ctx.type ||
-                    ctx.msg.header.target == BROADCAST_VAL)
-                    ctx.data_cb = get_data;
+                    ctx.msg.header.target == BROADCAST_VAL ||
+                    virtual_target_bank(ctx.msg.header.target))
+                        ctx.data_cb = get_data;
                 else
                     return;
             break;
             case MULTICAST:
-                if (extra_target_bank(ctx.msg.header.target))
+                if (multicast_target_bank(ctx.msg.header.target))
                     ctx.data_cb = get_data;
                 else
                     return;
@@ -126,8 +127,8 @@ void msg_complete() {
         switch (ctx.msg.header.cmd) {
             case WRITE_ID:
                 // Get and save a new given ID
-                id_update(((unsigned short)ctx.msg.data[0]) |
-                          ((unsigned short)ctx.msg.data[1] << 8));
+                id_update(((unsigned short)ctx.msg.data[1]) |
+                          ((unsigned short)ctx.msg.data[0] << 8));
             break;
             case GET_ID:
             // call something...

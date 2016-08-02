@@ -17,8 +17,9 @@ int test_value = 0;
 unsigned short target_value = 0;
 
 typedef enum {
-    TARGET_CMD,
+    TARGET_CMD = WRITE_ID,
     TEST_CMD = PROTOCOL_CMD_NB,
+    NO_OVERLAP_TARGET_CMD,
     MODULE_PROTOCOL_NB
 }module_register_t;
 
@@ -28,6 +29,7 @@ void rx_cb(msg_t *msg) {
             test_value = ((int)msg->data[0] << 8) | (int)msg->data[1];
         break;
         case TARGET_CMD :
+        case NO_OVERLAP_TARGET_CMD:
             target_value = msg->header.target;
         break;
         default :
@@ -107,10 +109,10 @@ unsigned char write_broadcast_mode(void) {
     return 0;
 }
 
-unsigned char add_target(void) {
+unsigned char add_multicast(void) {
     printf("\nAdd a MULTICAST target :\n");
-    add_extra_target(0x000E);
-    if (test(ctx.extra_target_bank[ctx.max_extra_target] != 0x000E)) return 1;
+    add_multicast_target(0x000E);
+    if (test(ctx.multicast_target_bank[ctx.max_multicast_target] != 0x000E)) return 1;
     msg_t msg = {.header.cmd = TARGET_CMD,
                  .header.target = 0x000E,
                  .header.target_mode = MULTICAST,
@@ -119,8 +121,32 @@ unsigned char add_target(void) {
                  .data[1] = 0xFE};
     if (test(!poppyNetwork_send(&msg))) return 1;
     if (test(target_value == 0x000E)) return 1;
-    add_extra_target(0x00AE);
+    add_multicast_target(0x00AE);
     msg.header.target = 0x00AE;
+    if (test(!poppyNetwork_send(&msg))) return 1;
+    if (test(target_value == 0x00AE)) return 1;
+    msg.header.target = 0x000E;
+    if (test(!poppyNetwork_send(&msg))) return 1;
+    if (test(target_value == 0x000E)) return 1;
+    target_value = 0x0000;
+    return 0;
+}
+
+unsigned char add_virtual(void) {
+    printf("\nAdd a VIRTUAL target :\n");
+    add_virtual_target(0x000E);
+    if (test(ctx.virtual_target_bank[ctx.max_virtual_target] != 0x000E)) return 1;
+    msg_t msg = {.header.cmd = WRITE_ID,
+                 .header.target = 0x000E,
+                 .header.target_mode = ID,
+                 .header.size = 2,
+                 .data[0] = 0xCA,
+                 .data[1] = 0xFE};
+    if (test(!poppyNetwork_send(&msg))) return 1;
+    if (test(ctx.id == 0xCAFE)) return 1;
+    add_virtual_target(0x00AE);
+    msg.header.target = 0x00AE;
+    msg.header.cmd = NO_OVERLAP_TARGET_CMD;
     if (test(!poppyNetwork_send(&msg))) return 1;
     if (test(target_value == 0x00AE)) return 1;
     msg.header.target = 0x000E;
@@ -139,7 +165,8 @@ int main(void) {
     test_sequences(set_id_type);
     test_sequences(write_id_mode);
     test_sequences(write_broadcast_mode);
-    test_sequences(add_target);
+    test_sequences(add_multicast);
+    test_sequences(add_virtual);
 
     return test_end();
 }

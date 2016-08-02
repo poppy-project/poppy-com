@@ -29,7 +29,7 @@ void poppyNetwork_init(RX_CB rx_cb) {
     // Module type
     ctx.type = MODULETYPE;
     // TODO manage Alias
-    ctx.max_extra_target = 0;
+    ctx.max_multicast_target = 0;
 
     // Status
     ctx.status = (status_t) {.rx_error = FALSE,

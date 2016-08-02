@@ -27,8 +27,8 @@ unsigned char set_extern_id(target_mode_t target_mode, unsigned short target,
     msg.header.target_mode = target_mode;
     msg.header.cmd = WRITE_ID;
     msg.header.size = 2;
-    msg.data[0] = newid;
-    msg.data[1] = (newid <<8);
+    msg.data[1] = newid;
+    msg.data[0] = (newid <<8);
 
     if (poppyNetwork_send(&msg))
         return 1;
