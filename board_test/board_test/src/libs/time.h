@@ -9,7 +9,7 @@
 #ifndef TIME_H_
 #define TIME_H_
 
-
+uint32_t get_tick(void);
 void delay_ms(uint32_t ul_dly_ticks);
 
 

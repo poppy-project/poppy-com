@@ -15,6 +15,10 @@ void SysTick_Handler(void)
     g_ul_ms_ticks++;
 }
 
+uint32_t get_tick(){
+    return g_ul_ms_ticks;
+}
+
 void delay_ms(uint32_t ul_dly_ticks)
 {
     uint32_t ul_cur_ticks;

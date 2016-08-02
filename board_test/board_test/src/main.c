@@ -126,21 +126,27 @@ int main(void)
     }
 
     rs485_init();
+    
+    
+    
+    char my_char = 'a';
 
     while (1) {
         rs485_set_dir(RS485_BOTH);
         delay_ms(1); // TODO wait for event when it's done writing
-        rs485_write('x');
+        rs485_write(my_char);
         delay_ms(1); // TODO wait for event when it's done writing
-        uint32_t c;
-        if (rs485_read(&c) == 0){
-            LOG_INFO("Received %c", (uint8_t)c);
-        } else {
-            LOG_ERROR("did not receive shit");
-        }
-        rs485_set_dir(RS485_NONE);
+        rs485_set_dir(RS485_RX);
         
-        delay_ms(500);
+        uint32_t now = get_tick();
+        while ( get_tick() - now < 500 ){
+            uint32_t c;
+            if (rs485_read(&c) == 0){
+                if (c != my_char){
+                    LOG_INFO("Received %c", (uint8_t)c);
+                }
+            }
+        }
     }
 }
 
