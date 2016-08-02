@@ -16,7 +16,7 @@ EXAMPLES?=$(shell ls --hide=*.mk --hide=.* --hide=sketches.* $(EXAMPLES_PATH))
 
 
 # HAL name, can be overriden via command line or ENV
-HAL ?= arduino_uno_i2c
+HAL ?= stub
 
 CORE_VERSION := $(shell grep version= $(ROOT_PATH)/poppy-com/platform.txt | sed 's/version=//g')
 PACKAGE_NAME := $(basename $(notdir $(CURDIR)))
