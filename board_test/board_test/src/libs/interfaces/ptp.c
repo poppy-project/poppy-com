@@ -9,111 +9,212 @@
 #include "test_board.h"
 #include "uart.h"
 
+#include "time.h"
 
 #define PTP_BAUDRATE 115200 // TODO get from somewhere else
 
+ptp_t ptp_a_ = {
+    .mode           = PTP_MODE_PULL_UP_STRONG,
+    .uart           = PTP_A_UART,
+    .uart_port      = PTP_A_UART_PORT,
+    .uart_pin_mask  = PTP_A_UART_PIN_MASK,
+    .tx_mode        = PTP_A_UART_TX_FLAGS,
+    .rx_mode        = PTP_A_UART_RX_FLAGS,
+    .tx_pin         = PTP_A_TX_PIN,
+    .rx_pin         = PTP_A_RX_PIN,
+    .adc_channel    = PTP_A_ADC_CHANNEL,
+};
+ptp_t ptp_b_ = {
+    .mode           = PTP_MODE_PULL_UP_STRONG,
+    .uart           = PTP_B_UART,
+    .uart_port      = PTP_B_UART_PORT,
+    .uart_pin_mask  = PTP_B_UART_PIN_MASK,
+    .tx_mode        = PTP_B_UART_TX_FLAGS,
+    .rx_mode        = PTP_B_UART_RX_FLAGS,
+    .tx_pin         = PTP_B_TX_PIN,
+    .rx_pin         = PTP_B_RX_PIN,
+    .adc_channel    = PTP_B_ADC_CHANNEL,
+};
 
-//TODO see if there are glitches when going from one state to the other?
-static void ptp_set_hal_mode(ptp_t* ptp, ptp_mode_e mode){
-    if (ptp->mode != mode){
-        switch (mode){
-            case PTP_RX:
-            case PTP_TX:
-            case PTP_RX_TX:
-                //TODO setup alternate function
+ptp_t* ptp_a = &ptp_a_;
+ptp_t* ptp_b = &ptp_b_;
+
+static void ptp_set_hal_mode(ptp_t* ptp, ptp_hal_mode_e hal_mode ){
+    if ( ptp->hal_mode != hal_mode ){
+        switch(hal_mode){
+            case PTP_HAL_UART:
+                ioport_set_pin_mode(ptp->tx_pin, ptp->tx_mode);
+                ioport_set_pin_mode(ptp->rx_pin, ptp->rx_mode);
+                ioport_disable_port(ptp->uart_port,  ptp->uart_pin_mask);
             break;
-            case PTP_HI_Z:
-            case PTP_HIGH:
-            case PTP_LOW:
-            case PTP_PULL_UP_WEAK:
-            case PTP_PULL_UP_STRONG:
-            case PTP_PULL_DOWN_WEAK:
-            case PTP_PULL_DOWN_STRONG:
+            case PTP_HAL_GPIO:
                 usart_disable_rx(ptp->uart);
                 usart_disable_tx(ptp->uart);
-                //TODO get back in GPIO mode HI-Z
             break;
         }
+        ptp->hal_mode = hal_mode;
     }
-}
+}   
+
 
 void ptp_set_mode(ptp_t* ptp, ptp_mode_e mode){
     ptp_set_hal_mode(ptp, mode);
 
     switch(mode){
-        case PTP_HI_Z:
-            break;
-        case PTP_RX:
+        case PTP_MODE_RX:
+            ptp_set_hal_mode(ptp, PTP_HAL_UART);
             usart_disable_tx(ptp->uart);
             usart_enable_rx(ptp->uart);
             break;
-        case PTP_TX:
+            
+        case PTP_MODE_TX:
+            ptp_set_hal_mode(ptp, PTP_HAL_UART);
             usart_disable_rx(ptp->uart);
             usart_enable_tx(ptp->uart);
             break;
-        case PTP_RX_TX:
+            
+        case PTP_MODE_RX_TX:
+            ptp_set_hal_mode(ptp, PTP_HAL_UART);
             usart_enable_rx(ptp->uart);
             usart_enable_tx(ptp->uart);
             break;
-        case PTP_HIGH:
-            ioport_set_pin_level(ptp->driver_pin, true);
+            
+        case PTP_MODE_HI_Z:
+            ioport_set_port_mode(ptp->uart_port, ptp->uart_pin_mask, 0);
+            ioport_set_port_dir(ptp->uart_port, ptp->uart_pin_mask, IOPORT_DIR_INPUT);
+            ptp_set_hal_mode(ptp, PTP_HAL_GPIO);
+            ioport_enable_port(ptp->uart_port,  ptp->uart_pin_mask);
             break;
-        case PTP_LOW:
-            ioport_set_pin_level(ptp->driver_pin, true);
+            
+        case PTP_MODE_HIGH:
+            ioport_set_pin_level(ptp->tx_pin, true);
+            ioport_set_pin_dir(ptp->tx_pin, IOPORT_DIR_OUTPUT);
+            ptp_set_hal_mode(ptp, PTP_HAL_GPIO);
+            ioport_enable_port(ptp->uart_port,  ptp->uart_pin_mask);
             break;
-        case PTP_PULL_UP_WEAK:
-            ioport_set_pin_mode(ptp->driver_pin, IOPORT_MODE_PULLUP);  // TOOD check that it's the right way to do it, we want input with pull-up
+            
+        case PTP_MODE_LOW:
+            ioport_set_pin_level(ptp->tx_pin, false);
+            ioport_set_pin_dir(ptp->tx_pin, IOPORT_DIR_OUTPUT);
+            ptp_set_hal_mode(ptp, PTP_HAL_GPIO);
+            ioport_enable_port(ptp->uart_port,  ptp->uart_pin_mask);
             break;
-        case PTP_PULL_UP_STRONG:
-            //TODO // set pull up on all 3 pins
+            
+        case PTP_MODE_PULL_UP_WEAK:
+            ioport_set_port_dir(ptp->uart_port, ptp->uart_pin_mask, IOPORT_DIR_INPUT);
+            ptp_set_hal_mode(ptp, PTP_HAL_GPIO);
+            ioport_set_pin_mode(ptp->tx_pin, IOPORT_MODE_PULLUP);
+            ioport_set_pin_mode(ptp->rx_pin, 0);
+            ioport_enable_port(ptp->uart_port,  ptp->uart_pin_mask);
             break;
-        case PTP_PULL_DOWN_WEAK:
-            ioport_set_pin_mode(ptp->driver_pin, IOPORT_MODE_PULLDOWN); // TOOD check that it's the right way to do it, we want input with pull-down
+            
+        case PTP_MODE_PULL_UP_STRONG:
+            ioport_set_port_dir(ptp->uart_port, ptp->uart_pin_mask, IOPORT_DIR_INPUT);
+            ptp_set_hal_mode(ptp, PTP_HAL_GPIO);
+            ioport_set_pin_mode(ptp->tx_pin, IOPORT_MODE_PULLUP);
+            ioport_set_pin_mode(ptp->rx_pin, IOPORT_MODE_PULLUP); // TODO use ADC pull up too ?
+            ioport_enable_port(ptp->uart_port,  ptp->uart_pin_mask);
             break;
-        case PTP_PULL_DOWN_STRONG:
-            //TODO // set pull up down all 3 pins
+            
+        case PTP_MODE_PULL_DOWN_WEAK:
+            ioport_set_port_dir(ptp->uart_port, ptp->uart_pin_mask, IOPORT_DIR_INPUT);
+            ptp_set_hal_mode(ptp, PTP_HAL_GPIO);
+            ioport_set_pin_mode(ptp->tx_pin, IOPORT_MODE_PULLDOWN);
+            ioport_set_pin_mode(ptp->rx_pin, 0);
+            ioport_enable_port(ptp->uart_port,  ptp->uart_pin_mask);
+            break;
+            
+        case PTP_MODE_PULL_DOWN_STRONG:
+            ioport_set_port_dir(ptp->uart_port, ptp->uart_pin_mask, IOPORT_DIR_INPUT);
+            ptp_set_hal_mode(ptp, PTP_HAL_GPIO);
+            ioport_set_pin_mode(ptp->tx_pin, IOPORT_MODE_PULLDOWN);
+            ioport_set_pin_mode(ptp->rx_pin, IOPORT_MODE_PULLDOWN); // TODO use ADC pull up too ?
+            ioport_enable_port(ptp->uart_port,  ptp->uart_pin_mask);
             break;
     }
     ptp->mode = mode;
 }
 
-void ptp_set_tx(usart_if uart, bool enable){
+
+void ptp_set_tx(ptp_t* ptp, bool enable){
     if (enable){
-        usart_enable_tx(uart);
+        usart_enable_tx(ptp->uart);
     } else {
-        usart_disable_tx(uart);
+        usart_disable_tx(ptp->uart);
     }
 }
-void ptp_set_rx(usart_if uart, bool enable){
+void ptp_set_rx(ptp_t* ptp, bool enable){
     if (enable){
-        usart_enable_rx(uart);
+        usart_enable_rx(ptp->uart);
     } else {
-        usart_disable_rx(uart);
+        usart_disable_rx(ptp->uart);
     }
 }
 
 
-uint32_t ptp_write(usart_if uart, uint32_t c){
-    while (!usart_is_tx_ready(uart));
-    return usart_write(uart, c);
+uint32_t ptp_write(ptp_t* ptp, uint32_t c){
+    while (!usart_is_tx_ready(ptp->uart));
+    return usart_write(ptp->uart, c);
 }
 
-uint32_t ptp_read(usart_if uart, uint32_t* c){
-    return usart_read(uart, c);
+uint32_t ptp_read(ptp_t* ptp, uint32_t* c){
+    return usart_read(ptp->uart, c);
+}
+
+
+bool ptp_adc_get(ptp_t* ptp, uint32_t* adc_value){
+    adc_channel_disable(ADC, ADC_CHANNEL_ALL);
+    adc_channel_enable(ADC, ptp->adc_channel);
+    adc_start_software_conversion(ADC);
+    delay_ms(1);    //TODO wait for conversion end?
+    *adc_value = adc_channel_get_value(ADC, ptp->adc_channel);
+    return true; // TODO
 }
 
 
 bool ptp_hal_init(void){
-    ioport_set_port_mode(PTP_A_UART_PORT, PTP_A_UART_PINS, PTP_A_UART_PINS_FLAGS);
-    ioport_disable_port(PTP_A_UART_PORT, PTP_A_UART_PINS);
+    
+    // All pins are in pull-up at reset so turn that off, leave it on TX (driver_pin) only
+    ioport_set_pin_mode(PTP_A_ADC_PIN, 0);
+    ioport_set_pin_mode(PTP_A_RX_PIN, 0);
+
+    ioport_set_pin_mode(PTP_B_ADC_PIN, 0);
+    ioport_set_pin_mode(PTP_B_RX_PIN, 0);
+    
     uart_init(PTP_A_UART, PTP_BAUDRATE);
-    
-    // TODO ADC
-    
-    ioport_set_port_mode(PTP_B_UART_PORT, PTP_B_UART_PINS, PTP_B_UART_PINS_FLAGS);
-    ioport_disable_port(PTP_B_UART_PORT, PTP_B_UART_PINS);
     uart_init(PTP_B_UART, PTP_BAUDRATE);
+
+    adc_enable();
+    #if SAMG55
+    adc_select_clock_source_mck(ADC);
+    #endif
+    struct adc_config config;
+    adc_get_config_defaults(&config);
+    adc_init(ADC, &config);
+    adc_start_calibration(ADC);
+
     
+
+//TODO check ADC setup compared to this, which comes from the ADC ENHANCED RESOLUTION example
+//     	adc_enable();
+//     	#if SAMG55
+//     	adc_select_clock_source_mck(ADC);
+//     	#endif
+// 
+//     	struct adc_config adc_cfg;
+// 
+//     	adc_get_config_defaults(&adc_cfg);
+// 
+//     	adc_init(ADC, &adc_cfg);
+//     	adc_channel_enable(ADC, ADC_CHANNEL_1);
+// 
+//     	adc_set_trigger(ADC, ADC_TRIG_TIO_CH_0);
+// 
+//     	adc_set_callback(ADC, ADC_INTERRUPT_EOC_1,
+//     	adc_end_conversion, 1);
+// 
+//     	set_adc_resolution();
+//     	adc_start_calibration(ADC);
     return true;    
 }
 

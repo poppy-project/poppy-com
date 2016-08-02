@@ -32,11 +32,21 @@
           <option id="common.boards" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.services.basic.clock" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.services.ioport" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="common.utils.interrupt" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.utils.stdio.stdio_serial" value="Add" config="" content-id="Atmel.ASF" />
-          <option id="sam.applications.getting-started" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam.drivers.adc" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam.drivers.flexcom" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam.drivers.matrix" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam.drivers.mem2mem" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam.drivers.pdc" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam.drivers.pio" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam.drivers.pmc" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam.drivers.rstc" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam.drivers.spi" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam.drivers.tc" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam.drivers.tc.appnote" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="common.services.basic.serial" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="sam.applications.getting-started" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam.utils.cmsis.samg55.source.template" value="Add" config="" content-id="Atmel.ASF" />
         </options>
         <configurations>
@@ -46,6 +56,10 @@
           <configuration key="config.compiler.iarewarm.debugger.driver" value="cmsisdap" default="cmsisdap" content-id="Atmel.ASF" />
           <configuration key="config.compiler.iarewarm.low_level_lib" value="semihosted" default="semihosted" content-id="Atmel.ASF" />
           <configuration key="config.compiler.as5_arm.create_aux" value="no" default="no" content-id="Atmel.ASF" />
+          <configuration key="config.compiler.armgcc.fpu_used" value="yes" default="yes" content-id="Atmel.ASF" />
+          <configuration key="config.compiler.armgcc.printf" value="iprintf" default="iprintf" content-id="Atmel.ASF" />
+          <configuration key="config.compiler.armgcc.scanf" value="iscanf" default="iscanf" content-id="Atmel.ASF" />
+          <configuration key="config.sam.pio.pio_handler" value="yes" default="yes" content-id="Atmel.ASF" />
         </configurations>
         <files>
           <file path="src/ASF/common/boards/board.h" framework="" version="" source="common/boards/board.h" changed="False" content-id="Atmel.ASF" />
@@ -74,7 +88,7 @@
           <file path="src/ASF/common/utils/stdio/stdio_serial/stdio_serial.h" framework="" version="" source="common/utils/stdio/stdio_serial/stdio_serial.h" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/common/utils/stdio/write.c" framework="" version="" source="common/utils/stdio/write.c" changed="False" content-id="Atmel.ASF" />
           <file path="src/main.c" framework="" version="" source="sam/applications/getting-started/main.c" changed="False" content-id="Atmel.ASF" />
-          <file path="src/config/conf_board.h" framework="" version="" source="sam/applications/getting-started/samg55j19_samg_xplained_pro/conf_board.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/Config/conf_board.h" framework="" version="3.31.0" source="sam\drivers\tc\tc_capture_waveform_example\sam4e16e_sam4e_ek\conf_board.h" changed="False" content-id="Atmel.ASF" />
           <file path="src/config/conf_clock.h" framework="" version="" source="sam/applications/getting-started/samg55j19_samg_xplained_pro/conf_clock.h" changed="False" content-id="Atmel.ASF" />
           <file path="src/config/conf_sleepmgr.h" framework="" version="" source="sam/applications/getting-started/samg55j19_samg_xplained_pro/conf_sleepmgr.h" changed="False" content-id="Atmel.ASF" />
           <file path="src/config/conf_uart_serial.h" framework="" version="" source="sam/applications/getting-started/samg55j19_samg_xplained_pro/conf_uart_serial.h" changed="False" content-id="Atmel.ASF" />
@@ -219,6 +233,21 @@
           <file path="src/ASF/thirdparty/CMSIS/Lib/license.txt" framework="" version="" source="thirdparty/CMSIS/Lib/license.txt" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/thirdparty/CMSIS/README.txt" framework="" version="" source="thirdparty/CMSIS/README.txt" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/thirdparty/CMSIS/license.txt" framework="" version="" source="thirdparty/CMSIS/license.txt" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/matrix/matrix.c" framework="" version="3.31.0" source="sam\drivers\matrix\matrix.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/matrix/matrix.h" framework="" version="3.31.0" source="sam\drivers\matrix\matrix.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/mem2mem/mem2mem.c" framework="" version="3.31.0" source="sam\drivers\mem2mem\mem2mem.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/mem2mem/mem2mem.h" framework="" version="3.31.0" source="sam\drivers\mem2mem\mem2mem.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/pdc/pdc.c" framework="" version="3.31.0" source="sam\drivers\pdc\pdc.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/pdc/pdc.h" framework="" version="3.31.0" source="sam\drivers\pdc\pdc.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/pdc/pdc_uart_example/pdc_uart_example.h" framework="" version="3.31.0" source="sam\drivers\pdc\pdc_uart_example\pdc_uart_example.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/rstc/rstc.c" framework="" version="3.31.0" source="sam\drivers\rstc\rstc.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/rstc/rstc.h" framework="" version="3.31.0" source="sam\drivers\rstc\rstc.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/rstc/example1/rstc_example1.h" framework="" version="3.31.0" source="sam\drivers\rstc\example1\rstc_example1.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/tc/tc_capture_waveform_example/tc_capture_waveform_example.h" framework="" version="3.31.0" source="sam\drivers\tc\tc_capture_waveform_example\tc_capture_waveform_example.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/adc/adc2.c" framework="" version="3.31.0" source="sam\drivers\adc\adc2.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/adc/adc2.h" framework="" version="3.31.0" source="sam\drivers\adc\adc2.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/spi/spi.c" framework="" version="3.31.0" source="sam\drivers\spi\spi.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/spi/spi.h" framework="" version="3.31.0" source="sam\drivers\spi\spi.h" changed="False" content-id="Atmel.ASF" />
         </files>
         <documentation help="http://asf.atmel.com/docs/3.31.0/sam.applications.getting-started.samg55_xplained_pro/html/index.html" />
         <offline-documentation help="" />
@@ -292,6 +321,14 @@
       <Value>../src/ASF/common/services/serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../src/ASF/sam/drivers/matrix</Value>
+      <Value>../src/ASF/sam/drivers/mem2mem</Value>
+      <Value>../src/ASF/sam/drivers/pdc</Value>
+      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../src/ASF/sam/drivers/rstc</Value>
+      <Value>../src/ASF/sam/drivers/adc</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
@@ -340,6 +377,14 @@
       <Value>../src/ASF/common/services/serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../src/ASF/sam/drivers/matrix</Value>
+      <Value>../src/ASF/sam/drivers/mem2mem</Value>
+      <Value>../src/ASF/sam/drivers/pdc</Value>
+      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../src/ASF/sam/drivers/rstc</Value>
+      <Value>../src/ASF/sam/drivers/adc</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=SAMG55_XPLAINED_PRO -D__SAMG55J19__ -Dprintf=iprintf -Dscanf=iscanf</armgcc.preprocessingassembler.general.AssemblerFlags>
@@ -371,6 +416,14 @@
       <Value>../src/ASF/common/services/serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../src/ASF/sam/drivers/matrix</Value>
+      <Value>../src/ASF/sam/drivers/mem2mem</Value>
+      <Value>../src/ASF/sam/drivers/pdc</Value>
+      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../src/ASF/sam/drivers/rstc</Value>
+      <Value>../src/ASF/sam/drivers/adc</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
@@ -423,6 +476,14 @@
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
       <Value>../src/libs</Value>
+      <Value>../src/ASF/sam/drivers/matrix</Value>
+      <Value>../src/ASF/sam/drivers/mem2mem</Value>
+      <Value>../src/ASF/sam/drivers/pdc</Value>
+      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../src/ASF/sam/drivers/rstc</Value>
+      <Value>../src/ASF/sam/drivers/adc</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -430,6 +491,9 @@
   <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
   <armgcc.compiler.optimization.DebugLevel>Maximum (-g3)</armgcc.compiler.optimization.DebugLevel>
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
+  <armgcc.compiler.warnings.ExtraWarnings>True</armgcc.compiler.warnings.ExtraWarnings>
+  <armgcc.compiler.warnings.Undefined>True</armgcc.compiler.warnings.Undefined>
+  <armgcc.compiler.warnings.WarningsAsErrors>True</armgcc.compiler.warnings.WarningsAsErrors>
   <armgcc.compiler.miscellaneous.OtherFlags>-pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
   <armgcc.linker.libraries.Libraries>
     <ListValues>
@@ -473,6 +537,14 @@
       <Value>../src/ASF/common/services/serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../src/ASF/sam/drivers/matrix</Value>
+      <Value>../src/ASF/sam/drivers/mem2mem</Value>
+      <Value>../src/ASF/sam/drivers/pdc</Value>
+      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../src/ASF/sam/drivers/rstc</Value>
+      <Value>../src/ASF/sam/drivers/adc</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
@@ -505,6 +577,14 @@
       <Value>../src/ASF/common/services/serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../src/ASF/sam/drivers/matrix</Value>
+      <Value>../src/ASF/sam/drivers/mem2mem</Value>
+      <Value>../src/ASF/sam/drivers/pdc</Value>
+      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../src/ASF/sam/drivers/rstc</Value>
+      <Value>../src/ASF/sam/drivers/adc</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -533,12 +613,21 @@
     <Folder Include="src\ASF\sam\boards\" />
     <Folder Include="src\ASF\sam\boards\samg55_xplained_pro\" />
     <Folder Include="src\ASF\sam\drivers\" />
+    <Folder Include="src\ASF\sam\drivers\adc\" />
     <Folder Include="src\ASF\sam\drivers\efc\" />
     <Folder Include="src\ASF\sam\drivers\flexcom\" />
+    <Folder Include="src\ASF\sam\drivers\matrix\" />
+    <Folder Include="src\ASF\sam\drivers\mem2mem\" />
+    <Folder Include="src\ASF\sam\drivers\pdc\" />
+    <Folder Include="src\ASF\sam\drivers\pdc\pdc_uart_example\" />
     <Folder Include="src\ASF\sam\drivers\pio\" />
     <Folder Include="src\ASF\sam\drivers\pmc\" />
+    <Folder Include="src\ASF\sam\drivers\rstc\" />
+    <Folder Include="src\ASF\sam\drivers\rstc\example1\" />
+    <Folder Include="src\ASF\sam\drivers\spi\" />
     <Folder Include="src\ASF\sam\drivers\supc\" />
     <Folder Include="src\ASF\sam\drivers\tc\" />
+    <Folder Include="src\ASF\sam\drivers\tc\tc_capture_waveform_example\" />
     <Folder Include="src\ASF\sam\drivers\usart\" />
     <Folder Include="src\ASF\sam\utils\" />
     <Folder Include="src\ASF\sam\utils\cmsis\" />
@@ -575,6 +664,51 @@
     <Folder Include="src\libs\system" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\ASF\sam\drivers\adc\adc2.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam\drivers\adc\adc2.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam\drivers\matrix\matrix.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam\drivers\matrix\matrix.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam\drivers\mem2mem\mem2mem.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam\drivers\mem2mem\mem2mem.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam\drivers\pdc\pdc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam\drivers\pdc\pdc.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam\drivers\pdc\pdc_uart_example\pdc_uart_example.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam\drivers\rstc\example1\rstc_example1.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam\drivers\rstc\rstc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam\drivers\rstc\rstc.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\sam\drivers\tc\tc_capture_waveform_example\tc_capture_waveform_example.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\ASF\sam\drivers\spi\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam\drivers\spi\spi.h">
+      <SubType>compile</SubType>
+    </None>
     <Compile Include="src\libs\button.h">
       <SubType>compile</SubType>
     </Compile>

@@ -2,6 +2,18 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\ASF\sam\drivers\adc\adc2.c
+
+src\ASF\sam\drivers\matrix\matrix.c
+
+src\ASF\sam\drivers\mem2mem\mem2mem.c
+
+src\ASF\sam\drivers\pdc\pdc.c
+
+src\ASF\sam\drivers\rstc\rstc.c
+
+src\ASF\sam\drivers\spi\spi.c
+
 src\libs\button\button.c
 
 src\libs\interfaces\ptp.c

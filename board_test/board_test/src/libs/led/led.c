@@ -6,7 +6,7 @@
  */ 
 #include "asf.h"
 
-bool led_get_state(void){
-    // TODO
-    return false;
-}
+// bool led_get_state(void){
+//     // TODO
+//     return false;
+// }

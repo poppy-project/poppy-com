@@ -101,7 +101,7 @@
 
 #include "log.h"
 #define LOG_TAG        "Main"
-#define LOG_LEVEL     LOG_LEVEL_INFO
+#define LOG_LEVEL     LOG_LEVEL_DEBUG
 
 
 
@@ -109,6 +109,94 @@
 extern "C" {
 #endif
 
+
+static void read_serial(void){
+    uint32_t val;
+    int c = getchar();
+    if (c != -1){
+        switch (c){
+            case 'a':
+            if (ptp_adc_get(ptp_a, &val)){
+                LOG_DEBUG("ADC: %lu", val);
+            } else {
+                LOG_ERROR("ADC read failed");
+            }
+            break;
+            case 'r':
+            ptp_set_mode(ptp_a, PTP_MODE_TX);
+            break;
+            case 't':
+            ptp_set_mode(ptp_a, PTP_MODE_RX);
+            break;
+            case 'e':
+            ptp_set_mode(ptp_a, PTP_MODE_RX_TX);
+            break;
+            case 'z':
+            ptp_set_mode(ptp_a, PTP_MODE_HI_Z);
+            break;
+            case 'h':
+            ptp_set_mode(ptp_a, PTP_MODE_HIGH);
+            break;
+            case 'l':
+            ptp_set_mode(ptp_a, PTP_MODE_LOW);
+            break;
+            case 'u':
+            ptp_set_mode(ptp_a, PTP_MODE_PULL_UP_WEAK);
+            break;
+            case 'p':
+            ptp_set_mode(ptp_a, PTP_MODE_PULL_UP_STRONG);
+            break;
+            case 'd':
+            ptp_set_mode(ptp_a, PTP_MODE_PULL_DOWN_WEAK);
+            break;
+            case 'w':
+            ptp_set_mode(ptp_a, PTP_MODE_PULL_DOWN_STRONG);
+            break;
+
+            case 'A':
+            if (ptp_adc_get(ptp_b, &val)){
+                LOG_DEBUG("ADC: %lu", val);
+            } else {
+                LOG_ERROR("ADC read failed");
+            }
+            break;
+            case 'R':
+            ptp_set_mode(ptp_b, PTP_MODE_TX);
+            break;
+            case 'T':
+            ptp_set_mode(ptp_b, PTP_MODE_RX);
+            break;
+            case 'E':
+            ptp_set_mode(ptp_b, PTP_MODE_RX_TX);
+            break;
+            case 'Z':
+            ptp_set_mode(ptp_b, PTP_MODE_HI_Z);
+            break;
+            case 'H':
+            ptp_set_mode(ptp_b, PTP_MODE_HIGH);
+            break;
+            case 'L':
+            ptp_set_mode(ptp_b, PTP_MODE_LOW);
+            break;
+            case 'U':
+            ptp_set_mode(ptp_b, PTP_MODE_PULL_UP_WEAK);
+            break;
+            case 'P':
+            ptp_set_mode(ptp_b, PTP_MODE_PULL_UP_STRONG);
+            break;
+            case 'D':
+            ptp_set_mode(ptp_b, PTP_MODE_PULL_DOWN_WEAK);
+            break;
+            case 'W':
+            ptp_set_mode(ptp_b, PTP_MODE_PULL_DOWN_STRONG);
+            break;
+
+            default:
+            LOG_INFO("?");
+            break;
+        }
+    }
+}    
 
 
 int main(void)
@@ -130,77 +218,79 @@ int main(void)
     rs485_init();
     ptp_init();
     
-    ptp_t ptp_a = {
-        .uart = PTP_A_UART,
-        .mode = PTP_HI_Z,
-        .driver_pin = PTP_A_TX_PIN,
-        .driver_port = PTP_A_UART_PORT,
-        };
-    ptp_t ptp_b = {
-        .uart = PTP_B_UART,
-        .mode = PTP_HI_Z,
-        .driver_pin = PTP_B_TX_PIN,
-        .driver_port = PTP_B_UART_PORT,
-    };
+    ptp_set_mode(ptp_a, PTP_MODE_RX);
+    ptp_set_mode(ptp_b, PTP_MODE_RX);
     
-    char my_char = 'r';
-    char ptp_char_a = 'a';  
-    char ptp_char_b = 'b';
-
-    while (1) {
-        rs485_set_dir(HALF_DUPLEX_BOTH);
-         
-        delay_ms(1); // TODO wait for event when it's done writing
-        
-        rs485_write(my_char);
-        
-        delay_ms(1); // TODO wait for event when it's done writing
-        rs485_set_dir(HALF_DUPLEX_RX);
-        
-        uint32_t now = get_tick();
-        while ( get_tick() - now < 500 ){
-            uint32_t c;
-            for(uint8_t i = 0; i< 5; i++){
-                if (rs485_read(&c) == 0){
-                    if (c != my_char){
-                        LOG_INFO("RS485: %c", (uint8_t)c);
-                    }
-                }
-                delay_ms(1);
-            }            
-            
-            ptp_set_mode( &ptp_b, PTP_TX);
-            delay_ms(1);
-            ptp_write(PTP_B_UART, ptp_char_b);
-            delay_ms(1);
-            ptp_set_mode( &ptp_b, PTP_RX);
-
-            for(uint8_t i = 0; i< 5; i++){
-                if (ptp_read(PTP_A_UART, &c) == 0){
-                    //if (c != ptp_char_a){
-                    LOG_INFO("PTP_A: %c", (uint8_t)c);
-                    //}
-                }
-            delay_ms(1);
-            }
-            
-            
-            ptp_set_mode( &ptp_a, PTP_TX);
-            delay_ms(1);
-            ptp_write(PTP_A_UART, ptp_char_a);
-            delay_ms(1);
-            ptp_set_mode( &ptp_a, PTP_RX);
-        
-            for(uint8_t i = 0; i< 5; i++){
-                if (ptp_read(PTP_B_UART, &c) == 0){
-                    //if (c != ptp_char_b){
-                    LOG_INFO("PTP_B: %c", (uint8_t)c);
-                    //}
-                }
-                delay_ms(1);
-            }
-        }
-    }
+    while (1){
+        read_serial();
+        delay_ms(1);
+    }        
+    
+    
+    
+    
+    
+    
+//     
+//     
+//     char my_char = 'r';
+//     char ptp_char_a = 'a';  
+//     char ptp_char_b = 'b';
+// 
+//     while (1) {
+//         rs485_set_dir(HALF_DUPLEX_BOTH);
+//          
+//         delay_ms(1); // TODO wait for event when it's done writing
+//         
+//         rs485_write(my_char);
+//         
+//         delay_ms(1); // TODO wait for event when it's done writing
+//         rs485_set_dir(HALF_DUPLEX_RX);
+//         
+//         uint32_t now = get_tick();
+//         while ( get_tick() - now < 500 ){
+//             uint32_t c;
+//             for(uint8_t i = 0; i< 5; i++){
+//                 if (rs485_read(&c) == 0){
+//                     if (c != my_char){
+//                         LOG_INFO("RS485: %c", (uint8_t)c);
+//                     }
+//                 }
+//                 delay_ms(1);
+//             }            
+//             
+//             ptp_set_mode( ptp_b, PTP_MODE_TX);
+//             delay_ms(1);
+//             ptp_write(ptp_b, ptp_char_b);
+//             delay_ms(1);
+//             ptp_set_mode( ptp_b, PTP_MODE_RX);
+// 
+//             for(uint8_t i = 0; i< 5; i++){
+//                 if (ptp_read(ptp_a, &c) == 0){
+//                     //if (c != ptp_char_a){
+//                     LOG_INFO("PTP_A: %c", (uint8_t)c);
+//                     //}
+//                 }
+//             delay_ms(1);
+//             }
+//             
+//             
+//             ptp_set_mode( ptp_a, PTP_MODE_TX);
+//             delay_ms(1);
+//             ptp_write(ptp_a, ptp_char_a);
+//             delay_ms(1);
+//             ptp_set_mode( ptp_a, PTP_MODE_RX);
+//         
+//             for(uint8_t i = 0; i< 5; i++){
+//                 if (ptp_read(ptp_b, &c) == 0){
+//                     //if (c != ptp_char_b){
+//                     LOG_INFO("PTP_B: %c", (uint8_t)c);
+//                     //}
+//                 }
+//                 delay_ms(1);
+//             }
+//         }
+//     }
 }
 
 #ifdef __cplusplus
