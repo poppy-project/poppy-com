@@ -130,6 +130,18 @@ int main(void)
     rs485_init();
     ptp_init();
     
+    ptp_t ptp_a = {
+        .uart = PTP_A_UART,
+        .mode = PTP_HI_Z,
+        .driver_pin = PTP_A_TX_PIN,
+        .driver_port = PTP_A_UART_PORT,
+        };
+    ptp_t ptp_b = {
+        .uart = PTP_B_UART,
+        .mode = PTP_HI_Z,
+        .driver_pin = PTP_B_TX_PIN,
+        .driver_port = PTP_B_UART_PORT,
+    };
     
     char my_char = 'r';
     char ptp_char_a = 'a';  
@@ -157,11 +169,11 @@ int main(void)
                 delay_ms(1);
             }            
             
-            ptp_set_dir( PTP_B_UART, HALF_DUPLEX_TX);
+            ptp_set_mode( &ptp_b, PTP_TX);
             delay_ms(1);
             ptp_write(PTP_B_UART, ptp_char_b);
             delay_ms(1);
-            ptp_set_dir( PTP_B_UART, HALF_DUPLEX_RX);
+            ptp_set_mode( &ptp_b, PTP_RX);
 
             for(uint8_t i = 0; i< 5; i++){
                 if (ptp_read(PTP_A_UART, &c) == 0){
@@ -173,11 +185,11 @@ int main(void)
             }
             
             
-            ptp_set_dir( PTP_A_UART, HALF_DUPLEX_TX);
+            ptp_set_mode( &ptp_a, PTP_TX);
             delay_ms(1);
             ptp_write(PTP_A_UART, ptp_char_a);
             delay_ms(1);
-            ptp_set_dir( PTP_A_UART, HALF_DUPLEX_RX);
+            ptp_set_mode( &ptp_a, PTP_RX);
         
             for(uint8_t i = 0; i< 5; i++){
                 if (ptp_read(PTP_B_UART, &c) == 0){

@@ -52,6 +52,9 @@
  * running the ASF driver selector tool. Any changes will be discarded.
  */
 
+// From module: ADC - Analog-to-digital Converter
+#include <adc2.h>
+
 // From module: Common SAM compiler driver
 #include <compiler.h>
 #include <status_codes.h>
@@ -71,6 +74,15 @@
 // From module: Interrupt management - SAM implementation
 #include <interrupt.h>
 
+// From module: MATRIX - Bus Matrix
+#include <matrix.h>
+
+// From module: MEM2MEM - Memory to Memory
+#include <mem2mem.h>
+
+// From module: PDC - Peripheral DMA Controller Example
+#include <pdc.h>
+
 // From module: PIO - Parallel Input/Output Controller
 #include <pio.h>
 
@@ -81,11 +93,17 @@
 // From module: Part identification macros
 #include <parts.h>
 
+// From module: RSTC - Reset Controller
+#include <rstc.h>
+
 // From module: SAM FPU driver
 #include <fpu.h>
 
 // From module: SAMG55 Xplained Pro LED support enabled
 #include <led.h>
+
+// From module: SPI - Serial Peripheral Interface
+#include <spi.h>
 
 // From module: SUPC - Supply Controller
 #include <supc.h>
