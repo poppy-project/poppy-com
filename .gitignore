@@ -15,3 +15,5 @@
 *.info
 *_symbols.txt
 /Docs
+*.atsuo
+*.bak
