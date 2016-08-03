@@ -259,7 +259,7 @@
       </framework-data>
     </AsfFrameworkConfig>
     <avrtool>com.atmel.avrdbg.tool.edbg</avrtool>
-    <avrtoolserialnumber>ATML2393031800001370</avrtoolserialnumber>
+    <avrtoolserialnumber>ATML2393031800001257</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x24570AE0</avrdeviceexpectedsignature>
     <avrtoolinterface>SWD</avrtoolinterface>
     <com_atmel_avrdbg_tool_edbg>
@@ -270,7 +270,7 @@
         <InterfaceName>SWD</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.edbg</ToolType>
-      <ToolNumber>ATML2393031800001370</ToolNumber>
+      <ToolNumber>ATML2393031800001257</ToolNumber>
       <ToolName>EDBG</ToolName>
     </com_atmel_avrdbg_tool_edbg>
     <avrtoolinterfaceclock>2000000</avrtoolinterfaceclock>
@@ -295,40 +295,40 @@
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
     <ListValues>
-      <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/common/services/sleepmgr</Value>
-      <Value>../src/ASF/sam/utils/fpu</Value>
-      <Value>../src/ASF/common/services/serial/sam_uart</Value>
-      <Value>../src/ASF/sam/boards/samg55_xplained_pro</Value>
-      <Value>../src/ASF/sam/drivers/pmc</Value>
-      <Value>../src/ASF/sam/boards</Value>
-      <Value>../src/ASF/sam/drivers/pio</Value>
-      <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/sam/utils/header_files</Value>
-      <Value>../src/ASF/sam/drivers/tc</Value>
-      <Value>../src/ASF/common/services/ioport</Value>
-      <Value>../src/ASF/sam/drivers/flexcom</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Include</Value>
-      <Value>../src/ASF/sam/drivers/efc</Value>
-      <Value>../src/config</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../poppy_com/hal/ASF/common/utils</Value>
+      <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
+      <Value>../poppy_com/hal/ASF/common/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
+      <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
+      <Value>../poppy_com/hal/config</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
       <Value>../src</Value>
-      <Value>../src/ASF/common/services/clock</Value>
-      <Value>../src/ASF/sam/drivers/supc</Value>
-      <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
-      <Value>../src/ASF/sam/utils</Value>
-      <Value>../src/ASF/sam/utils/preprocessor</Value>
-      <Value>../src/ASF/common/services/serial</Value>
-      <Value>../src/ASF/sam/drivers/usart</Value>
-      <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
-      <Value>../src/ASF/sam/drivers/matrix</Value>
-      <Value>../src/ASF/sam/drivers/mem2mem</Value>
-      <Value>../src/ASF/sam/drivers/pdc</Value>
-      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
-      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
-      <Value>../src/ASF/sam/drivers/rstc</Value>
-      <Value>../src/ASF/sam/drivers/adc</Value>
-      <Value>../src/ASF/sam/drivers/spi</Value>
+      <Value>../poppy_com/hal/ASF/common/services/clock</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
+      <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
@@ -344,86 +344,86 @@
   </armgcc.linker.libraries.Libraries>
   <armgcc.linker.libraries.LibrarySearchPaths>
     <ListValues>
-      <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
-  <armgcc.linker.miscellaneous.LinkerFlags>-Wl,--entry=Reset_Handler -Wl,--cref -mthumb -T../src/ASF/sam/utils/linker_scripts/samg/samg55j19/gcc/flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
+  <armgcc.linker.miscellaneous.LinkerFlags>-Wl,--entry=Reset_Handler -Wl,--cref -mthumb -T../poppy_com/hal/ASF/sam/utils/linker_scripts/samg/samg55j19/gcc/flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
   <armgcc.assembler.general.IncludePaths>
     <ListValues>
-      <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/common/services/sleepmgr</Value>
-      <Value>../src/ASF/sam/utils/fpu</Value>
-      <Value>../src/ASF/common/services/serial/sam_uart</Value>
-      <Value>../src/ASF/sam/boards/samg55_xplained_pro</Value>
-      <Value>../src/ASF/sam/drivers/pmc</Value>
-      <Value>../src/ASF/sam/boards</Value>
-      <Value>../src/ASF/sam/drivers/pio</Value>
-      <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/sam/utils/header_files</Value>
-      <Value>../src/ASF/sam/drivers/tc</Value>
-      <Value>../src/ASF/common/services/ioport</Value>
-      <Value>../src/ASF/sam/drivers/flexcom</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Include</Value>
-      <Value>../src/ASF/sam/drivers/efc</Value>
-      <Value>../src/config</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../poppy_com/hal/ASF/common/utils</Value>
+      <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
+      <Value>../poppy_com/hal/ASF/common/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
+      <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
+      <Value>../poppy_com/hal/config</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
       <Value>../src</Value>
-      <Value>../src/ASF/common/services/clock</Value>
-      <Value>../src/ASF/sam/drivers/supc</Value>
-      <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
-      <Value>../src/ASF/sam/utils</Value>
-      <Value>../src/ASF/sam/utils/preprocessor</Value>
-      <Value>../src/ASF/common/services/serial</Value>
-      <Value>../src/ASF/sam/drivers/usart</Value>
-      <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
-      <Value>../src/ASF/sam/drivers/matrix</Value>
-      <Value>../src/ASF/sam/drivers/mem2mem</Value>
-      <Value>../src/ASF/sam/drivers/pdc</Value>
-      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
-      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
-      <Value>../src/ASF/sam/drivers/rstc</Value>
-      <Value>../src/ASF/sam/drivers/adc</Value>
-      <Value>../src/ASF/sam/drivers/spi</Value>
+      <Value>../poppy_com/hal/ASF/common/services/clock</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
+      <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=SAMG55_XPLAINED_PRO -D__SAMG55J19__ -Dprintf=iprintf -Dscanf=iscanf</armgcc.preprocessingassembler.general.AssemblerFlags>
   <armgcc.preprocessingassembler.general.IncludePaths>
     <ListValues>
-      <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/common/services/sleepmgr</Value>
-      <Value>../src/ASF/sam/utils/fpu</Value>
-      <Value>../src/ASF/common/services/serial/sam_uart</Value>
-      <Value>../src/ASF/sam/boards/samg55_xplained_pro</Value>
-      <Value>../src/ASF/sam/drivers/pmc</Value>
-      <Value>../src/ASF/sam/boards</Value>
-      <Value>../src/ASF/sam/drivers/pio</Value>
-      <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/sam/utils/header_files</Value>
-      <Value>../src/ASF/sam/drivers/tc</Value>
-      <Value>../src/ASF/common/services/ioport</Value>
-      <Value>../src/ASF/sam/drivers/flexcom</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Include</Value>
-      <Value>../src/ASF/sam/drivers/efc</Value>
-      <Value>../src/config</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../poppy_com/hal/ASF/common/utils</Value>
+      <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
+      <Value>../poppy_com/hal/ASF/common/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
+      <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
+      <Value>../poppy_com/hal/config</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
       <Value>../src</Value>
-      <Value>../src/ASF/common/services/clock</Value>
-      <Value>../src/ASF/sam/drivers/supc</Value>
-      <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
-      <Value>../src/ASF/sam/utils</Value>
-      <Value>../src/ASF/sam/utils/preprocessor</Value>
-      <Value>../src/ASF/common/services/serial</Value>
-      <Value>../src/ASF/sam/drivers/usart</Value>
-      <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
-      <Value>../src/ASF/sam/drivers/matrix</Value>
-      <Value>../src/ASF/sam/drivers/mem2mem</Value>
-      <Value>../src/ASF/sam/drivers/pdc</Value>
-      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
-      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
-      <Value>../src/ASF/sam/drivers/rstc</Value>
-      <Value>../src/ASF/sam/drivers/adc</Value>
-      <Value>../src/ASF/sam/drivers/spi</Value>
+      <Value>../poppy_com/hal/ASF/common/services/clock</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
+      <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
@@ -449,41 +449,44 @@
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.IncludePaths>
     <ListValues>
-      <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/common/services/sleepmgr</Value>
-      <Value>../src/ASF/sam/utils/fpu</Value>
-      <Value>../src/ASF/common/services/serial/sam_uart</Value>
-      <Value>../src/ASF/sam/boards/samg55_xplained_pro</Value>
-      <Value>../src/ASF/sam/drivers/pmc</Value>
-      <Value>../src/ASF/sam/boards</Value>
-      <Value>../src/ASF/sam/drivers/pio</Value>
-      <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/sam/utils/header_files</Value>
-      <Value>../src/ASF/sam/drivers/tc</Value>
-      <Value>../src/ASF/common/services/ioport</Value>
-      <Value>../src/ASF/sam/drivers/flexcom</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Include</Value>
-      <Value>../src/ASF/sam/drivers/efc</Value>
-      <Value>../src/config</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../poppy_com/hal/ASF/common/utils</Value>
+      <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
+      <Value>../poppy_com/hal/ASF/common/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
+      <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
+      <Value>../poppy_com/hal/config</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
       <Value>../src</Value>
-      <Value>../src/ASF/common/services/clock</Value>
-      <Value>../src/ASF/sam/drivers/supc</Value>
-      <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
-      <Value>../src/ASF/sam/utils</Value>
-      <Value>../src/ASF/sam/utils/preprocessor</Value>
-      <Value>../src/ASF/common/services/serial</Value>
-      <Value>../src/ASF/sam/drivers/usart</Value>
-      <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
-      <Value>../src/libs</Value>
-      <Value>../src/ASF/sam/drivers/matrix</Value>
-      <Value>../src/ASF/sam/drivers/mem2mem</Value>
-      <Value>../src/ASF/sam/drivers/pdc</Value>
-      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
-      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
-      <Value>../src/ASF/sam/drivers/rstc</Value>
-      <Value>../src/ASF/sam/drivers/adc</Value>
-      <Value>../src/ASF/sam/drivers/spi</Value>
+      <Value>../poppy_com/hal/ASF/common/services/clock</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
+      <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../poppy_com/hal/libs</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
+      <Value>../poppy_com/hal</Value>
+      <Value>../poppy_com/inc</Value>
+      <Value>../poppy_com</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -497,94 +500,93 @@
   <armgcc.compiler.miscellaneous.OtherFlags>-pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
   <armgcc.linker.libraries.Libraries>
     <ListValues>
-      <Value>libarm_cortexM4lf_math_softfp</Value>
       <Value>libm</Value>
     </ListValues>
   </armgcc.linker.libraries.Libraries>
   <armgcc.linker.libraries.LibrarySearchPaths>
     <ListValues>
-      <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
     </ListValues>
   </armgcc.linker.libraries.LibrarySearchPaths>
   <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
   <armgcc.linker.memorysettings.ExternalRAM />
-  <armgcc.linker.miscellaneous.LinkerFlags>-Wl,--entry=Reset_Handler -Wl,--cref -mthumb -T../src/ASF/sam/utils/linker_scripts/samg/samg55j19/gcc/flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
+  <armgcc.linker.miscellaneous.LinkerFlags>-Wl,--entry=Reset_Handler -Wl,--cref -mthumb -T../poppy_com/hal/ASF/sam/utils/linker_scripts/samg/samg55j19/gcc/flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
   <armgcc.assembler.general.IncludePaths>
     <ListValues>
-      <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/common/services/sleepmgr</Value>
-      <Value>../src/ASF/sam/utils/fpu</Value>
-      <Value>../src/ASF/common/services/serial/sam_uart</Value>
-      <Value>../src/ASF/sam/boards/samg55_xplained_pro</Value>
-      <Value>../src/ASF/sam/drivers/pmc</Value>
-      <Value>../src/ASF/sam/boards</Value>
-      <Value>../src/ASF/sam/drivers/pio</Value>
-      <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/sam/utils/header_files</Value>
-      <Value>../src/ASF/sam/drivers/tc</Value>
-      <Value>../src/ASF/common/services/ioport</Value>
-      <Value>../src/ASF/sam/drivers/flexcom</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Include</Value>
-      <Value>../src/ASF/sam/drivers/efc</Value>
-      <Value>../src/config</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../poppy_com/hal/ASF/common/utils</Value>
+      <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
+      <Value>../poppy_com/hal/ASF/common/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
+      <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
+      <Value>../poppy_com/hal/config</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
       <Value>../src</Value>
-      <Value>../src/ASF/common/services/clock</Value>
-      <Value>../src/ASF/sam/drivers/supc</Value>
-      <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
-      <Value>../src/ASF/sam/utils</Value>
-      <Value>../src/ASF/sam/utils/preprocessor</Value>
-      <Value>../src/ASF/common/services/serial</Value>
-      <Value>../src/ASF/sam/drivers/usart</Value>
-      <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
-      <Value>../src/ASF/sam/drivers/matrix</Value>
-      <Value>../src/ASF/sam/drivers/mem2mem</Value>
-      <Value>../src/ASF/sam/drivers/pdc</Value>
-      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
-      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
-      <Value>../src/ASF/sam/drivers/rstc</Value>
-      <Value>../src/ASF/sam/drivers/adc</Value>
-      <Value>../src/ASF/sam/drivers/spi</Value>
+      <Value>../poppy_com/hal/ASF/common/services/clock</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
+      <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
   <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=SAMG55_XPLAINED_PRO -D__SAMG55J19__ -Dprintf=iprintf -Dscanf=iscanf</armgcc.preprocessingassembler.general.AssemblerFlags>
   <armgcc.preprocessingassembler.general.IncludePaths>
     <ListValues>
-      <Value>../src/ASF/common/utils</Value>
-      <Value>../src/ASF/common/services/sleepmgr</Value>
-      <Value>../src/ASF/sam/utils/fpu</Value>
-      <Value>../src/ASF/common/services/serial/sam_uart</Value>
-      <Value>../src/ASF/sam/boards/samg55_xplained_pro</Value>
-      <Value>../src/ASF/sam/drivers/pmc</Value>
-      <Value>../src/ASF/sam/boards</Value>
-      <Value>../src/ASF/sam/drivers/pio</Value>
-      <Value>../src/ASF/common/boards</Value>
-      <Value>../src/ASF/sam/utils/header_files</Value>
-      <Value>../src/ASF/sam/drivers/tc</Value>
-      <Value>../src/ASF/common/services/ioport</Value>
-      <Value>../src/ASF/sam/drivers/flexcom</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Include</Value>
-      <Value>../src/ASF/sam/drivers/efc</Value>
-      <Value>../src/config</Value>
-      <Value>../src/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+      <Value>../poppy_com/hal/ASF/common/utils</Value>
+      <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
+      <Value>../poppy_com/hal/ASF/sam/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
+      <Value>../poppy_com/hal/ASF/common/boards</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
+      <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
+      <Value>../poppy_com/hal/config</Value>
+      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
       <Value>../src</Value>
-      <Value>../src/ASF/common/services/clock</Value>
-      <Value>../src/ASF/sam/drivers/supc</Value>
-      <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
-      <Value>../src/ASF/sam/utils</Value>
-      <Value>../src/ASF/sam/utils/preprocessor</Value>
-      <Value>../src/ASF/common/services/serial</Value>
-      <Value>../src/ASF/sam/drivers/usart</Value>
-      <Value>../src/ASF/sam/utils/cmsis/samg/samg55/include</Value>
-      <Value>../src/ASF/sam/drivers/matrix</Value>
-      <Value>../src/ASF/sam/drivers/mem2mem</Value>
-      <Value>../src/ASF/sam/drivers/pdc</Value>
-      <Value>../src/ASF/sam/drivers/pdc/pdc_uart_example</Value>
-      <Value>../src/ASF/sam/drivers/rstc/example1</Value>
-      <Value>../src/ASF/sam/drivers/rstc</Value>
-      <Value>../src/ASF/sam/drivers/adc</Value>
-      <Value>../src/ASF/sam/drivers/spi</Value>
+      <Value>../poppy_com/hal/ASF/common/services/clock</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
+      <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
+      <Value>../poppy_com/hal/ASF/common/services/serial</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
+      <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
+      <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -592,685 +594,724 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="src\" />
-    <Folder Include="src\ASF\" />
-    <Folder Include="src\ASF\common\" />
-    <Folder Include="src\ASF\common\boards\" />
-    <Folder Include="src\ASF\common\services\" />
-    <Folder Include="src\ASF\common\services\clock\" />
-    <Folder Include="src\ASF\common\services\clock\samg\" />
-    <Folder Include="src\ASF\common\services\ioport\" />
-    <Folder Include="src\ASF\common\services\ioport\sam\" />
-    <Folder Include="src\ASF\common\services\serial\" />
-    <Folder Include="src\ASF\common\services\serial\sam_uart\" />
-    <Folder Include="src\ASF\common\services\sleepmgr\" />
-    <Folder Include="src\ASF\common\services\sleepmgr\sam\" />
-    <Folder Include="src\ASF\common\utils\" />
-    <Folder Include="src\ASF\common\utils\interrupt\" />
-    <Folder Include="src\ASF\common\utils\stdio\" />
-    <Folder Include="src\ASF\common\utils\stdio\stdio_serial\" />
-    <Folder Include="src\ASF\sam\" />
-    <Folder Include="src\ASF\sam\boards\" />
-    <Folder Include="src\ASF\sam\boards\samg55_xplained_pro\" />
-    <Folder Include="src\ASF\sam\drivers\" />
-    <Folder Include="src\ASF\sam\drivers\adc\" />
-    <Folder Include="src\ASF\sam\drivers\efc\" />
-    <Folder Include="src\ASF\sam\drivers\flexcom\" />
-    <Folder Include="src\ASF\sam\drivers\matrix\" />
-    <Folder Include="src\ASF\sam\drivers\mem2mem\" />
-    <Folder Include="src\ASF\sam\drivers\pdc\" />
-    <Folder Include="src\ASF\sam\drivers\pdc\pdc_uart_example\" />
-    <Folder Include="src\ASF\sam\drivers\pio\" />
-    <Folder Include="src\ASF\sam\drivers\pmc\" />
-    <Folder Include="src\ASF\sam\drivers\rstc\" />
-    <Folder Include="src\ASF\sam\drivers\rstc\example1\" />
-    <Folder Include="src\ASF\sam\drivers\spi\" />
-    <Folder Include="src\ASF\sam\drivers\supc\" />
-    <Folder Include="src\ASF\sam\drivers\tc\" />
-    <Folder Include="src\ASF\sam\drivers\tc\tc_capture_waveform_example\" />
-    <Folder Include="src\ASF\sam\drivers\usart\" />
-    <Folder Include="src\ASF\sam\utils\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\samg\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\samg\samg55\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\samg\samg55\include\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\samg\samg55\include\pio\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\samg\samg55\source\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\samg\samg55\source\templates\" />
-    <Folder Include="src\ASF\sam\utils\cmsis\samg\samg55\source\templates\gcc\" />
-    <Folder Include="src\ASF\sam\utils\fpu\" />
-    <Folder Include="src\ASF\sam\utils\header_files\" />
-    <Folder Include="src\ASF\sam\utils\linker_scripts\" />
-    <Folder Include="src\ASF\sam\utils\linker_scripts\samg\" />
-    <Folder Include="src\ASF\sam\utils\linker_scripts\samg\samg55j19\" />
-    <Folder Include="src\ASF\sam\utils\linker_scripts\samg\samg55j19\gcc\" />
-    <Folder Include="src\ASF\sam\utils\make\" />
-    <Folder Include="src\ASF\sam\utils\preprocessor\" />
-    <Folder Include="src\ASF\sam\utils\syscalls\" />
-    <Folder Include="src\ASF\sam\utils\syscalls\gcc\" />
-    <Folder Include="src\ASF\thirdparty\" />
-    <Folder Include="src\ASF\thirdparty\CMSIS\" />
-    <Folder Include="src\ASF\thirdparty\CMSIS\Include\" />
-    <Folder Include="src\ASF\thirdparty\CMSIS\Lib\" />
-    <Folder Include="src\ASF\thirdparty\CMSIS\Lib\GCC\" />
-    <Folder Include="src\config\" />
-    <Folder Include="src\libs" />
-    <Folder Include="src\libs\button" />
-    <Folder Include="src\libs\led" />
-    <Folder Include="src\libs\interfaces" />
-    <Folder Include="src\libs\serial" />
-    <Folder Include="src\libs\system" />
+    <Folder Include="src" />
+    <Folder Include="poppy_com" />
+    <Folder Include="poppy_com\hal\" />
+    <Folder Include="poppy_com\hal\ASF\" />
+    <Folder Include="poppy_com\hal\ASF\common\" />
+    <Folder Include="poppy_com\hal\ASF\common\boards\" />
+    <Folder Include="poppy_com\hal\ASF\common\services\" />
+    <Folder Include="poppy_com\hal\ASF\common\services\clock\" />
+    <Folder Include="poppy_com\hal\ASF\common\services\clock\samg\" />
+    <Folder Include="poppy_com\hal\ASF\common\services\ioport\" />
+    <Folder Include="poppy_com\hal\ASF\common\services\ioport\sam\" />
+    <Folder Include="poppy_com\hal\ASF\common\services\serial\" />
+    <Folder Include="poppy_com\hal\ASF\common\services\serial\sam_uart\" />
+    <Folder Include="poppy_com\hal\ASF\common\services\sleepmgr\" />
+    <Folder Include="poppy_com\hal\ASF\common\services\sleepmgr\sam\" />
+    <Folder Include="poppy_com\hal\ASF\common\utils\" />
+    <Folder Include="poppy_com\hal\ASF\common\utils\interrupt\" />
+    <Folder Include="poppy_com\hal\ASF\common\utils\stdio\" />
+    <Folder Include="poppy_com\hal\ASF\common\utils\stdio\stdio_serial\" />
+    <Folder Include="poppy_com\hal\ASF\sam\" />
+    <Folder Include="poppy_com\hal\ASF\sam\boards\" />
+    <Folder Include="poppy_com\hal\ASF\sam\boards\samg55_xplained_pro\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\adc\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\efc\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\flexcom\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\matrix\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\mem2mem\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\pdc\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\pdc\pdc_uart_example\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\pio\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\pmc\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\rstc\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\rstc\example1\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\spi\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\supc\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\tc\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\tc\tc_capture_waveform_example\" />
+    <Folder Include="poppy_com\hal\ASF\sam\drivers\usart\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\pio\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\source\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\source\templates\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\source\templates\gcc\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\fpu\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\header_files\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\linker_scripts\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\linker_scripts\samg\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\linker_scripts\samg\samg55j19\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\linker_scripts\samg\samg55j19\gcc\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\make\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\preprocessor\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\syscalls\" />
+    <Folder Include="poppy_com\hal\ASF\sam\utils\syscalls\gcc\" />
+    <Folder Include="poppy_com\hal\ASF\thirdparty\" />
+    <Folder Include="poppy_com\hal\ASF\thirdparty\CMSIS\" />
+    <Folder Include="poppy_com\hal\ASF\thirdparty\CMSIS\Include\" />
+    <Folder Include="poppy_com\hal\ASF\thirdparty\CMSIS\Lib\" />
+    <Folder Include="poppy_com\hal\config\" />
+    <Folder Include="poppy_com\hal\libs\" />
+    <Folder Include="poppy_com\hal\libs\button\" />
+    <Folder Include="poppy_com\hal\libs\interfaces\" />
+    <Folder Include="poppy_com\hal\libs\led\" />
+    <Folder Include="poppy_com\hal\libs\serial\" />
+    <Folder Include="poppy_com\hal\libs\system\" />
+    <Folder Include="poppy_com\inc\" />
+    <Folder Include="poppy_com\src\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\ASF\sam\drivers\adc\adc2.c">
+    <Compile Include="poppy_com\hal\asf.h">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\sam\drivers\adc\adc2.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\sam\drivers\matrix\matrix.c">
+    <Compile Include="poppy_com\hal\ASF\common\boards\board.h">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\sam\drivers\matrix\matrix.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\sam\drivers\mem2mem\mem2mem.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\clock\genclk.h">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\sam\drivers\mem2mem\mem2mem.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\sam\drivers\pdc\pdc.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\clock\osc.h">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\sam\drivers\pdc\pdc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\pdc\pdc_uart_example\pdc_uart_example.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\rstc\example1\rstc_example1.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\sam\drivers\rstc\rstc.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\clock\pll.h">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\sam\drivers\rstc\rstc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\tc\tc_capture_waveform_example\tc_capture_waveform_example.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\sam\drivers\spi\spi.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\clock\samg\genclk.h">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\sam\drivers\spi\spi.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\libs\button.h">
+    <Compile Include="poppy_com\hal\ASF\common\services\clock\samg\osc.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\half_duplex.h">
+    <Compile Include="poppy_com\hal\ASF\common\services\clock\samg\pll.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\log.h">
+    <Compile Include="poppy_com\hal\ASF\common\services\clock\samg\sysclk.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\ptp.h">
+    <Compile Include="poppy_com\hal\ASF\common\services\clock\samg\sysclk.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\rs485.h">
+    <Compile Include="poppy_com\hal\ASF\common\services\clock\sysclk.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\term.h">
+    <Compile Include="poppy_com\hal\ASF\common\services\ioport\ioport.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\test_board.h">
+    <Compile Include="poppy_com\hal\ASF\common\services\ioport\sam\ioport_pio.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\button\button.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\serial\sam_uart\uart_serial.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\interfaces\ptp.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\serial\serial.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\interfaces\rs485.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\serial\usart_serial.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\led\led.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\sleepmgr\sam\sleepmgr.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\serial\uart.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\sleepmgr\sam\sleepmgr.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\system\debug.c">
+    <Compile Include="poppy_com\hal\ASF\common\services\sleepmgr\sleepmgr.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\system\system.c">
+    <Compile Include="poppy_com\hal\ASF\common\utils\interrupt.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\system\time.c">
+    <Compile Include="poppy_com\hal\ASF\common\utils\interrupt\interrupt_sam_nvic.c">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\asf.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\config\conf_clock.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\config\conf_uart_serial.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\config\conf_board.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\config\conf_sleepmgr.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\pdmic1.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\serial\sam_uart\uart_serial.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom2.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom3.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom0.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom1.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom6.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom7.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom4.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom5.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\serial\serial.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\linker_scripts\samg\samg55j19\gcc\flash.ld">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\make\Makefile.sam.in">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\CMSIS\ATMEL-disclaimer.txt">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\CMSIS\CMSIS_END_USER_LICENCE_AGREEMENT.pdf">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\CMSIS\Include\arm_const_structs.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\mem2mem.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\gpbr.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\rtt.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\usart.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\header_files\io.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55n19.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\pdmic0.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\samg55n19.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\supc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\wdt.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\CMSIS\Include\core_cmInstr.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\samg55.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\boards\samg55_xplained_pro\led.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\usart\usart.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart5.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\flexcom\flexcom.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\samg55j19.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\samg55j18.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\tc\tc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\clock\genclk.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\i2sc0.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\pio.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi4.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi5.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi6.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi7.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi0.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi1.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi2.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi3.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\matrix.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\sleepmgr\sleepmgr.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart1.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\cmcc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\mem2mem.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart6.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\rtc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\efc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\flexcom.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55j19.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55j18.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\rtt.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\preprocessor\tpaste.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\CMSIS\Include\core_cmSimd.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\pioa.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\piob.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\utils\interrupt\interrupt_sam_nvic.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\sleepmgr\sam\sleepmgr.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\CMSIS\Include\arm_common_tables.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\pmc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi4.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi5.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart2.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi6.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi7.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi0.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi1.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi2.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\i2sc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi3.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\ioport\sam\ioport_pio.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\uhp.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\supc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\tc0.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\CMSIS\Include\core_cmFunc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\clock\sysclk.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart7.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\spi.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\boards\board.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\ioport\ioport.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\CMSIS\Include\core_cm4.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\adc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\twi.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\clock\pll.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\utils\stdio\stdio_serial\stdio_serial.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\pdmic.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\boards\samg55_xplained_pro\samg55_xplained_pro.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart3.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\chipid.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\preprocessor\stringz.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\clock\samg\sysclk.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\tc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\clock\samg\osc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\pmc\sleep.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\pdc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\efc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\crccu.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\cmcc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\rstc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\udp.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart4.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\pmc\pmc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\rstc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\gpbr.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\clock\samg\pll.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\matrix.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\pio\pio_handler.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\tc1.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\compiler.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\utils\interrupt.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart0.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\supc\supc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\samg55g19.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\samg55g18.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\status_codes.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\udp.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\wdt.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\thirdparty\CMSIS\Include\arm_math.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\fpu\fpu.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\utils\parts.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55g19.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55g18.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\preprocessor\preprocessor.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\chipid.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\drivers\efc\efc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\clock\samg\genclk.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\adc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\preprocessor\mrepeat.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\common\services\clock\osc.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\common\services\clock\samg\sysclk.c">
+    <Compile Include="poppy_com\hal\ASF\common\utils\interrupt\interrupt_sam_nvic.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\common\services\serial\usart_serial.c">
+    <Compile Include="poppy_com\hal\ASF\common\utils\parts.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\common\services\sleepmgr\sam\sleepmgr.c">
+    <Compile Include="poppy_com\hal\ASF\common\utils\stdio\read.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\common\utils\interrupt\interrupt_sam_nvic.c">
+    <Compile Include="poppy_com\hal\ASF\common\utils\stdio\stdio_serial\stdio_serial.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\common\utils\stdio\read.c">
+    <Compile Include="poppy_com\hal\ASF\common\utils\stdio\write.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\common\utils\stdio\write.c">
+    <Compile Include="poppy_com\hal\ASF\sam\boards\samg55_xplained_pro\board_init.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\boards\samg55_xplained_pro\board_init.c">
+    <Compile Include="poppy_com\hal\ASF\sam\boards\samg55_xplained_pro\led.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\drivers\efc\efc.c">
+    <Compile Include="poppy_com\hal\ASF\sam\boards\samg55_xplained_pro\samg55_xplained_pro.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\drivers\flexcom\flexcom.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\adc\adc2.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\drivers\pio\pio.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\adc\adc2.h">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\sam\drivers\pio\pio.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\sam\drivers\pio\pio_handler.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\efc\efc.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\drivers\pmc\pmc.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\efc\efc.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\drivers\pmc\sleep.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\flexcom\flexcom.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\drivers\supc\supc.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\flexcom\flexcom.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\drivers\tc\tc.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\matrix\matrix.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\drivers\usart\usart.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\matrix\matrix.h">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\rtc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\pmc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\crccu.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\component\uhp.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\instance\i2sc1.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\samg\samg55\include\system_samg55.h">
-      <SubType>compile</SubType>
-    </None>
-    <Compile Include="src\ASF\sam\utils\cmsis\samg\samg55\source\templates\gcc\startup_samg55.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\mem2mem\mem2mem.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\utils\cmsis\samg\samg55\source\templates\system_samg55.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\mem2mem\mem2mem.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\ASF\sam\utils\syscalls\gcc\syscalls.c">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pdc\pdc.c">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\time.h">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pdc\pdc.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\libs\uart.h">
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pdc\pdc_uart_example\pdc_uart_example.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pio\pio.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pio\pio.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pio\pio_handler.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pio\pio_handler.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pmc\pmc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pmc\pmc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pmc\sleep.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\pmc\sleep.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\rstc\example1\rstc_example1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\rstc\rstc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\rstc\rstc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\spi\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\spi\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\supc\supc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\supc\supc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\tc\tc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\tc\tc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\tc\tc_capture_waveform_example\tc_capture_waveform_example.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\usart\usart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\drivers\usart\usart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\adc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\chipid.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\cmcc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\crccu.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\efc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\flexcom.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\gpbr.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\i2sc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\matrix.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\mem2mem.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\pdc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\pdmic.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\pio.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\pmc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\rstc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\rtc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\rtt.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\supc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\tc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\twi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\udp.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\uhp.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\usart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\component\wdt.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\adc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\chipid.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\cmcc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\crccu.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\efc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom0.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom2.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom3.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom4.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom5.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom6.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\flexcom7.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\gpbr.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\i2sc0.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\i2sc1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\matrix.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\mem2mem.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\pdmic0.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\pdmic1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\pioa.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\piob.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\pmc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\rstc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\rtc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\rtt.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi0.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi2.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi3.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi4.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi5.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi6.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\spi7.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\supc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\tc0.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\tc1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi0.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi2.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi3.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi4.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi5.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi6.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\twi7.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\udp.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\uhp.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart0.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart2.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart3.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart4.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart5.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart6.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\usart7.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\instance\wdt.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55g18.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55g19.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55j18.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55j19.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\pio\samg55n19.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\samg55.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\samg55g18.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\samg55g19.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\samg55j18.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\samg55j19.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\samg55n19.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\include\system_samg55.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\source\templates\gcc\startup_samg55.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\cmsis\samg\samg55\source\templates\system_samg55.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\compiler.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\fpu\fpu.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\header_files\io.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\preprocessor\mrepeat.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\preprocessor\preprocessor.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\preprocessor\stringz.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\preprocessor\tpaste.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\status_codes.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\sam\utils\syscalls\gcc\syscalls.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\thirdparty\CMSIS\Include\arm_common_tables.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\thirdparty\CMSIS\Include\arm_const_structs.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\thirdparty\CMSIS\Include\arm_math.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\thirdparty\CMSIS\Include\core_cm4.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\thirdparty\CMSIS\Include\core_cmFunc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\thirdparty\CMSIS\Include\core_cmInstr.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\ASF\thirdparty\CMSIS\Include\core_cmSimd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\config\conf_board.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\config\conf_clock.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\config\conf_sleepmgr.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\config\conf_uart_serial.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\hal.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\hal.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\button.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\button\button.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\half_duplex.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\interfaces\ptp.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\interfaces\rs485.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\led\led.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\log.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\ptp.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\rs485.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\serial\uart.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\system\debug.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\system\system.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\system\time.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\term.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\test_board.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\time.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\hal\libs\uart.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\inc\cmd.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\inc\config.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\inc\context.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\inc\mod_list.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\inc\reception.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\inc\sys_msg.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\inc\target.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\poppyNetwork.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\src\poppyNetwork.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\src\reception.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\src\sys_msg.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\src\target.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\thirdparty\CMSIS\Lib\GCC\libarm_cortexM4lf_math.a">
+    <None Include="poppy_com\hal\ASF\sam\utils\linker_scripts\samg\samg55j19\gcc\flash.ld">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\thirdparty\CMSIS\Lib\GCC\libarm_cortexM4lf_math_softfp.a">
+    <None Include="poppy_com\hal\ASF\sam\utils\make\Makefile.sam.in">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\thirdparty\CMSIS\Lib\license.txt">
+    <None Include="poppy_com\hal\ASF\thirdparty\CMSIS\ATMEL-disclaimer.txt">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\thirdparty\CMSIS\README.txt">
+    <None Include="poppy_com\hal\ASF\thirdparty\CMSIS\CMSIS_END_USER_LICENCE_AGREEMENT.pdf">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\hal\ASF\thirdparty\CMSIS\Lib\license.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\hal\ASF\thirdparty\CMSIS\README.txt">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>
