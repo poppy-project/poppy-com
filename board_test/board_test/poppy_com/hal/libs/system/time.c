@@ -19,6 +19,22 @@ uint32_t get_tick(){
     return g_ul_ms_ticks;
 }
 
+
+
+
+void timeout_init(timeout_t* t, uint32_t length){
+    t->length = length;
+    t->start = get_tick();
+}
+
+bool timeout_ended(timeout_t* t){
+    return get_tick() - t->start < t->length;
+}
+
+uint32_t timeout_elapsed(timeout_t* t){
+    return get_tick() - t->start;
+}
+
 void delay_ms(uint32_t ul_dly_ticks)
 {
     uint32_t ul_cur_ticks;
