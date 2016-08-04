@@ -87,17 +87,22 @@
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-
-#include "asf.h"
+/*
 #include "stdio_serial.h"
 #include "conf_board.h"
 #include "conf_clock.h"
 #include "uart.h"
-#include "time.h"
 #include "button.h"
 #include "rs485.h"
 #include "ptp.h"
-#include "test_board.h"
+#include "test_board.h"*/
+#include "asf.h"
+#include "time.h"
+
+
+#include "poppyNetwork.h"
+#include "context.h"
+#include "cmd.h"
 
 #include "log.h"
 #define LOG_TAG        "Main"
@@ -109,13 +114,40 @@
 extern "C" {
 #endif
 
+int test_value = 0;
+unsigned short target_value = 0;
+
+typedef enum {
+    TARGET_CMD = WRITE_ID,
+    TEST_CMD = PROTOCOL_CMD_NB,
+    NO_OVERLAP_TARGET_CMD,
+    MODULE_PROTOCOL_NB
+}module_register_t;
+
+void rx_cb(msg_t *msg);
+
+void rx_cb(msg_t *msg) {
+    switch (msg->header.cmd) {
+        case TEST_CMD :
+            test_value = ((int)msg->data[0] << 8) | (int)msg->data[1];
+        break;
+        case TARGET_CMD :
+        case NO_OVERLAP_TARGET_CMD:
+            target_value = msg->header.target;
+        break;
+        default :
+            test_value = 0;
+        break;
+    }
+}
 
 static void read_serial(void){
-    uint32_t val;
+    // uint32_t val;
+    msg_t msg;
     int c = getchar();
     if (c != -1){
         switch (c){
-            case 'a':
+            /*case 'a':
             if (ptp_adc_get(ptp_a, &val)){
                 LOG_DEBUG("ADC: %lu", val);
             } else {
@@ -189,6 +221,20 @@ static void read_serial(void){
             break;
             case 'W':
             ptp_set_mode(ptp_b, PTP_MODE_PULL_DOWN_STRONG);
+            break;*/
+
+            // RS485 tests
+            case 's':
+                msg.header.cmd = TEST_CMD;
+                msg.header.target = ctx.id;
+                msg.header.target_mode = ID;
+                msg.header.size = 2;
+                msg.data[0] = 0xCA;
+                msg.data[1] = 0xFE;
+                     LOG_DEBUG("MSG sent");
+                poppyNetwork_send(&msg);
+                delay_ms(1);
+                poppyNetwork_send(&msg);
             break;
 
             default:
@@ -201,26 +247,9 @@ static void read_serial(void){
 
 int main(void)
 {
-    sysclk_init();
-    board_init();
+        
+    poppyNetwork_init(rx_cb);
 
-    uart_stdio_init(CONSOLE_UART, 115200);
-
-    TEST_LOG_INFO(){
-        printf("\n\r\tFirmware Poppy-com built on %s at %s\n\r", __DATE__, __TIME__ );
-    }
-
-    if (SysTick_Config(sysclk_get_cpu_hz() / 1000)) {
-        LOG_ERROR("systic config failed");
-        while (1);
-    }
-
-    rs485_init();
-    ptp_init();
-    
-    ptp_set_mode(ptp_a, PTP_MODE_RX);
-    ptp_set_mode(ptp_b, PTP_MODE_RX);
-    
     while (1){
         read_serial();
         delay_ms(1);

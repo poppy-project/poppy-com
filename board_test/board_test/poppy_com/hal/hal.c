@@ -12,7 +12,7 @@
 #include "test_board.h"
 
 #include "log.h"
-#define LOG_TAG        "Main"
+#define LOG_TAG        "hak"
 #define LOG_LEVEL     LOG_LEVEL_DEBUG
 
 
@@ -61,7 +61,7 @@ unsigned char hal_transmit(unsigned char* data, unsigned short size) {
 	{
 		if (rs485_write((uint32_t) data[i]))
 			return 1;
-		delay_ms(1);
+		delay_ms(0.3);
 	}
 	rs485_set_dir(HALF_DUPLEX_RX);
     return 0;
