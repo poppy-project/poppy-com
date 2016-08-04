@@ -23,4 +23,5 @@ void uart_stdio_init(usart_if uart, uint32_t baudrate){
 void uart_init(usart_if uart, uint32_t baudrate){
     uart_serial_options.baudrate = baudrate;
     usart_serial_init(uart, &uart_serial_options);
+	
 }

@@ -28,7 +28,7 @@ void timeout_init(timeout_t* t, uint32_t length){
 }
 
 bool timeout_ended(timeout_t* t){
-    return get_tick() - t->start < t->length;
+    return get_tick() - t->start > t->length;
 }
 
 uint32_t timeout_elapsed(timeout_t* t){

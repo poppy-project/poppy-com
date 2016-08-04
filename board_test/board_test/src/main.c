@@ -93,11 +93,11 @@
 #include "conf_clock.h"
 #include "uart.h"
 #include "button.h"
-#include "rs485.h"
-#include "ptp.h"
-#include "test_board.h"*/
+#include "ptp.h"*/
+#include "test_board.h"
 #include "asf.h"
 #include "time.h"
+#include "rs485.h"
 
 
 #include "poppyNetwork.h"
@@ -129,7 +129,9 @@ void rx_cb(msg_t *msg);
 void rx_cb(msg_t *msg) {
     switch (msg->header.cmd) {
         case TEST_CMD :
-            test_value = ((int)msg->data[0] << 8) | (int)msg->data[1];
+            //LOG_DEBUG("MSG received and i write to do a tempo!!!!");
+            poppyNetwork_send(msg);
+            //LOG_DEBUG("MSG sent");
         break;
         case TARGET_CMD :
         case NO_OVERLAP_TARGET_CMD:
@@ -231,9 +233,7 @@ static void read_serial(void){
                 msg.header.size = 2;
                 msg.data[0] = 0xCA;
                 msg.data[1] = 0xFE;
-                     LOG_DEBUG("MSG sent");
-                poppyNetwork_send(&msg);
-                delay_ms(1);
+                LOG_INFO("MSG sent");
                 poppyNetwork_send(&msg);
             break;
 
@@ -247,11 +247,36 @@ static void read_serial(void){
 
 int main(void)
 {
-        
+    uint32_t c;
+    //msg_t msg;
+
+	ioport_set_pin_dir(DBG_PIN_1, IOPORT_DIR_OUTPUT);
+	ioport_set_pin_dir(DBG_PIN_2, IOPORT_DIR_OUTPUT);
+
     poppyNetwork_init(rx_cb);
+
+
+UP1;DW1;
+UP1;DW1;
+UP1;DW1;
+UP2;DW2;
+UP2;DW2;
+
+
 
     while (1){
         read_serial();
+        /*for(unsigned int i = 0; i< 1000; i++) {
+            if (rs485_read(&c) == 0){
+				LOG_INFO("plop");
+                if (c) {
+                    LOG_INFO("RS485: %c", (uint8_t)c);
+                    ctx.data_cb((volatile unsigned char*)&c);
+					c = 0;
+                }
+                delay_ms(0.01);
+            }
+        }*/ 
         delay_ms(1);
     }        
     
@@ -266,60 +291,37 @@ int main(void)
 //     char ptp_char_a = 'a';  
 //     char ptp_char_b = 'b';
 // 
-//     while (1) {
-//         rs485_set_dir(HALF_DUPLEX_BOTH);
-//          
-//         delay_ms(1); // TODO wait for event when it's done writing
-//         
-//         rs485_write(my_char);
-//         
-//         delay_ms(1); // TODO wait for event when it's done writing
-//         rs485_set_dir(HALF_DUPLEX_RX);
-//         
-//         uint32_t now = get_tick();
-//         while ( get_tick() - now < 500 ){
-//             uint32_t c;
-//             for(uint8_t i = 0; i< 5; i++){
-//                 if (rs485_read(&c) == 0){
-//                     if (c != my_char){
-//                         LOG_INFO("RS485: %c", (uint8_t)c);
-//                     }
-//                 }
-//                 delay_ms(1);
-//             }            
-//             
-//             ptp_set_mode( ptp_b, PTP_MODE_TX);
-//             delay_ms(1);
-//             ptp_write(ptp_b, ptp_char_b);
-//             delay_ms(1);
-//             ptp_set_mode( ptp_b, PTP_MODE_RX);
-// 
-//             for(uint8_t i = 0; i< 5; i++){
-//                 if (ptp_read(ptp_a, &c) == 0){
-//                     //if (c != ptp_char_a){
-//                     LOG_INFO("PTP_A: %c", (uint8_t)c);
-//                     //}
-//                 }
-//             delay_ms(1);
-//             }
-//             
-//             
-//             ptp_set_mode( ptp_a, PTP_MODE_TX);
-//             delay_ms(1);
-//             ptp_write(ptp_a, ptp_char_a);
-//             delay_ms(1);
-//             ptp_set_mode( ptp_a, PTP_MODE_RX);
-//         
-//             for(uint8_t i = 0; i< 5; i++){
-//                 if (ptp_read(ptp_b, &c) == 0){
-//                     //if (c != ptp_char_b){
-//                     LOG_INFO("PTP_B: %c", (uint8_t)c);
-//                     //}
-//                 }
-//                 delay_ms(1);
-//             }
-//         }
-//     }
+/*    while (1) {
+		
+		delay_ms(100); // TODO wait for event when it's done writing
+        rs485_set_dir(HALF_DUPLEX_BOTH);
+         
+        delay_ms(1); // TODO wait for event when it's done writing
+        msg.header.cmd = TEST_CMD;
+        msg.header.target = ctx.id;
+        msg.header.target_mode = ID;
+        msg.header.size = 2;
+        msg.data[0] = 0xCA;
+        msg.data[1] = 0xFE;
+        LOG_DEBUG("begin");
+        poppyNetwork_send(&msg);
+        rs485_set_dir(HALF_DUPLEX_RX);
+        delay_ms(1); // TODO wait for event when it's done writing
+        
+        uint32_t now = get_tick();
+        while ( get_tick() - now < 500 ){
+            uint32_t c = 0xFFFFFF;
+            if (rs485_read(&c) == 0){
+                //LOG_INFO("plop");
+                if (c != 0xFFFFFF) {
+                    //LOG_INFO("RS485: %02X", (uint8_t)c);
+                    ctx.data_cb((volatile unsigned char*)&c);
+                    c = 0xFFFFFF;
+                }
+                //delay_ms(1);
+            }         
+        }
+    }*/
 }
 
 #ifdef __cplusplus

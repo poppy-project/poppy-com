@@ -259,7 +259,7 @@
       </framework-data>
     </AsfFrameworkConfig>
     <avrtool>com.atmel.avrdbg.tool.edbg</avrtool>
-    <avrtoolserialnumber>ATML2393031800001257</avrtoolserialnumber>
+    <avrtoolserialnumber>ATML2393031800001370</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x24570AE0</avrdeviceexpectedsignature>
     <avrtoolinterface>SWD</avrtoolinterface>
     <com_atmel_avrdbg_tool_edbg>
@@ -270,163 +270,176 @@
         <InterfaceName>SWD</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.edbg</ToolType>
-      <ToolNumber>ATML2393031800001257</ToolNumber>
+      <ToolNumber>ATML2393031800001370</ToolNumber>
       <ToolName>EDBG</ToolName>
     </com_atmel_avrdbg_tool_edbg>
     <avrtoolinterfaceclock>2000000</avrtoolinterfaceclock>
+    <custom>
+      <ToolOptions>
+        <InterfaceProperties>
+          <SwdClock>2000000</SwdClock>
+        </InterfaceProperties>
+        <InterfaceName>
+        </InterfaceName>
+      </ToolOptions>
+      <ToolType>custom</ToolType>
+      <ToolNumber>
+      </ToolNumber>
+      <ToolName>Custom Programming Tool</ToolName>
+    </custom>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
       <ArmGcc>
-  <armgcc.common.outputfiles.hex>True</armgcc.common.outputfiles.hex>
-  <armgcc.common.outputfiles.lss>True</armgcc.common.outputfiles.lss>
-  <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
-  <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
-  <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
-  <armgcc.compiler.symbols.DefSymbols>
-    <ListValues>
-      <Value>NDEBUG</Value>
-      <Value>scanf=iscanf</Value>
-      <Value>BOARD=SAMG55_XPLAINED_PRO</Value>
-      <Value>__SAMG55J19__</Value>
-      <Value>ARM_MATH_CM4=true</Value>
-      <Value>printf=iprintf</Value>
-    </ListValues>
-  </armgcc.compiler.symbols.DefSymbols>
-  <armgcc.compiler.directories.IncludePaths>
-    <ListValues>
-      <Value>../poppy_com/hal/ASF/common/utils</Value>
-      <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
-      <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
-      <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
-      <Value>../poppy_com/hal/ASF/sam/boards</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
-      <Value>../poppy_com/hal/ASF/common/boards</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
-      <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
-      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
-      <Value>../poppy_com/hal/config</Value>
-      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
-      <Value>../src</Value>
-      <Value>../poppy_com/hal/ASF/common/services/clock</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
-      <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
-      <Value>../poppy_com/hal/ASF/common/services/serial</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
-    </ListValues>
-  </armgcc.compiler.directories.IncludePaths>
-  <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
-  <armgcc.compiler.optimization.OtherFlags>-fdata-sections</armgcc.compiler.optimization.OtherFlags>
-  <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
-  <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
-  <armgcc.compiler.miscellaneous.OtherFlags>-pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
-  <armgcc.linker.libraries.Libraries>
-    <ListValues>
-      <Value>libarm_cortexM4lf_math_softfp</Value>
-      <Value>libm</Value>
-    </ListValues>
-  </armgcc.linker.libraries.Libraries>
-  <armgcc.linker.libraries.LibrarySearchPaths>
-    <ListValues>
-      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
-    </ListValues>
-  </armgcc.linker.libraries.LibrarySearchPaths>
-  <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
-  <armgcc.linker.miscellaneous.LinkerFlags>-Wl,--entry=Reset_Handler -Wl,--cref -mthumb -T../poppy_com/hal/ASF/sam/utils/linker_scripts/samg/samg55j19/gcc/flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
-  <armgcc.assembler.general.IncludePaths>
-    <ListValues>
-      <Value>../poppy_com/hal/ASF/common/utils</Value>
-      <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
-      <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
-      <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
-      <Value>../poppy_com/hal/ASF/sam/boards</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
-      <Value>../poppy_com/hal/ASF/common/boards</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
-      <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
-      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
-      <Value>../poppy_com/hal/config</Value>
-      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
-      <Value>../src</Value>
-      <Value>../poppy_com/hal/ASF/common/services/clock</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
-      <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
-      <Value>../poppy_com/hal/ASF/common/services/serial</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
-    </ListValues>
-  </armgcc.assembler.general.IncludePaths>
-  <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=SAMG55_XPLAINED_PRO -D__SAMG55J19__ -Dprintf=iprintf -Dscanf=iscanf</armgcc.preprocessingassembler.general.AssemblerFlags>
-  <armgcc.preprocessingassembler.general.IncludePaths>
-    <ListValues>
-      <Value>../poppy_com/hal/ASF/common/utils</Value>
-      <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
-      <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
-      <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
-      <Value>../poppy_com/hal/ASF/sam/boards</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
-      <Value>../poppy_com/hal/ASF/common/boards</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
-      <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
-      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
-      <Value>../poppy_com/hal/config</Value>
-      <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
-      <Value>../src</Value>
-      <Value>../poppy_com/hal/ASF/common/services/clock</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
-      <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
-      <Value>../poppy_com/hal/ASF/common/services/serial</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
-      <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
-      <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
-    </ListValues>
-  </armgcc.preprocessingassembler.general.IncludePaths>
-</ArmGcc>
+        <armgcc.common.outputfiles.hex>True</armgcc.common.outputfiles.hex>
+        <armgcc.common.outputfiles.lss>True</armgcc.common.outputfiles.lss>
+        <armgcc.common.outputfiles.eep>True</armgcc.common.outputfiles.eep>
+        <armgcc.common.outputfiles.bin>True</armgcc.common.outputfiles.bin>
+        <armgcc.common.outputfiles.srec>True</armgcc.common.outputfiles.srec>
+        <armgcc.compiler.symbols.DefSymbols>
+          <ListValues>
+            <Value>NDEBUG</Value>
+            <Value>scanf=iscanf</Value>
+            <Value>BOARD=SAMG55_XPLAINED_PRO</Value>
+            <Value>__SAMG55J19__</Value>
+            <Value>ARM_MATH_CM4=true</Value>
+            <Value>printf=iprintf</Value>
+          </ListValues>
+        </armgcc.compiler.symbols.DefSymbols>
+        <armgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>../poppy_com/hal/ASF/common/utils</Value>
+            <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
+            <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
+            <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
+            <Value>../poppy_com/hal/ASF/sam/boards</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
+            <Value>../poppy_com/hal/ASF/common/boards</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
+            <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
+            <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
+            <Value>../poppy_com/hal/config</Value>
+            <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+            <Value>../src</Value>
+            <Value>../poppy_com/hal/ASF/common/services/clock</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
+            <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
+            <Value>../poppy_com/hal/ASF/common/services/serial</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
+          </ListValues>
+        </armgcc.compiler.directories.IncludePaths>
+        <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
+        <armgcc.compiler.optimization.OtherFlags>-fdata-sections</armgcc.compiler.optimization.OtherFlags>
+        <armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>True</armgcc.compiler.optimization.PrepareFunctionsForGarbageCollection>
+        <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
+        <armgcc.compiler.miscellaneous.OtherFlags>-pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
+        <armgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libarm_cortexM4lf_math_softfp</Value>
+            <Value>libm</Value>
+          </ListValues>
+        </armgcc.linker.libraries.Libraries>
+        <armgcc.linker.libraries.LibrarySearchPaths>
+          <ListValues>
+            <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+          </ListValues>
+        </armgcc.linker.libraries.LibrarySearchPaths>
+        <armgcc.linker.optimization.GarbageCollectUnusedSections>True</armgcc.linker.optimization.GarbageCollectUnusedSections>
+        <armgcc.linker.miscellaneous.LinkerFlags>-Wl,--entry=Reset_Handler -Wl,--cref -mthumb -T../poppy_com/hal/ASF/sam/utils/linker_scripts/samg/samg55j19/gcc/flash.ld</armgcc.linker.miscellaneous.LinkerFlags>
+        <armgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>../poppy_com/hal/ASF/common/utils</Value>
+            <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
+            <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
+            <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
+            <Value>../poppy_com/hal/ASF/sam/boards</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
+            <Value>../poppy_com/hal/ASF/common/boards</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
+            <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
+            <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
+            <Value>../poppy_com/hal/config</Value>
+            <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+            <Value>../src</Value>
+            <Value>../poppy_com/hal/ASF/common/services/clock</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
+            <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
+            <Value>../poppy_com/hal/ASF/common/services/serial</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
+          </ListValues>
+        </armgcc.assembler.general.IncludePaths>
+        <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM4=true -DBOARD=SAMG55_XPLAINED_PRO -D__SAMG55J19__ -Dprintf=iprintf -Dscanf=iscanf</armgcc.preprocessingassembler.general.AssemblerFlags>
+        <armgcc.preprocessingassembler.general.IncludePaths>
+          <ListValues>
+            <Value>../poppy_com/hal/ASF/common/utils</Value>
+            <Value>../poppy_com/hal/ASF/common/services/sleepmgr</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/fpu</Value>
+            <Value>../poppy_com/hal/ASF/common/services/serial/sam_uart</Value>
+            <Value>../poppy_com/hal/ASF/sam/boards/samg55_xplained_pro</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pmc</Value>
+            <Value>../poppy_com/hal/ASF/sam/boards</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pio</Value>
+            <Value>../poppy_com/hal/ASF/common/boards</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/header_files</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/tc</Value>
+            <Value>../poppy_com/hal/ASF/common/services/ioport</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/flexcom</Value>
+            <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Include</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/efc</Value>
+            <Value>../poppy_com/hal/config</Value>
+            <Value>../poppy_com/hal/ASF/thirdparty/CMSIS/Lib/GCC</Value>
+            <Value>../src</Value>
+            <Value>../poppy_com/hal/ASF/common/services/clock</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/supc</Value>
+            <Value>../poppy_com/hal/ASF/common/utils/stdio/stdio_serial</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/preprocessor</Value>
+            <Value>../poppy_com/hal/ASF/common/services/serial</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/usart</Value>
+            <Value>../poppy_com/hal/ASF/sam/utils/cmsis/samg/samg55/include</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/matrix</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/mem2mem</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pdc</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/pdc/pdc_uart_example</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/rstc/example1</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/rstc</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/adc</Value>
+            <Value>../poppy_com/hal/ASF/sam/drivers/spi</Value>
+          </ListValues>
+        </armgcc.preprocessingassembler.general.IncludePaths>
+      </ArmGcc>
     </ToolchainSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
@@ -496,7 +509,6 @@
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.warnings.ExtraWarnings>True</armgcc.compiler.warnings.ExtraWarnings>
   <armgcc.compiler.warnings.Undefined>True</armgcc.compiler.warnings.Undefined>
-  <armgcc.compiler.warnings.WarningsAsErrors>True</armgcc.compiler.warnings.WarningsAsErrors>
   <armgcc.compiler.miscellaneous.OtherFlags>-pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
   <armgcc.linker.libraries.Libraries>
     <ListValues>
