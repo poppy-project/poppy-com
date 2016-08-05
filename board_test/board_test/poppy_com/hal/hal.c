@@ -12,12 +12,30 @@
 #include "test_board.h"
 
 #include "log.h"
-#define LOG_TAG        "Main"
+#define LOG_TAG        "hak"
 #define LOG_LEVEL     LOG_LEVEL_DEBUG
 
 
 // Global variables
 context_t ctx;
+
+/**
+ * \brief Interrupt handler for USART interrupt.
+ */
+void RS485_uart_irq_handler(void)
+{
+	UP1;
+	uint32_t data;
+	//LOG_INFO("plop");
+	/* Get USART status and check if RXBUFF is set */
+	if (usart_get_status(RS485_UART) & US_CSR_RXRDY) {
+		usart_read(RS485_UART, &data);
+		if (ctx.data_cb) {
+			ctx.data_cb((volatile unsigned char*)&data);
+		}
+	}
+	DW1;
+}
 
 /**
  * \fn void hal_init(void)
@@ -61,8 +79,8 @@ unsigned char hal_transmit(unsigned char* data, unsigned short size) {
 	{
 		if (rs485_write((uint32_t) data[i]))
 			return 1;
-		delay_ms(1);
 	}
+	while (!usart_is_tx_empty(RS485_UART));
 	rs485_set_dir(HALF_DUPLEX_RX);
     return 0;
 }

@@ -11,6 +11,19 @@
 #include "asf.h"
 #include "adc2.h"
 
+//TET pin
+#define DBG_PIN_1				IOPORT_CREATE_PIN(PIOA, 19)
+#define DBG_PIN_2				IOPORT_CREATE_PIN(PIOA, 20)
+
+//IOPORT_PIOA->PIO_SODR = arch_ioport_pin_to_mask(DBG_PIN_1)
+//IOPORT_PIOA->PIO_CODR = arch_ioport_pin_to_mask(DBG_PIN_1)
+
+
+#define UP1						ioport_set_pin_level(DBG_PIN_1, true); nop(); nop()
+#define DW1						ioport_set_pin_level(DBG_PIN_1, false); nop(); nop()
+#define UP2						ioport_set_pin_level(DBG_PIN_2, true); nop(); nop()
+#define DW2						ioport_set_pin_level(DBG_PIN_2, false); nop(); nop()
+
 
 //RS485
 #define RS485_RX_PIN            IOPORT_CREATE_PIN(PIOB, 11)//
@@ -20,6 +33,9 @@
 
 #define RS485_UART              USART4
 #define RS485_UART_ID           ID_FLEXCOM4
+#define RS485_UART_IRQn         FLEXCOM4_IRQn
+/* Configuration for console uart IRQ handler */
+#define RS485_uart_irq_handler FLEXCOM4_Handler
 
 #define RS485_UART_PORT         IOPORT_PIOB
 #define RS485_UART_PIN_MASK     (PIO_PB11A_RXD4| PIO_PB10A_TXD4)

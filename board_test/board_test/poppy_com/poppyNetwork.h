@@ -34,9 +34,9 @@ typedef enum {
  * and master mode.
  * please refer to the documentation
  */
-typedef struct {
+typedef struct __attribute__((__packed__)){
     union {
-        struct {
+        struct __attribute__((__packed__)){
             unsigned short protocol : 4;       /*!< Protocol version. */
             unsigned short target : 12;        /*!< Target address, it can be (ID, Multicast/Broadcast, Type). */
             unsigned short target_mode : 4;    /*!< Select targeting mode (ID, ID+ACK, Multicast/Broadcast, Type). */
@@ -56,9 +56,9 @@ typedef struct {
  * and master mode.
  * please refer to the documentation
  */
-typedef struct {
+typedef struct __attribute__((__packed__)){
     union {
-        struct {
+        struct __attribute__((__packed__)){
             header_t header;              /*!< Header filed. */
             unsigned char data[512];      /*!< Data with size known. */
         };

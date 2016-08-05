@@ -2,6 +2,8 @@
 #include "hal.h"
 #include "target.h"
 #include "sys_msg.h"
+#include "test_board.h"
+#include "time.h"
 
 // Global variables
 context_t ctx;
@@ -37,8 +39,20 @@ unsigned short crc(unsigned char* data, unsigned short size) {
  */
 void get_header(volatile unsigned char *data) {
     static unsigned short data_count = 0;
+	static volatile timeout_t header_timeout;
+	//UP2;
+	
+	if (timeout_ended(&header_timeout)){
+		data_count = 0;
+		//UP1;DW1;
+	}
+	timeout_init(&header_timeout, 20);
     // Catch a byte.
     ctx.msg.header.unmap[data_count++] = *data;
+//  	for ( int32_t i = -1; i< data_count ; i++   ){
+//  		UP1;DW1;
+//  	}
+		
 
     // Check if we have all we need.
     if (data_count == (sizeof(header_t))) {
@@ -56,20 +70,26 @@ void get_header(volatile unsigned char *data) {
                     ctx.msg.header.target == BROADCAST_VAL ||
                     virtual_target_bank(ctx.msg.header.target))
                         ctx.data_cb = get_data;
-                else
+                else{
+	                //DW2;
                     return;
+				}
             break;
             case MULTICAST:
                 if (multicast_target_bank(ctx.msg.header.target))
                     ctx.data_cb = get_data;
-                else
+                else{
+	                //DW2;
                     return;
+				}
             break;
             default:
+				//DW2;
                 return;
             break;
         }
     }
+	//DW2;
 }
 
 /**

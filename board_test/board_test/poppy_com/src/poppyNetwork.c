@@ -15,8 +15,6 @@ context_t ctx;
 
 // Startup and network configuration
 void poppyNetwork_init(RX_CB rx_cb) {
-    hal_init();
-
     // Save context
     // User side slave RX callback
     ctx.rx_cb = rx_cb;
@@ -30,11 +28,14 @@ void poppyNetwork_init(RX_CB rx_cb) {
     ctx.type = MODULETYPE;
     // TODO manage Alias
     ctx.max_multicast_target = 0;
-
+	
     // Status
     ctx.status = (status_t) {.rx_error = FALSE,
                              .unexpected_state = FALSE,
                              .warning = FALSE};
+			 
+	// Init hal
+    hal_init();
 }
 
 unsigned char poppyNetwork_send(msg_t *msg) {

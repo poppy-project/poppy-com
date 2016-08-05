@@ -87,18 +87,22 @@
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-
-#include "asf.h"
+/*
 #include "stdio_serial.h"
 #include "conf_board.h"
 #include "conf_clock.h"
 #include "uart.h"
-#include "time.h"
 #include "button.h"
-#include "rs485.h"
-#include "ptp.h"
+#include "ptp.h"*/
 #include "test_board.h"
-#include "discovery.h"
+#include "asf.h"
+#include "time.h"
+#include "rs485.h"
+
+
+#include "poppyNetwork.h"
+#include "context.h"
+#include "cmd.h"
 
 #include "log.h"
 #define LOG_TAG        "Main"
@@ -110,13 +114,42 @@
 extern "C" {
 #endif
 
+int test_value = 0;
+unsigned short target_value = 0;
+
+typedef enum {
+    TARGET_CMD = WRITE_ID,
+    TEST_CMD = PROTOCOL_CMD_NB,
+    NO_OVERLAP_TARGET_CMD,
+    MODULE_PROTOCOL_NB
+}module_register_t;
+
+void rx_cb(msg_t *msg);
+
+void rx_cb(msg_t *msg) {
+    switch (msg->header.cmd) {
+        case TEST_CMD :
+            //LOG_DEBUG("MSG received and i write to do a tempo!!!!");
+            poppyNetwork_send(msg);
+            //LOG_DEBUG("MSG sent");
+        break;
+        case TARGET_CMD :
+        case NO_OVERLAP_TARGET_CMD:
+            target_value = msg->header.target;
+        break;
+        default :
+            test_value = 0;
+        break;
+    }
+}
 
 static void read_serial(void){
-    uint32_t val;
+    // uint32_t val;
+    msg_t msg;
     int c = getchar();
     if (c != -1){
         switch (c){
-            case 'a':
+            /*case 'a':
             if (ptp_adc_get(ptp_a, &val)){
                 LOG_DEBUG("ADC: %lu", val);
             } else {
@@ -124,34 +157,34 @@ static void read_serial(void){
             }
             break;
             case 'r':
-            ptp_mode_set(ptp_a, PTP_MODE_TX);
+            ptp_set_mode(ptp_a, PTP_MODE_TX);
             break;
             case 't':
-            ptp_mode_set(ptp_a, PTP_MODE_RX);
+            ptp_set_mode(ptp_a, PTP_MODE_RX);
             break;
             case 'e':
-            ptp_mode_set(ptp_a, PTP_MODE_RX_TX);
+            ptp_set_mode(ptp_a, PTP_MODE_RX_TX);
             break;
             case 'z':
-            ptp_mode_set(ptp_a, PTP_MODE_HI_Z);
+            ptp_set_mode(ptp_a, PTP_MODE_HI_Z);
             break;
             case 'h':
-            ptp_mode_set(ptp_a, PTP_MODE_HIGH);
+            ptp_set_mode(ptp_a, PTP_MODE_HIGH);
             break;
             case 'l':
-            ptp_mode_set(ptp_a, PTP_MODE_LOW);
+            ptp_set_mode(ptp_a, PTP_MODE_LOW);
             break;
             case 'u':
-            ptp_mode_set(ptp_a, PTP_MODE_PULL_UP_WEAK);
+            ptp_set_mode(ptp_a, PTP_MODE_PULL_UP_WEAK);
             break;
             case 'p':
-            ptp_mode_set(ptp_a, PTP_MODE_PULL_UP_STRONG);
+            ptp_set_mode(ptp_a, PTP_MODE_PULL_UP_STRONG);
             break;
             case 'd':
-            ptp_mode_set(ptp_a, PTP_MODE_PULL_DOWN_WEAK);
+            ptp_set_mode(ptp_a, PTP_MODE_PULL_DOWN_WEAK);
             break;
             case 'w':
-            ptp_mode_set(ptp_a, PTP_MODE_PULL_DOWN_STRONG);
+            ptp_set_mode(ptp_a, PTP_MODE_PULL_DOWN_STRONG);
             break;
 
             case 'A':
@@ -162,34 +195,46 @@ static void read_serial(void){
             }
             break;
             case 'R':
-            ptp_mode_set(ptp_b, PTP_MODE_TX);
+            ptp_set_mode(ptp_b, PTP_MODE_TX);
             break;
             case 'T':
-            ptp_mode_set(ptp_b, PTP_MODE_RX);
+            ptp_set_mode(ptp_b, PTP_MODE_RX);
             break;
             case 'E':
-            ptp_mode_set(ptp_b, PTP_MODE_RX_TX);
+            ptp_set_mode(ptp_b, PTP_MODE_RX_TX);
             break;
             case 'Z':
-            ptp_mode_set(ptp_b, PTP_MODE_HI_Z);
+            ptp_set_mode(ptp_b, PTP_MODE_HI_Z);
             break;
             case 'H':
-            ptp_mode_set(ptp_b, PTP_MODE_HIGH);
+            ptp_set_mode(ptp_b, PTP_MODE_HIGH);
             break;
             case 'L':
-            ptp_mode_set(ptp_b, PTP_MODE_LOW);
+            ptp_set_mode(ptp_b, PTP_MODE_LOW);
             break;
             case 'U':
-            ptp_mode_set(ptp_b, PTP_MODE_PULL_UP_WEAK);
+            ptp_set_mode(ptp_b, PTP_MODE_PULL_UP_WEAK);
             break;
             case 'P':
-            ptp_mode_set(ptp_b, PTP_MODE_PULL_UP_STRONG);
+            ptp_set_mode(ptp_b, PTP_MODE_PULL_UP_STRONG);
             break;
             case 'D':
-            ptp_mode_set(ptp_b, PTP_MODE_PULL_DOWN_WEAK);
+            ptp_set_mode(ptp_b, PTP_MODE_PULL_DOWN_WEAK);
             break;
             case 'W':
-            ptp_mode_set(ptp_b, PTP_MODE_PULL_DOWN_STRONG);
+            ptp_set_mode(ptp_b, PTP_MODE_PULL_DOWN_STRONG);
+            break;*/
+
+            // RS485 tests
+            case 's':
+                msg.header.cmd = TEST_CMD;
+                msg.header.target = ctx.id;
+                msg.header.target_mode = ID;
+                msg.header.size = 2;
+                msg.data[0] = 0xCA;
+                msg.data[1] = 0xFE;
+                LOG_INFO("MSG sent");
+                poppyNetwork_send(&msg);
             break;
 
             default:
@@ -202,41 +247,38 @@ static void read_serial(void){
 
 int main(void)
 {
-    sysclk_init();
-    board_init();
+    uint32_t c;
+    //msg_t msg;
 
-    uart_stdio_init(CONSOLE_UART, 1000000);
+	ioport_set_pin_dir(DBG_PIN_1, IOPORT_DIR_OUTPUT);
+	ioport_set_pin_dir(DBG_PIN_2, IOPORT_DIR_OUTPUT);
 
-    TEST_LOG_INFO(){
-        printf("\n\r\tFirmware Poppy-com built on %s at %s\n\r", __DATE__, __TIME__ );
-    }
-
-    if (SysTick_Config(sysclk_get_cpu_hz() / 1000)) {
-        LOG_ERROR("systick config failed");
-        while (1);
-    }
-
-    rs485_init();
-    ptp_init();
+    poppyNetwork_init(rx_cb);
 
 
-    discovery_setup();
-    
+UP1;DW1;
+UP1;DW1;
+UP1;DW1;
+UP2;DW2;
+UP2;DW2;
+
+
+
     while (1){
-        discovery_run();
-    }    
-
-
-
-//     ptp_mode_set(ptp_a, PTP_MODE_RX);
-//     ptp_mode_set(ptp_b, PTP_MODE_RX);
-//     
-//     while (1){
-//         read_serial();
-//         delay_ms(1);
-//     }        
-    
-    
+        read_serial();
+        /*for(unsigned int i = 0; i< 1000; i++) {
+            if (rs485_read(&c) == 0){
+				LOG_INFO("plop");
+                if (c) {
+                    LOG_INFO("RS485: %c", (uint8_t)c);
+                    ctx.data_cb((volatile unsigned char*)&c);
+					c = 0;
+                }
+                delay_ms(0.01);
+            }
+        }*/ 
+        delay_ms(1);
+    }        
     
     
     
@@ -249,60 +291,37 @@ int main(void)
 //     char ptp_char_a = 'a';  
 //     char ptp_char_b = 'b';
 // 
-//     while (1) {
-//         rs485_set_dir(HALF_DUPLEX_BOTH);
-//          
-//         delay_ms(1); // TODO wait for event when it's done writing
-//         
-//         rs485_write(my_char);
-//         
-//         delay_ms(1); // TODO wait for event when it's done writing
-//         rs485_set_dir(HALF_DUPLEX_RX);
-//         
-//         uint32_t now = get_tick();
-//         while ( get_tick() - now < 500 ){
-//             uint32_t c;
-//             for(uint8_t i = 0; i< 5; i++){
-//                 if (rs485_read(&c) == 0){
-//                     if (c != my_char){
-//                         LOG_INFO("RS485: %c", (uint8_t)c);
-//                     }
-//                 }
-//                 delay_ms(1);
-//             }            
-//             
-//             ptp_set_mode( ptp_b, PTP_MODE_TX);
-//             delay_ms(1);
-//             ptp_write(ptp_b, ptp_char_b);
-//             delay_ms(1);
-//             ptp_set_mode( ptp_b, PTP_MODE_RX);
-// 
-//             for(uint8_t i = 0; i< 5; i++){
-//                 if (ptp_read(ptp_a, &c) == 0){
-//                     //if (c != ptp_char_a){
-//                     LOG_INFO("PTP_A: %c", (uint8_t)c);
-//                     //}
-//                 }
-//             delay_ms(1);
-//             }
-//             
-//             
-//             ptp_set_mode( ptp_a, PTP_MODE_TX);
-//             delay_ms(1);
-//             ptp_write(ptp_a, ptp_char_a);
-//             delay_ms(1);
-//             ptp_set_mode( ptp_a, PTP_MODE_RX);
-//         
-//             for(uint8_t i = 0; i< 5; i++){
-//                 if (ptp_read(ptp_b, &c) == 0){
-//                     //if (c != ptp_char_b){
-//                     LOG_INFO("PTP_B: %c", (uint8_t)c);
-//                     //}
-//                 }
-//                 delay_ms(1);
-//             }
-//         }
-//     }
+/*    while (1) {
+		
+		delay_ms(100); // TODO wait for event when it's done writing
+        rs485_set_dir(HALF_DUPLEX_BOTH);
+         
+        delay_ms(1); // TODO wait for event when it's done writing
+        msg.header.cmd = TEST_CMD;
+        msg.header.target = ctx.id;
+        msg.header.target_mode = ID;
+        msg.header.size = 2;
+        msg.data[0] = 0xCA;
+        msg.data[1] = 0xFE;
+        LOG_DEBUG("begin");
+        poppyNetwork_send(&msg);
+        rs485_set_dir(HALF_DUPLEX_RX);
+        delay_ms(1); // TODO wait for event when it's done writing
+        
+        uint32_t now = get_tick();
+        while ( get_tick() - now < 500 ){
+            uint32_t c = 0xFFFFFF;
+            if (rs485_read(&c) == 0){
+                //LOG_INFO("plop");
+                if (c != 0xFFFFFF) {
+                    //LOG_INFO("RS485: %02X", (uint8_t)c);
+                    ctx.data_cb((volatile unsigned char*)&c);
+                    c = 0xFFFFFF;
+                }
+                //delay_ms(1);
+            }         
+        }
+    }*/
 }
 
 #ifdef __cplusplus
