@@ -87,13 +87,13 @@
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-/*
+
 #include "stdio_serial.h"
 #include "conf_board.h"
 #include "conf_clock.h"
 #include "uart.h"
 #include "button.h"
-#include "ptp.h"*/
+#include "ptp.h"
 #include "test_board.h"
 #include "asf.h"
 #include "time.h"
@@ -143,146 +143,168 @@ void rx_cb(msg_t *msg) {
     }
 }
 
-static void read_serial(void){
-    // uint32_t val;
+static void parse_ptp_hal(int c){
+    uint32_t val;
+    switch (c){
+        case 'a':
+        if (ptp_adc_get(ptp_a, &val)){
+            LOG_DEBUG("ADC: %lu", val);
+        } else {
+            LOG_ERROR("ADC read failed");
+        }
+        break;
+        case 'r':
+        ptp_mode_set(ptp_a, PTP_MODE_TX);
+        break;
+        case 't':
+        ptp_mode_set(ptp_a, PTP_MODE_RX);
+        break;
+        case 'e':
+        ptp_mode_set(ptp_a, PTP_MODE_RX_TX);
+        break;
+        case 'z':
+        ptp_mode_set(ptp_a, PTP_MODE_HI_Z);
+        break;
+        case 'h':
+        ptp_mode_set(ptp_a, PTP_MODE_HIGH);
+        break;
+        case 'l':
+        ptp_mode_set(ptp_a, PTP_MODE_LOW);
+        break;
+        case 'u':
+        ptp_mode_set(ptp_a, PTP_MODE_PULL_UP_WEAK);
+        break;
+        case 'p':
+        ptp_mode_set(ptp_a, PTP_MODE_PULL_UP_STRONG);
+        break;
+        case 'd':
+        ptp_mode_set(ptp_a, PTP_MODE_PULL_DOWN_WEAK);
+        break;
+        case 'w':
+        ptp_mode_set(ptp_a, PTP_MODE_PULL_DOWN_STRONG);
+        break;
+
+        case 'A':
+        if (ptp_adc_get(ptp_b, &val)){
+            LOG_DEBUG("ADC: %lu", val);
+        } else {
+            LOG_ERROR("ADC read failed");
+        }
+        break;
+        case 'R':
+        ptp_mode_set(ptp_b, PTP_MODE_TX);
+        break;
+        case 'T':
+        ptp_mode_set(ptp_b, PTP_MODE_RX);
+        break;
+        case 'E':
+        ptp_mode_set(ptp_b, PTP_MODE_RX_TX);
+        break;
+        case 'Z':
+        ptp_mode_set(ptp_b, PTP_MODE_HI_Z);
+        break;
+        case 'H':
+        ptp_mode_set(ptp_b, PTP_MODE_HIGH);
+        break;
+        case 'L':
+        ptp_mode_set(ptp_b, PTP_MODE_LOW);
+        break;
+        case 'U':
+        ptp_mode_set(ptp_b, PTP_MODE_PULL_UP_WEAK);
+        break;
+        case 'P':
+        ptp_mode_set(ptp_b, PTP_MODE_PULL_UP_STRONG);
+        break;
+        case 'D':
+        ptp_mode_set(ptp_b, PTP_MODE_PULL_DOWN_WEAK);
+        break;
+        case 'W':
+        ptp_mode_set(ptp_b, PTP_MODE_PULL_DOWN_STRONG);
+        break;
+        default:
+        LOG_INFO("?");
+        break;
+    }        
+}
+
+static void parse_cmd_low_level(int c){
     msg_t msg;
+    switch (c){
+    // RS485 tests
+        case 's':
+        msg.header.cmd = TEST_CMD;
+        msg.header.target = ctx.id;
+        msg.header.target_mode = ID;
+        msg.header.size = 2;
+        msg.data[0] = 0xCA;
+        msg.data[1] = 0xFE;
+        LOG_INFO("MSG sent");
+        poppyNetwork_send(&msg);
+        break;
+        default:
+        LOG_INFO("?");
+        break;
+    }
+}
+enum {
+    PARSE_PTP_HAL,
+    PARSE_CMD_LOW_LEVEL
+};
+
+uint32_t parse_mode = PARSE_CMD_LOW_LEVEL;
+
+static bool parse_change_mode(int c){
+    switch (c){
+        case '1':
+        parse_mode = PARSE_PTP_HAL;
+        return true;
+        
+        case '2':
+        parse_mode = PARSE_CMD_LOW_LEVEL;
+        return true;
+        
+        default:
+        return false;
+        
+    }
+}
+
+
+static void read_serial(void){
     int c = getchar();
     if (c != -1){
-        switch (c){
-            /*case 'a':
-            if (ptp_adc_get(ptp_a, &val)){
-                LOG_DEBUG("ADC: %lu", val);
-            } else {
-                LOG_ERROR("ADC read failed");
+        if ( ! parse_change_mode(c)){
+            switch(parse_mode){
+                case PARSE_PTP_HAL:
+                    parse_ptp_hal(c);
+                break;
+                case PARSE_CMD_LOW_LEVEL:
+                    parse_cmd_low_level(c);
+                break;
             }
-            break;
-            case 'r':
-            ptp_set_mode(ptp_a, PTP_MODE_TX);
-            break;
-            case 't':
-            ptp_set_mode(ptp_a, PTP_MODE_RX);
-            break;
-            case 'e':
-            ptp_set_mode(ptp_a, PTP_MODE_RX_TX);
-            break;
-            case 'z':
-            ptp_set_mode(ptp_a, PTP_MODE_HI_Z);
-            break;
-            case 'h':
-            ptp_set_mode(ptp_a, PTP_MODE_HIGH);
-            break;
-            case 'l':
-            ptp_set_mode(ptp_a, PTP_MODE_LOW);
-            break;
-            case 'u':
-            ptp_set_mode(ptp_a, PTP_MODE_PULL_UP_WEAK);
-            break;
-            case 'p':
-            ptp_set_mode(ptp_a, PTP_MODE_PULL_UP_STRONG);
-            break;
-            case 'd':
-            ptp_set_mode(ptp_a, PTP_MODE_PULL_DOWN_WEAK);
-            break;
-            case 'w':
-            ptp_set_mode(ptp_a, PTP_MODE_PULL_DOWN_STRONG);
-            break;
-
-            case 'A':
-            if (ptp_adc_get(ptp_b, &val)){
-                LOG_DEBUG("ADC: %lu", val);
-            } else {
-                LOG_ERROR("ADC read failed");
-            }
-            break;
-            case 'R':
-            ptp_set_mode(ptp_b, PTP_MODE_TX);
-            break;
-            case 'T':
-            ptp_set_mode(ptp_b, PTP_MODE_RX);
-            break;
-            case 'E':
-            ptp_set_mode(ptp_b, PTP_MODE_RX_TX);
-            break;
-            case 'Z':
-            ptp_set_mode(ptp_b, PTP_MODE_HI_Z);
-            break;
-            case 'H':
-            ptp_set_mode(ptp_b, PTP_MODE_HIGH);
-            break;
-            case 'L':
-            ptp_set_mode(ptp_b, PTP_MODE_LOW);
-            break;
-            case 'U':
-            ptp_set_mode(ptp_b, PTP_MODE_PULL_UP_WEAK);
-            break;
-            case 'P':
-            ptp_set_mode(ptp_b, PTP_MODE_PULL_UP_STRONG);
-            break;
-            case 'D':
-            ptp_set_mode(ptp_b, PTP_MODE_PULL_DOWN_WEAK);
-            break;
-            case 'W':
-            ptp_set_mode(ptp_b, PTP_MODE_PULL_DOWN_STRONG);
-            break;*/
-
-            // RS485 tests
-            case 's':
-                msg.header.cmd = TEST_CMD;
-                msg.header.target = ctx.id;
-                msg.header.target_mode = ID;
-                msg.header.size = 2;
-                msg.data[0] = 0xCA;
-                msg.data[1] = 0xFE;
-                LOG_INFO("MSG sent");
-                poppyNetwork_send(&msg);
-            break;
-
-            default:
-            LOG_INFO("?");
-            break;
-        }
+        }            
     }
 }    
 
 
 int main(void)
 {
-    uint32_t c;
-    //msg_t msg;
-
+    // debug pins
 	ioport_set_pin_dir(DBG_PIN_1, IOPORT_DIR_OUTPUT);
 	ioport_set_pin_dir(DBG_PIN_2, IOPORT_DIR_OUTPUT);
 
     poppyNetwork_init(rx_cb);
 
-
 UP1;DW1;
 UP1;DW1;
 UP1;DW1;
 UP2;DW2;
 UP2;DW2;
-
-
 
     while (1){
         read_serial();
-        /*for(unsigned int i = 0; i< 1000; i++) {
-            if (rs485_read(&c) == 0){
-				LOG_INFO("plop");
-                if (c) {
-                    LOG_INFO("RS485: %c", (uint8_t)c);
-                    ctx.data_cb((volatile unsigned char*)&c);
-					c = 0;
-                }
-                delay_ms(0.01);
-            }
-        }*/ 
         delay_ms(1);
     }        
-    
-    
-    
-    
     
     
 //     

@@ -47,17 +47,17 @@ ptp_t* ptp_lines[2] = { &ptp_a_, &ptp_b_ };
 
 
 
-void ptp_error_set(ptp_t* ptp, ptp_error_e error){
-    ptp->error |= (1 << error);
+void ptp_status_flag_set(ptp_t* ptp, ptp_status_flag_e status){
+    ptp->status |= (1 << status);
 }
-void ptp_error_clear(ptp_t* ptp, ptp_error_e error){
-    ptp->error &= ~(1 << error);
+void ptp_status_flag_clear(ptp_t* ptp, ptp_status_flag_e status){
+    ptp->status &= ~(1 << status);
 }
-void ptp_error_reset(ptp_t* ptp){
-    ptp->error = 0;
+void ptp_status_flag_reset(ptp_t* ptp){
+    ptp->status = 0;
 }
-bool ptp_error_get(ptp_t* ptp, ptp_error_e error){
-    return ptp->error & (1 << error);
+bool ptp_status_flag_get(ptp_t* ptp, ptp_status_flag_e status){
+    return ptp->status & (1 << status);
 }
 
 

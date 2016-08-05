@@ -40,15 +40,17 @@ typedef struct{
     ioport_pin_t        tx_pin;
     ioport_pin_t        rx_pin;
     uint32_t            adc_channel;
-    uint32_t            error;
+    uint32_t            status;
 } ptp_t;
 
 
 typedef enum{
-    PTP_ERROR_NONE,
-    PTP_ERROR_NOT_DISCOVERABLE, // ptp line did respond normally to 
-    PTP_ERROR_DISCOVERY_FAILURE
-} ptp_error_e;
+    PTP_STATUS_ENABLED, // TODO
+    PTP_STATUS_DISCOVERY_FAILURE, // ptp line did respond normally to discovery procedure
+    PTP_STATUS_EMPTY, // nothing on the other side
+    PTP_STATUS_CONNECTED, // detection OK // TODO
+    PTP_STATUS_DISCOVERY_ONGOING // currently discovering (up or downstream) //  TODO
+} ptp_status_flag_e;
 
 extern ptp_t* ptp_a;
 extern ptp_t* ptp_b;
@@ -64,10 +66,10 @@ uint32_t ptp_uart_read(ptp_t* ptp, uint32_t* c);
 bool ptp_adc_get(ptp_t* ptp, uint32_t* adc_value);
 bool ptp_digital_read( ptp_t* ptp );
 
-void ptp_error_set(ptp_t* ptp, ptp_error_e error);
-void ptp_error_clear(ptp_t* ptp, ptp_error_e error);
-void ptp_error_reset(ptp_t* ptp);
-bool ptp_error_get(ptp_t* ptp, ptp_error_e error);
+void ptp_status_flag_set(ptp_t* ptp, ptp_status_flag_e status);
+void ptp_status_flag_clear(ptp_t* ptp, ptp_status_flag_e status);
+void ptp_status_flag_reset(ptp_t* ptp);
+bool ptp_status_flag_get(ptp_t* ptp, ptp_status_flag_e status);
 
 bool ptp_hal_init(void);
 bool ptp_init(void);
