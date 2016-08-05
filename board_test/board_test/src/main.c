@@ -98,6 +98,7 @@
 #include "rs485.h"
 #include "ptp.h"
 #include "test_board.h"
+#include "discovery.h"
 
 #include "log.h"
 #define LOG_TAG        "Main"
@@ -123,34 +124,34 @@ static void read_serial(void){
             }
             break;
             case 'r':
-            ptp_set_mode(ptp_a, PTP_MODE_TX);
+            ptp_mode_set(ptp_a, PTP_MODE_TX);
             break;
             case 't':
-            ptp_set_mode(ptp_a, PTP_MODE_RX);
+            ptp_mode_set(ptp_a, PTP_MODE_RX);
             break;
             case 'e':
-            ptp_set_mode(ptp_a, PTP_MODE_RX_TX);
+            ptp_mode_set(ptp_a, PTP_MODE_RX_TX);
             break;
             case 'z':
-            ptp_set_mode(ptp_a, PTP_MODE_HI_Z);
+            ptp_mode_set(ptp_a, PTP_MODE_HI_Z);
             break;
             case 'h':
-            ptp_set_mode(ptp_a, PTP_MODE_HIGH);
+            ptp_mode_set(ptp_a, PTP_MODE_HIGH);
             break;
             case 'l':
-            ptp_set_mode(ptp_a, PTP_MODE_LOW);
+            ptp_mode_set(ptp_a, PTP_MODE_LOW);
             break;
             case 'u':
-            ptp_set_mode(ptp_a, PTP_MODE_PULL_UP_WEAK);
+            ptp_mode_set(ptp_a, PTP_MODE_PULL_UP_WEAK);
             break;
             case 'p':
-            ptp_set_mode(ptp_a, PTP_MODE_PULL_UP_STRONG);
+            ptp_mode_set(ptp_a, PTP_MODE_PULL_UP_STRONG);
             break;
             case 'd':
-            ptp_set_mode(ptp_a, PTP_MODE_PULL_DOWN_WEAK);
+            ptp_mode_set(ptp_a, PTP_MODE_PULL_DOWN_WEAK);
             break;
             case 'w':
-            ptp_set_mode(ptp_a, PTP_MODE_PULL_DOWN_STRONG);
+            ptp_mode_set(ptp_a, PTP_MODE_PULL_DOWN_STRONG);
             break;
 
             case 'A':
@@ -161,34 +162,34 @@ static void read_serial(void){
             }
             break;
             case 'R':
-            ptp_set_mode(ptp_b, PTP_MODE_TX);
+            ptp_mode_set(ptp_b, PTP_MODE_TX);
             break;
             case 'T':
-            ptp_set_mode(ptp_b, PTP_MODE_RX);
+            ptp_mode_set(ptp_b, PTP_MODE_RX);
             break;
             case 'E':
-            ptp_set_mode(ptp_b, PTP_MODE_RX_TX);
+            ptp_mode_set(ptp_b, PTP_MODE_RX_TX);
             break;
             case 'Z':
-            ptp_set_mode(ptp_b, PTP_MODE_HI_Z);
+            ptp_mode_set(ptp_b, PTP_MODE_HI_Z);
             break;
             case 'H':
-            ptp_set_mode(ptp_b, PTP_MODE_HIGH);
+            ptp_mode_set(ptp_b, PTP_MODE_HIGH);
             break;
             case 'L':
-            ptp_set_mode(ptp_b, PTP_MODE_LOW);
+            ptp_mode_set(ptp_b, PTP_MODE_LOW);
             break;
             case 'U':
-            ptp_set_mode(ptp_b, PTP_MODE_PULL_UP_WEAK);
+            ptp_mode_set(ptp_b, PTP_MODE_PULL_UP_WEAK);
             break;
             case 'P':
-            ptp_set_mode(ptp_b, PTP_MODE_PULL_UP_STRONG);
+            ptp_mode_set(ptp_b, PTP_MODE_PULL_UP_STRONG);
             break;
             case 'D':
-            ptp_set_mode(ptp_b, PTP_MODE_PULL_DOWN_WEAK);
+            ptp_mode_set(ptp_b, PTP_MODE_PULL_DOWN_WEAK);
             break;
             case 'W':
-            ptp_set_mode(ptp_b, PTP_MODE_PULL_DOWN_STRONG);
+            ptp_mode_set(ptp_b, PTP_MODE_PULL_DOWN_STRONG);
             break;
 
             default:
@@ -204,27 +205,38 @@ int main(void)
     sysclk_init();
     board_init();
 
-    uart_stdio_init(CONSOLE_UART, 115200);
+    uart_stdio_init(CONSOLE_UART, 1000000);
 
     TEST_LOG_INFO(){
         printf("\n\r\tFirmware Poppy-com built on %s at %s\n\r", __DATE__, __TIME__ );
     }
 
     if (SysTick_Config(sysclk_get_cpu_hz() / 1000)) {
-        LOG_ERROR("systic config failed");
+        LOG_ERROR("systick config failed");
         while (1);
     }
 
     rs485_init();
     ptp_init();
-    
-    ptp_set_mode(ptp_a, PTP_MODE_RX);
-    ptp_set_mode(ptp_b, PTP_MODE_RX);
+
+
+    discovery_setup();
     
     while (1){
-        read_serial();
-        delay_ms(1);
-    }        
+        discovery_run();
+    }    
+
+
+
+//     ptp_mode_set(ptp_a, PTP_MODE_RX);
+//     ptp_mode_set(ptp_b, PTP_MODE_RX);
+//     
+//     while (1){
+//         read_serial();
+//         delay_ms(1);
+//     }        
+    
+    
     
     
     

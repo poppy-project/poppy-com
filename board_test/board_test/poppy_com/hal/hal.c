@@ -42,8 +42,8 @@ void hal_init(void) {
 	rs485_init();
 	ptp_init();
 	    
-	ptp_set_mode(ptp_a, PTP_MODE_RX);
-	ptp_set_mode(ptp_b, PTP_MODE_RX);
+	ptp_mode_set(ptp_a, PTP_MODE_RX);
+	ptp_mode_set(ptp_b, PTP_MODE_RX);
 }
 
 /**

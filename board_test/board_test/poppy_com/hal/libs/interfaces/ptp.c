@@ -11,6 +11,11 @@
 
 #include "time.h"
 
+#include "log.h"
+#define LOG_TAG       "ptp"
+#define LOG_LEVEL     LOG_LEVEL_DEBUG
+
+
 #define PTP_BAUDRATE 115200 // TODO get from somewhere else
 
 ptp_t ptp_a_ = {
@@ -38,6 +43,23 @@ ptp_t ptp_b_ = {
 
 ptp_t* ptp_a = &ptp_a_;
 ptp_t* ptp_b = &ptp_b_;
+ptp_t* ptp_lines[2] = { &ptp_a_, &ptp_b_ };
+
+
+
+void ptp_error_set(ptp_t* ptp, ptp_error_e error){
+    ptp->error |= (1 << error);
+}
+void ptp_error_clear(ptp_t* ptp, ptp_error_e error){
+    ptp->error &= ~(1 << error);
+}
+void ptp_error_reset(ptp_t* ptp){
+    ptp->error = 0;
+}
+bool ptp_error_get(ptp_t* ptp, ptp_error_e error){
+    return ptp->error & (1 << error);
+}
+
 
 static void ptp_set_hal_mode(ptp_t* ptp, ptp_hal_mode_e hal_mode ){
     if ( ptp->hal_mode != hal_mode ){
@@ -57,7 +79,7 @@ static void ptp_set_hal_mode(ptp_t* ptp, ptp_hal_mode_e hal_mode ){
 }   
 
 
-void ptp_set_mode(ptp_t* ptp, ptp_mode_e mode){
+void ptp_mode_set(ptp_t* ptp, ptp_mode_e mode){
     ptp_set_hal_mode(ptp, mode);
 
     switch(mode){
@@ -152,12 +174,12 @@ void ptp_set_rx(ptp_t* ptp, bool enable){
 }
 
 
-uint32_t ptp_write(ptp_t* ptp, uint32_t c){
+uint32_t ptp_uart_write(ptp_t* ptp, uint32_t c){
     while (!usart_is_tx_ready(ptp->uart));
     return usart_write(ptp->uart, c);
 }
 
-uint32_t ptp_read(ptp_t* ptp, uint32_t* c){
+uint32_t ptp_uart_read(ptp_t* ptp, uint32_t* c){
     return usart_read(ptp->uart, c);
 }
 
@@ -170,6 +192,16 @@ bool ptp_adc_get(ptp_t* ptp, uint32_t* adc_value){
     *adc_value = adc_channel_get_value(ADC, ptp->adc_channel);
     return true; // TODO
 }
+
+bool ptp_digital_read( ptp_t* ptp ){
+    TEST_LOG_WARNING(){
+        if (ptp->hal_mode != PTP_HAL_GPIO){
+            LOG_WARNING("Reading ptp digital val in UART mode");
+        }
+    }        
+    return ioport_get_pin_level(ptp->tx_pin);
+}
+
 
 
 bool ptp_hal_init(void){

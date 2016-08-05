@@ -40,20 +40,34 @@ typedef struct{
     ioport_pin_t        tx_pin;
     ioport_pin_t        rx_pin;
     uint32_t            adc_channel;
+    uint32_t            error;
 } ptp_t;
+
+
+typedef enum{
+    PTP_ERROR_NONE,
+    PTP_ERROR_NOT_DISCOVERABLE, // ptp line did respond normally to 
+    PTP_ERROR_DISCOVERY_FAILURE
+} ptp_error_e;
 
 extern ptp_t* ptp_a;
 extern ptp_t* ptp_b;
+extern ptp_t* ptp_lines[2];
 
-void ptp_set_mode(ptp_t* ptp, ptp_mode_e mode);
+void ptp_mode_set(ptp_t* ptp, ptp_mode_e mode);
 void ptp_set_tx(ptp_t* ptp, bool enable);
 void ptp_set_rx(ptp_t* ptp, bool enable);
 
-uint32_t ptp_write(ptp_t* ptp, uint32_t c);
-uint32_t ptp_read(ptp_t* ptp, uint32_t* c);
+uint32_t ptp_uart_write(ptp_t* ptp, uint32_t c);
+uint32_t ptp_uart_read(ptp_t* ptp, uint32_t* c);
 
 bool ptp_adc_get(ptp_t* ptp, uint32_t* adc_value);
+bool ptp_digital_read( ptp_t* ptp );
 
+void ptp_error_set(ptp_t* ptp, ptp_error_e error);
+void ptp_error_clear(ptp_t* ptp, ptp_error_e error);
+void ptp_error_reset(ptp_t* ptp);
+bool ptp_error_get(ptp_t* ptp, ptp_error_e error);
 
 bool ptp_hal_init(void);
 bool ptp_init(void);

@@ -259,7 +259,7 @@
       </framework-data>
     </AsfFrameworkConfig>
     <avrtool>com.atmel.avrdbg.tool.edbg</avrtool>
-    <avrtoolserialnumber>ATML2393031800001257</avrtoolserialnumber>
+    <avrtoolserialnumber>ATML2393031800001052</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x24570AE0</avrdeviceexpectedsignature>
     <avrtoolinterface>SWD</avrtoolinterface>
     <com_atmel_avrdbg_tool_edbg>
@@ -270,7 +270,7 @@
         <InterfaceName>SWD</InterfaceName>
       </ToolOptions>
       <ToolType>com.atmel.avrdbg.tool.edbg</ToolType>
-      <ToolNumber>ATML2393031800001257</ToolNumber>
+      <ToolNumber>ATML2393031800001052</ToolNumber>
       <ToolName>EDBG</ToolName>
     </com_atmel_avrdbg_tool_edbg>
     <avrtoolinterfaceclock>2000000</avrtoolinterfaceclock>
@@ -487,6 +487,7 @@
       <Value>../poppy_com/hal</Value>
       <Value>../poppy_com/inc</Value>
       <Value>../poppy_com</Value>
+      <Value>../poppy_com/pt</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -496,7 +497,6 @@
   <armgcc.compiler.warnings.AllWarnings>True</armgcc.compiler.warnings.AllWarnings>
   <armgcc.compiler.warnings.ExtraWarnings>True</armgcc.compiler.warnings.ExtraWarnings>
   <armgcc.compiler.warnings.Undefined>True</armgcc.compiler.warnings.Undefined>
-  <armgcc.compiler.warnings.WarningsAsErrors>True</armgcc.compiler.warnings.WarningsAsErrors>
   <armgcc.compiler.miscellaneous.OtherFlags>-pipe -fno-strict-aliasing -Wall -Wstrict-prototypes -Wmissing-prototypes -Werror-implicit-function-declaration -Wpointer-arith -std=gnu99 -ffunction-sections -fdata-sections -Wchar-subscripts -Wcomment -Wformat=2 -Wimplicit-int -Wmain -Wparentheses -Wsequence-point -Wreturn-type -Wswitch -Wtrigraphs -Wunused -Wuninitialized -Wunknown-pragmas -Wfloat-equal -Wundef -Wshadow -Wbad-function-cast -Wwrite-strings -Wsign-compare -Waggregate-return -Wmissing-declarations -Wformat -Wmissing-format-attribute -Wno-deprecated-declarations -Wpacked -Wredundant-decls -Wnested-externs -Wlong-long -Wunreachable-code -Wcast-align --param max-inline-insns-single=500 -mfloat-abi=softfp -mfpu=fpv4-sp-d16</armgcc.compiler.miscellaneous.OtherFlags>
   <armgcc.linker.libraries.Libraries>
     <ListValues>
@@ -594,6 +594,10 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="poppy_com\NewFolder1\" />
+    <Folder Include="poppy_com\pt\" />
+    <Folder Include="poppy_com\pt\doc\" />
+    <Folder Include="poppy_com\pt\doc\html\" />
     <Folder Include="src" />
     <Folder Include="poppy_com" />
     <Folder Include="poppy_com\hal\" />
@@ -1266,6 +1270,9 @@
     <Compile Include="poppy_com\inc\context.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="poppy_com\inc\discovery.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="poppy_com\inc\mod_list.h">
       <SubType>compile</SubType>
     </Compile>
@@ -1279,6 +1286,24 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="poppy_com\poppyNetwork.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\pt\lc-addrlabels.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\pt\lc-switch.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\pt\lc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\pt\pt-sem.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\pt\pt.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="poppy_com\src\discovery.c">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="poppy_com\src\poppyNetwork.c">
@@ -1312,6 +1337,183 @@
       <SubType>compile</SubType>
     </None>
     <None Include="poppy_com\hal\ASF\thirdparty\CMSIS\README.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\Doxyfile">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\header.tex">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00005.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00006.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00009.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00010.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00011.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00012.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00013.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00014.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00015.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00016.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00017.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00018.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00019.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00020.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00021.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\a00022.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\annotated.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\doxygen.css">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\doxygen.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\files.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2blank.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2doc.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2folderclosed.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2folderopen.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2lastnode.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2link.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2mlastnode.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2mnode.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2node.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2plastnode.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2pnode.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\ftv2vertline.png">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\functions.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\functions_vars.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\globals.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\globals_defs.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\globals_type.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\hierarchy.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\index.hhc">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\index.hhk">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\index.hhp">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\index.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\main.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\modules.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\tabs.css">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\tab_b.gif">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\tab_l.gif">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\tab_r.gif">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\html\tree.html">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\Makefile">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\pt-doc.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\pt-mainpage.txt">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\pt-refman.pdf">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\doc\sicslogo.pdf">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\Makefile">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\README">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="poppy_com\pt\README-VISUAL-C++.txt">
       <SubType>compile</SubType>
     </None>
   </ItemGroup>
