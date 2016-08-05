@@ -130,6 +130,7 @@ void rx_cb(msg_t *msg) {
     switch (msg->header.cmd) {
         case TEST_CMD :
             //LOG_DEBUG("MSG received and i write to do a tempo!!!!");
+			UP1;DW1;
             poppyNetwork_send(msg);
             //LOG_DEBUG("MSG sent");
         break;
@@ -281,7 +282,7 @@ static void read_serial(void){
                 case PARSE_CMD_LOW_LEVEL:
                     parse_cmd_low_level(c);
                 break;
-            }
+            } 
         }            
     }
 }    

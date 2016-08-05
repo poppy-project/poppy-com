@@ -2,11 +2,13 @@
 #include "hal.h"
 #include "target.h"
 #include "sys_msg.h"
-#include "test_board.h"
 #include "time.h"
+//#include "test_board.h"
 
 // Global variables
 context_t ctx;
+unsigned char drop = FALSE;
+static timeout_t timeout;
 
 /**
  * \fn unsigned char crc(unsigned char* data, unsigned char size)
@@ -39,14 +41,13 @@ unsigned short crc(unsigned char* data, unsigned short size) {
  */
 void get_header(volatile unsigned char *data) {
     static unsigned short data_count = 0;
-	static volatile timeout_t header_timeout;
 	//UP2;
 	
-	if (timeout_ended(&header_timeout)){
+	if (timeout_ended(&timeout)){
 		data_count = 0;
 		//UP1;DW1;
 	}
-	timeout_init(&header_timeout, 20);
+	timeout_init(&timeout, 20);
     // Catch a byte.
     ctx.msg.header.unmap[data_count++] = *data;
 //  	for ( int32_t i = -1; i< data_count ; i++   ){
@@ -65,23 +66,15 @@ void get_header(volatile unsigned char *data) {
             case IDACK:
             case TYPE:
             case BROADCAST:
-                if (ctx.msg.header.target == ctx.id ||
-                    ctx.msg.header.target == ctx.type ||
-                    ctx.msg.header.target == BROADCAST_VAL ||
-                    virtual_target_bank(ctx.msg.header.target))
-                        ctx.data_cb = get_data;
-                else{
-	                //DW2;
-                    return;
-				}
+                drop = !(ctx.msg.header.target == ctx.id ||
+						ctx.msg.header.target == ctx.type ||
+						ctx.msg.header.target == BROADCAST_VAL ||
+						virtual_target_bank(ctx.msg.header.target));
+						ctx.data_cb = get_data;
             break;
             case MULTICAST:
-                if (multicast_target_bank(ctx.msg.header.target))
-                    ctx.data_cb = get_data;
-                else{
-	                //DW2;
-                    return;
-				}
+                drop = (multicast_target_bank(ctx.msg.header.target));
+                ctx.data_cb = get_data;
             break;
             default:
 				//DW2;
@@ -100,21 +93,32 @@ void get_header(volatile unsigned char *data) {
  */
 void get_data(volatile unsigned char *data) {
     static unsigned short data_count = 0;
-
+	
+	if (timeout_ended(&timeout)){
+		data_count = 0;
+		drop = 0;
+		ctx.data_cb = get_header;
+		return;
+	}
+	timeout_init(&timeout, 20);
 
     ctx.msg.data[data_count] = *data;
 
     if (data_count > ctx.msg.header.size) {
-        ctx.msg.crc = ((unsigned short)ctx.msg.data[ctx.msg.header.size]) |
-                      ((unsigned short)ctx.msg.data[ctx.msg.header.size + 1] << 8); 
-        if (ctx.msg.crc == crc(ctx.msg.stream, ctx.msg.header.size + sizeof(header_t))) {
-            if (ctx.msg.header.target_mode == IDACK) {
-                send_ack();
-            }
-            ctx.data_cb = get_header;
-            msg_complete();
-        } else
-            ctx.status.rx_error = TRUE;
+		if (!drop) {
+			ctx.msg.crc = ((unsigned short)ctx.msg.data[ctx.msg.header.size]) |
+						  ((unsigned short)ctx.msg.data[ctx.msg.header.size + 1] << 8); 
+			if (ctx.msg.crc == crc(ctx.msg.stream, ctx.msg.header.size + sizeof(header_t))) {
+				if (ctx.msg.header.target_mode == IDACK) {
+					send_ack();
+				}
+				ctx.data_cb = get_header;
+				msg_complete();
+			} else
+				ctx.status.rx_error = TRUE;
+		}
+		ctx.data_cb = get_header;
+		drop = 0;
         data_count = 0;
         return;
     }

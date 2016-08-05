@@ -27,9 +27,12 @@
 
 //RS485
 #define RS485_RX_PIN            IOPORT_CREATE_PIN(PIOB, 11)//
+#define RS485_RX_PIN_MASK		PIO_PB11
 #define RS485_TX_PIN            IOPORT_CREATE_PIN(PIOB, 10)//
 #define RS485_DE_PIN            IOPORT_CREATE_PIN(PIOA, 29)
 #define RS485_RE_PIN            IOPORT_CREATE_PIN(PIOA, 24)
+
+#define RS485_UART_PIO			PIOB  
 
 #define RS485_UART              USART4
 #define RS485_UART_ID           ID_FLEXCOM4

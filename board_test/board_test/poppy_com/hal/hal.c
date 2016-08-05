@@ -73,7 +73,16 @@ void hal_init(void) {
  *
  * \return error
  */
+
+
 unsigned char hal_transmit(unsigned char* data, unsigned short size) {
+	
+	uint32_t plop = pio_get_interrupt_status(RS485_UART_PIO);
+	
+	if ((plop & RS485_RX_PIN_MASK) > 0) {
+		return 1;
+	}
+	
 	rs485_set_dir(HALF_DUPLEX_TX);
 	for (unsigned short i = 0; i < size; i++)
 	{

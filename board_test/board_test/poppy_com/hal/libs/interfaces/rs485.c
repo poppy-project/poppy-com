@@ -64,6 +64,8 @@ bool rs485_hal_init(void){
 
     ioport_set_pin_dir(RS485_DE_PIN, IOPORT_DIR_OUTPUT);
     rs485_set_tx(false);
+	
+	ioport_set_pin_sense_mode(RS485_RX_PIN, IOPORT_SENSE_RISING);
     
     ioport_set_port_mode(RS485_UART_PORT, RS485_UART_PIN_MASK, RS485_UART_PINS_FLAGS);
     ioport_disable_port(RS485_UART_PORT, RS485_UART_PIN_MASK);
