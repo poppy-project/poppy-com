@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/poppy-project/poppy_com.svg?branch=master)](https://travis-ci.org/poppy-project/poppy_com)[![Coverage Status](https://coveralls.io/repos/poppy-project/poppy_com/badge.svg?branch=master)](https://coveralls.io/github/poppy-project/poppy_com?branch=master)
 Please read [the code documentation](http://poppy-project.github.io/poppy_com/)
 
+THIS PROJECT WAS CONTINUED BY LUOS => https://github.com/Luos-io
+
 <span \mainpage<span></span>
 
 Poppy 2.0 communication lib
